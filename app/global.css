@@ -1,0 +1,282 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  --ds-gray-100: #1a1a1a;
+  --ds-gray-200: #1f1f1f;
+  --ds-gray-300: #292929;
+  --ds-gray-400: #2e2e2e;
+  --ds-gray-500: #454545;
+  --ds-gray-600: #878787;
+  --ds-gray-700: #8f8f8f;
+  --ds-gray-800: #7d7d7d;
+  --ds-gray-900: #a1a1a1;
+  --ds-gray-1000: #ededed;
+  --ds-gray-alpha-100: hsla(0,0%,100%,.07);
+  --ds-gray-alpha-200: hsla(0,0%,100%,.09);
+  --ds-gray-alpha-300: hsla(0,0%,100%,.13);
+  --ds-gray-alpha-400: hsla(0,0%,100%,.14);
+  --ds-gray-alpha-500: hsla(0,0%,100%,.24);
+  --ds-gray-alpha-600: hsla(0,0%,100%,.51);
+  --ds-gray-alpha-700: hsla(0,0%,100%,.54);
+  --ds-gray-alpha-800: hsla(0,0%,100%,.47);
+  --ds-gray-alpha-900: hsla(0,0%,100%,.61);
+  --ds-gray-alpha-1000: hsla(0,0%,100%,.92);
+  --ds-blue-100: #0f1c2e;
+  --ds-blue-200: #10233d;
+  --ds-blue-300: #0f2f57;
+  --ds-blue-400: #0d3868;
+  --ds-blue-500: #0a4380;
+  --ds-blue-600: #0091ff;
+  --ds-blue-700: #0072f5;
+  --ds-blue-800: #0062d1;
+  --ds-blue-900: #52a8ff;
+  --ds-blue-1000: #ebf6ff;
+  --ds-red-100: #2a1314;
+  --ds-red-200: #3c1618;
+  --ds-red-300: #561a1e;
+  --ds-red-400: #671e21;
+  --ds-red-500: #832126;
+  --ds-red-600: #e5484d;
+  --ds-red-700: #e5484d;
+  --ds-red-800: #d93036;
+  --ds-red-900: #ff6166;
+  --ds-red-1000: #feecee;
+  --ds-amber-100: #291800;
+  --ds-amber-200: #331b00;
+  --ds-amber-300: #4d2a00;
+  --ds-amber-400: #573300;
+  --ds-amber-500: #6b4105;
+  --ds-amber-600: #e79d13;
+  --ds-amber-700: #ffb224;
+  --ds-amber-800: #ff990a;
+  --ds-amber-900: #ff990a;
+  --ds-amber-1000: #fef3dc;
+  --ds-green-100: #0b2212;
+  --ds-green-200: #0f2e18;
+  --ds-green-300: #12361b;
+  --ds-green-400: #0c451b;
+  --ds-green-500: #126426;
+  --ds-green-600: #1a9338;
+  --ds-green-700: #45a557;
+  --ds-green-800: #398e4a;
+  --ds-green-900: #62c073;
+  --ds-green-1000: #e5fbea;
+  --ds-teal-100: #04201b;
+  --ds-teal-200: #062822;
+  --ds-teal-300: #083a33;
+  --ds-teal-400: #053d35;
+  --ds-teal-500: #085e53;
+  --ds-teal-600: #0c9784;
+  --ds-teal-700: #12a594;
+  --ds-teal-800: #0d8c7d;
+  --ds-teal-900: #0ac7b4;
+  --ds-teal-1000: #e0faf4;
+  --ds-purple-100: #231528;
+  --ds-purple-200: #2e1938;
+  --ds-purple-300: #422154;
+  --ds-purple-400: #4f2768;
+  --ds-purple-500: #5f2e85;
+  --ds-purple-600: #8e4ec6;
+  --ds-purple-700: #8e4ec6;
+  --ds-purple-800: #763da9;
+  --ds-purple-900: #bf7af0;
+  --ds-purple-1000: #f8edfc;
+  --ds-pink-100: #28151d;
+  --ds-pink-200: #3a1726;
+  --ds-pink-300: #4f1c31;
+  --ds-pink-400: #551b33;
+  --ds-pink-500: #6c1e3e;
+  --ds-pink-600: #b31a57;
+  --ds-pink-700: #ea3e83;
+  --ds-pink-800: #df2670;
+  --ds-pink-900: #f75f8f;
+  --ds-pink-1000: #feecf4;
+  --ds-background-100: #0a0a0a;
+  --ds-background-200: #000;
+}
+
+::selection {
+  background-color: #47a3f3;
+  color: #fefefe;
+}
+
+html {
+  min-width: 360px;
+}
+
+.dark{
+  background:rgb(23 23 23);
+}
+
+.prose .anchor {
+  @apply absolute invisible no-underline;
+
+  margin-left: -1em;
+  padding-right: 0.5em;
+  width: 80%;
+  max-width: 700px;
+  cursor: pointer;
+}
+
+.anchor:hover {
+  @apply visible;
+}
+
+.prose a {
+  @apply transition-all decoration-neutral-400 dark:decoration-neutral-600 underline-offset-2 decoration-[0.1em];
+}
+
+.prose .anchor:after {
+  @apply text-neutral-300 dark:text-neutral-700;
+  content: '#';
+}
+
+.prose *:hover > .anchor {
+  @apply visible;
+}
+
+.prose pre {
+  @apply border border-neutral-800 bg-neutral-900;
+}
+
+.prose code {
+  @apply text-neutral-800 dark:text-neutral-200 px-1 py-0.5 border border-neutral-100 dark:border-neutral-800 rounded-lg bg-neutral-100 dark:bg-neutral-900;
+}
+
+.prose pre code {
+  @apply text-neutral-800 dark:text-neutral-200 p-0;
+  border: initial;
+}
+
+.prose img {
+  /* Don't apply styles to next/image */
+  @apply m-0;
+}
+
+.prose > :first-child {
+  /* Override removing top margin, causing layout shift */
+  margin-top: 1.25em !important;
+  margin-bottom: 1.25em !important;
+}
+
+code[class*='language-'],
+pre[class*='language-'] {
+  @apply text-neutral-50;
+}
+
+pre::-webkit-scrollbar {
+  display: none;
+}
+
+pre {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Remove Safari input shadow on mobile */
+input[type='text'],
+input[type='email'] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.prose .tweet a {
+  text-decoration: inherit;
+  font-weight: inherit;
+}
+
+table {
+  display: block;
+  max-width: fit-content;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.prose .callout > p {
+  margin: 0 !important;
+}
+
+[data-rehype-pretty-code-fragment] code {
+  @apply grid min-w-full break-words rounded-none border-0 bg-transparent p-0 text-sm text-black;
+  counter-reset: line;
+  box-decoration-break: clone;
+}
+[data-rehype-pretty-code-fragment] .line {
+  @apply py-1;
+}
+[data-rehype-pretty-code-fragment] [data-line-numbers] > .line::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 1rem;
+  margin-right: 1rem;
+  text-align: right;
+  color: gray;
+}
+[data-rehype-pretty-code-fragment] .line--highlighted {
+  @apply bg-slate-500 bg-opacity-10;
+}
+[data-rehype-pretty-code-fragment] .line-highlighted span {
+  @apply relative;
+}
+[data-rehype-pretty-code-fragment] .word--highlighted {
+  @apply rounded-md bg-slate-500 bg-opacity-10 p-1;
+}
+[data-rehype-pretty-code-title] {
+  @apply px-4 py-3 font-mono text-xs font-medium border rounded-t-lg text-neutral-200 border-[#333333] bg-[#1c1c1c];
+}
+[data-rehype-pretty-code-title] + pre {
+  @apply mt-0 rounded-t-none border-t-0;
+}
+
+fieldset {
+  background-color: transparent;
+  border:none;
+  border-top: 1px solid var(--ds-gray-800);
+}
+
+fieldset span{
+  display:flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap:5px;
+}
+
+fieldset div span{
+  border:1px solid rgb(17, 16, 16);
+  background: rgb(17, 16, 16);
+  border-radius: 50%;
+}
+
+legend {
+  background-color: transparent;
+  color: #e6cc85;
+  padding:0 4px 0 0;
+  display:flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap:20px;
+}
+
+legend span{
+  color: #ebe8e0;
+  display:flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap:10px;
+  /* position:absolute;
+  z-index:2;
+  margin-left:200px; */
+}
+
+/* legend span a{
+  background : rgb(17,16,16);
+  border-radius: 50%;
+  padding:5px;
+} */

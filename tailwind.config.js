@@ -1,18 +1,32 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './content/**/*.mdx',
   ],
+  darkMode: 'class',
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      fontFamily: {
+        serif: ['var(--font-kaisei)'],
+        nunito:['Nunito','-apple-system','system-ui','BlinkMacSystemFont','Helvetica','Arial','sans-serif']
       },
+      typography: {
+        quoteless: {
+          css: {
+            'blockquote p:first-of-type::before': { content: 'none' },
+            'blockquote p:first-of-type::after': { content: 'none' },
+          },
+        },
+      },
+      grayscale: {
+        50: '50%',
+      }
     },
   },
-  plugins: [],
-}
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
+  plugins: [require('@tailwindcss/typography')],
+};
