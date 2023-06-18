@@ -4,7 +4,7 @@ import {
   LinkIcon,
   StackIcon,
   HashIcon
-} from 'components/icons';
+} from '../../components/icons';
 
 export const metadata: Metadata = {
   title: 'Projects',
