@@ -51,9 +51,9 @@ export default function ProjectPage() {
 
             <ul className="mb-8">
                 
-                <li>The app provides a beautiful and intuitive interface, wherein, the user can upload a csv file and view visualizations in the form of tables and plots. The user can also create an account and save the generated visualizations to their profile, which can be viewd later on and shared with anyone else throuhg url sharing</li>
+                <li>The app provides a beautiful and intuitive interface, wherein, the user can upload a csv file and view visualizations in the form of tables and plots. The user can also create an account and save the generated visualizations to their profile, which can be viewed later on and shared with anyone else throuhg url sharing</li>
 
-                <li>The app boasts features such as responsive design, user authentication, seperately dockerized frontend and backend and a loosely coupled architecture</li>
+                <li>The app boasts features such as responsive design, user authentication, and a loosely coupled architecture</li>
             </ul>
         </fieldset>
 
@@ -95,7 +95,7 @@ export default function ProjectPage() {
             <ul className="mb-8">
                 <li>The application leverages local storage to store data pertaining to each session, if its a one-time user, but in case of an authenticated user, file's content can be saved to database.</li>
 
-                <li>Data can be stored and organized in the form of files and folders. The created files can be searched through, downloaded, shared and deleted. In addition, it avails a responsive interface, mutliple-themes and the configurations panels for manipulating editor settings.</li>
+                <li>Data can be stored and organized in the form of files and folders. The created files can be searched through, downloaded, shared and deleted. In addition, it avails a responsive interface, mutliple-themes and configurations panels for manipulating editor settings.</li>
             </ul>
         </fieldset>
 
@@ -131,21 +131,18 @@ export default function ProjectPage() {
             </span>
 
             <span>
-            a map of the Indian state 'Haryana'.
+            a map of the Indian state 'Haryana', for the categorical visualizations of consitutency elections.
             </span>
                 
             <ul className="mb-8">
                 <li>
-                The map serves as an interactive and responsive plot for various metrices acquired during constituency elections, held across the sate.
-                </li>
-                <li>
-                you can create public/private channels , talk to your contacts with mesazhID or find people on the platform
+                The map serves as an interactive and responsive plot for various metrices acquired during constituency elections, held across the state.
                 </li>
             </ul>
 
         </fieldset>
 
-        <fieldset>
+        {/* <fieldset>
             <legend>
                 <p className='dark:text-yellow-200 text-rose-500'>mesazh</p>
                 <span>
@@ -182,7 +179,7 @@ export default function ProjectPage() {
             
             <ul className="mb-8">
                 <li>
-                secure connection with user authentication (with email & passsword / Google LogIn)
+                Secure connection with user authentication (with email & passsword / Google LogIn)
                 </li>
                 <li>
                 you can create public/private channels , talk to your contacts with mesazhID or find people on the platform
@@ -206,7 +203,7 @@ export default function ProjectPage() {
                 </li>
             </ul>
             
-        </fieldset>
+        </fieldset> */}
 
       </div>
     </section>
