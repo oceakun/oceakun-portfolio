@@ -1,23 +1,12 @@
-export function TwitterIcon() {
+export function XIcon() {
   return (
     <svg
-      width="20"
-      height="16"
-      viewBox="0 0 24 20"
-      fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      height="1em"
+      viewBox="0 0 512 512"
+      fill="currentColor"
     >
-      <g clipPath="url(#a)">
-        <path
-          d="M21.479 4.937c.015.209.015.418.015.628 0 6.424-4.917 13.832-13.906 13.832v-.004a13.89 13.89 0 0 1-7.491-2.18 9.847 9.847 0 0 0 7.233-2.015 4.89 4.89 0 0 1-4.566-3.375c.732.14 1.487.112 2.206-.084a4.868 4.868 0 0 1-3.92-4.764v-.062c.68.376 1.44.585 2.218.608a4.851 4.851 0 0 1-1.513-6.49 13.896 13.896 0 0 0 10.073 5.078 4.848 4.848 0 0 1 1.414-4.644 4.911 4.911 0 0 1 6.914.21A9.84 9.84 0 0 0 23.26.496a4.884 4.884 0 0 1-2.149 2.69 9.76 9.76 0 0 0 2.807-.766 9.898 9.898 0 0 1-2.439 2.518Z"
-          fill="currentColor"
-        />
-      </g>
-      <defs>
-        <clipPath id="a">
-          <path fill="#fff" d="M0 0h24v19.636H0z" />
-        </clipPath>
-      </defs>
+      <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
     </svg>
   );
 }
@@ -159,3 +148,18 @@ export function HashIcon() {
 }
 
 
+export function LeftArrowIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="22"
+      height="22"
+      style={{ fill: "#3480eb" }}
+      viewBox="0 0 40 40"
+      id="leftArrow"
+    >
+      <path fill="none" d="M0 0h48v48H0z"></path>
+      <path d="M40 22H15.66l11.17-11.17L24 8 8 24l16 16 2.83-2.83L15.66 26H40v-4z"></path>
+    </svg>
+  );
+}

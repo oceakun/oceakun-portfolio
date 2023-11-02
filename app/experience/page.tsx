@@ -1,10 +1,5 @@
 import type { Metadata } from 'next';
 import {
-  GitHubIcon,
-  YoutubeIcon,
-  ArrowIcon,
-  TwitterIcon,
-  LinkedinIcon,
   StackIcon
 } from '../../components/icons';
 
@@ -19,7 +14,7 @@ export default function ExperincePage() {
       <h1 className="font-bold text-3xl dark:text-neutral-200 font-serif">
         Experience
       </h1>
-      <div className="prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-200">
+      <div className="prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-200 mt-10">
         <div>
           <span className="grid grid-cols-[auto_1fr_auto] items-center mt-4 max-w-[650px]">
             <mark className="bg-transparent dark:text-yellow-200 text-rose-500 ">
@@ -32,7 +27,7 @@ export default function ExperincePage() {
           </span>
 
           <span className="flex flex-row justify-between">
-            <mark className="bg-transparent dark:text-neutral-400 ">
+            <mark className="bg-transparent dark:text-neutral-400 italic">
               Project Intern
             </mark>
             <mark className="bg-transparent dark:text-neutral-500 italic">
@@ -42,7 +37,7 @@ export default function ExperincePage() {
 
           <p>
             Building web app for an AI powered tool {"["}with React.js, FastAPI,
-            MySQL and Docker{"]"} <br />
+            MySQL and Docker{"] "}
             and developing components for a data visualization platform {"["}
             with React.js and third party libraries{"]"}.
           </p>
@@ -67,7 +62,7 @@ export default function ExperincePage() {
             </mark>
           </span>
           <span className="flex flex-row justify-between">
-            <mark className="bg-transparent dark:text-neutral-400 ">
+            <mark className="bg-transparent dark:text-neutral-400 italic">
               Frontend heavy, Full-stack Development Intern
             </mark>
             <mark className="bg-transparent dark:text-neutral-500 italic">
@@ -101,7 +96,7 @@ export default function ExperincePage() {
           </span>
 
           <span className="flex flex-row justify-between">
-            <mark className="bg-transparent dark:text-neutral-400 ">
+            <mark className="bg-transparent dark:text-neutral-400 italic">
               Frontend Development Intern
             </mark>
             <mark className="bg-transparent dark:text-neutral-500 italic">

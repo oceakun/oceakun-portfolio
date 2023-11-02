@@ -1,4 +1,5 @@
-import {useEffect} from "react";
+'use client';
+import { useEffect } from "react";
 import useLocalStorage from "use-local-storage";
 import dynamic from 'next/dynamic'
 import {
@@ -6,13 +7,12 @@ import {
   } from './icons';
   
 const ToggleSwitch = ()=> {
-
+  
   const [theme, setTheme] = useLocalStorage(
     'theme',
-    // JSON.parse(localStorage.getItem("theme")||"{}")
     'light'
   );
-  
+
   useEffect(()=>{
 
     if (JSON.parse(window.localStorage.getItem("theme")||"{}") === 'dark' || (!('theme' in window.localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {

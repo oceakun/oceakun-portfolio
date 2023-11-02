@@ -29,7 +29,7 @@ export default async function HomePage() {
             .start();
         }}
       />
-      <p className="my-5 max-w-[460px] text-neutral-800 dark:text-neutral-200">
+      <p className="mt-14 max-w-[460px] text-neutral-800 dark:text-neutral-200">
         {about()}
       </p>
       <div className="flex items-start md:items-center my-8 flex-col md:flex-row">
