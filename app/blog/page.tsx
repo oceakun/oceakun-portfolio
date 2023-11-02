@@ -35,7 +35,7 @@ export default function BlogList() {
         <div >
           {blogList.map((blog, i) => {
             return (
-              <div className="mb-8 mt-8">
+              <div className="mb-8 mt-8" key={i}>
                 <Link
                   className="p-2 hover:cursor-pointer dark:hover:bg-neutral-800 hover:rounded-md  hover:bg-neutral-100 no-underline w-full flex flex-row justify-between items-end 
               dark:border-neutral-800 border-b-[2px] border-neutral-200 dark:border-neutral-800 "
