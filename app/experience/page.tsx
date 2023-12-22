@@ -22,7 +22,7 @@ export default function ExperincePage() {
             </mark>
             <span className="h-[0.1em] bg-neutral-400 dark:bg-neutral-700 mx-2" />
             <mark className="bg-transparent dark:text-neutral-400 italic">
-              June 1st, 2023 - Present
+              June 1st, 2023 - Nov 30th, 2023
             </mark>
           </span>
 
@@ -36,10 +36,10 @@ export default function ExperincePage() {
           </span>
 
           <p>
-            Building web app for an AI powered tool {"["}with React.js, FastAPI,
+            Built web apps powered by OpenAI's gpt-4 {"["}with Nuxt.js, React.js, FastAPI,
             MySQL and Docker{"] "}
-            and developing components for a data visualization platform {"["}
-            with React.js and third party libraries{"]"}.
+            and developed components for a data visualization platform {"["}
+            with React.js, jquery and third party libraries{"]"}.
           </p>
 
           <span className="flex flex-row mb-14">
