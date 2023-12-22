@@ -6,6 +6,7 @@ import tailwindConfigJs from "../../../public/tailwind-config-js.png";
 import themeSwitcher from "../../../public/theme-switcher.png";
 import darkMode from "../../../public/dark-mode.png";
 import lightMode from "../../../public/light-mode.png";
+// import CodeBlock from "@/components/codeBlock";
 
 export default function BlogPage() {
   return (
@@ -17,7 +18,10 @@ export default function BlogPage() {
         <div className="text-justify">
           <p className="w-full flex flex-row justify-between items-end">
             <span className="font-[300] text-[14px] dark:text-yellow-200 text-rose-500">
-              25-11-2023
+              <span className="font-[300] text-[12px] dark:text-yellow-200 text-rose-500 italic">
+               (Last Updated on)
+              </span>
+              {" "}22-12-2023
             </span>
             <Link
               href="/blog"
@@ -29,8 +33,9 @@ export default function BlogPage() {
           </p>
           <br />
           {/* <br /> */}
-          {/* <div className="flex flex-col justify-center items-center gap-4 mb-6 ">
+          <div className="flex flex-col justify-center items-center gap-4 mb-6 ">
             <Image src={darkMode} alt="dark-mode-image" />
+            {/* <CodeBlock/> */}
           </div>
           <div className="flex flex-col justify-center items-center gap-4 mb-6">
             <Image src={lightMode} alt="light-mode-image" />
@@ -88,18 +93,18 @@ export default function BlogPage() {
               <li>next-themes (0.2.1)</li>
               <li>tailwindcss (3.3.2)</li>
             </ul>
-            Then, execute the following steps
+            Then,
             <ol type="a">
               {" "}
               <li>
                 {" "}
-                Add "darkMode: "class"" to the module.exports object in{" "}
+                add "darkMode: "class"" to the module.exports object in{" "}
                 <mark className="bg-transparent italic dark:text-neutral-300">
                   tailwind.config.js.
                 </mark>{" "}
               </li>{" "}
               <li>
-                Then create a component 'ThemeSwitcher' like the one below
+                create a component 'ThemeSwitcher' like the one below
                 <div className="flex flex-row justify-center w-full my-4">
                   <Image src={themeSwitcher} alt="themeSwitcher.js" />
                 </div>
@@ -142,10 +147,8 @@ export default function BlogPage() {
                 </ul>
               </li>
               <li>
-                {" "}
-                For the next step, you need to wrap the app's layout with the
-                ThemeProvider, imported from next-themes and pass it the
-                following three props
+                wrap the app's layout with the ThemeProvider, imported from
+                next-themes and pass it the following three props
                 <ul>
                   <li>attribute="class"</li>
                   <li> defaultTheme="system"</li>
@@ -156,14 +159,14 @@ export default function BlogPage() {
             That's it.
             <br />
             <br />
-            <h1 className="text-xl font-serif">
+            {/* <h1 className="text-xl font-serif">
               Dark-theme with{" "}
               <mark className="bg-transparent italic dark:text-neutral-200">
                 ReactJS & Styled Components
               </mark>
-            </h1>
-            <br />
-            <br />
+            </h1> */}
+            {/* <br /> */}
+            {/* <br /> */}
             <h1 className="text-xl font-serif">References</h1>
             <ul>
               <li>
@@ -184,10 +187,10 @@ export default function BlogPage() {
                 </Link>
               </li>
             </ul>
-          </span> */}
-          <p className="text-center bg-gradient-to-r from-rose-500 to-pink-900 dark:from-white dark:to-yellow-900 inline-block text-transparent bg-clip-text flex flex-row justify-center items-center ">
+          </span>
+          {/* <p className="text-center bg-gradient-to-r from-rose-500 to-pink-900 dark:from-white dark:to-yellow-900 inline-block text-transparent bg-clip-text flex flex-row justify-center items-center ">
             Coming soon..
-          </p>
+          </p> */}
         </div>
       </div>
     </section>
