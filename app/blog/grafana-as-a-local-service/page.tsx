@@ -17,7 +17,7 @@ export default function BlogPage() {
         <div className="text-justify">
           <p className="w-full flex flex-row justify-between items-end">
             <span className="font-[300] text-[14px] dark:text-yellow-200 text-rose-500">
-              25-11-2023
+              ----------
             </span>
             <Link
               href="/blog"
