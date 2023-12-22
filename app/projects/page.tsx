@@ -188,6 +188,101 @@ export default function ProjectPage() {
           </ul>
         </fieldset>
 
+        <fieldset>
+          <legend>
+            <p className="dark:text-yellow-200 text-rose-500">get-repos</p>
+            <span>
+              <a
+                rel="noopener noreferrer"
+                target="_blank"
+                href="https://github.com/oceakun/fyle-internship-challenge-23"
+              >
+                <GitHubIcon />
+              </a>
+              <a
+                rel="noopener noreferrer"
+                target="_blank"
+                href="https://654a42ff71ad24305eea15ec--golden-custard-8a760d.netlify.app/"
+              >
+                <LinkIcon />
+              </a>
+            </span>
+          </legend>
+
+          <span className="flex flex-row mb-2">
+            <StackIcon />
+            <span className="italic text-sm dark:text-neutral-400">
+              {" "}
+              &nbsp; Angular, TailwindCSS, Github API
+            </span>
+          </span>
+
+          <span className="flex flex-row mb-5">
+            <HashIcon />
+            <span className="italic text-sm dark:text-neutral-400">
+              {" "}
+              &nbsp; skeleton-loader, responsive, server-side pagination
+            </span>
+          </span>
+
+          <span>retrieves a user's public repositories from GitHub</span>
+
+          <ul className="mb-8">
+            <li>
+              Provides an easy-to-use interface where users can input a GitHub
+              username, and the application fetches and displays all the public
+              repositories associated with that username.
+            </li>
+          </ul>
+        </fieldset>
+
+        <fieldset>
+          <legend>
+            <p className="dark:text-yellow-200 text-rose-500">
+              admin-dashboard
+            </p>
+            <span>
+              <a
+                rel="noopener noreferrer"
+                target="_blank"
+                href="https://github.com/oceakun/admin-dashboard"
+              >
+                <GitHubIcon />
+              </a>
+              <a
+                rel="noopener noreferrer"
+                target="_blank"
+                href="https://admin-dashboard-oceakun.vercel.app/"
+              >
+                <LinkIcon />
+              </a>
+            </span>
+          </legend>
+
+          <span className="flex flex-row mb-2">
+            <StackIcon />
+            <span className="italic text-sm dark:text-neutral-400">
+              {" "}
+              &nbsp; Next.js, TailwindCSS
+            </span>
+          </span>
+
+          <span className="flex flex-row mb-5">
+            <HashIcon />
+            <span className="italic text-sm dark:text-neutral-400">
+              {" "}
+              &nbsp; admin-dashboard, responsive, pagination
+            </span>
+          </span>
+
+          <span>admin dashboard to view and edit data</span>
+
+          <ul className="mb-8">
+            <li>
+              Dashboard to view, search and edit data(in place deleting and editting).
+            </li>
+          </ul>
+        </fieldset>
         {/* <fieldset>
             <legend>
                 <p className='dark:text-yellow-200 text-rose-500'>mesazh</p>
