@@ -3,7 +3,7 @@ import {
   GitHubIcon,
   LinkIcon,
   StackIcon,
-  HashIcon
+  HashIcon,
 } from '../../components/icons';
 
 export const metadata: Metadata = {
@@ -14,44 +14,44 @@ export const metadata: Metadata = {
 export default function ProjectPage() {
   return (
     <section>
-      <h1 className="font-bold text-3xl dark:text-neutral-200 font-serif">
+      <h1 className='font-bold text-3xl dark:text-neutral-200 font-serif'>
         Projects
       </h1>
-      <div className="prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-200 ">
+      <div className='prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-200 '>
         <fieldset>
           <legend>
-            <p className="dark:text-yellow-200 text-rose-500">csv-visualizer</p>
+            <p className='dark:text-yellow-200 text-rose-500'>csv-visualizer</p>
             <span>
               <a
-                rel="noopener noreferrer"
-                target="_blank"
-                href="https://github.com/oceakun/csv-visualizer"
+                rel='noopener noreferrer'
+                target='_blank'
+                href='https://github.com/oceakun/csv-visualizer'
               >
                 <GitHubIcon />
               </a>
               <a
-                rel="noopener noreferrer"
-                target="_blank"
-                href="https://github.com/oceakun"
+                rel='noopener noreferrer'
+                target='_blank'
+                href='https://github.com/oceakun'
               >
                 <LinkIcon />
               </a>
             </span>
           </legend>
 
-          <span className="flex flex-row items-start mb-2 w-full">
+          <span className='flex flex-row items-start mb-2 w-full'>
             <StackIcon />
-            <span className="italic text-sm dark:text-neutral-400 ">
-              {" "}
+            <span className='italic text-sm dark:text-neutral-400 '>
+              {' '}
               &nbsp; Astro, React-components, Js, Grafana, Go, Firebase Auth,
               Firestore, Docker
             </span>
           </span>
 
-          <span className="flex flex-row mb-5">
+          <span className='flex flex-row mb-5'>
             <HashIcon />
-            <span className="italic text-sm dark:text-neutral-400 ">
-              {" "}
+            <span className='italic text-sm dark:text-neutral-400 '>
+              {' '}
               &nbsp; full stack, visualization, authentication, API,
               containerization
             </span>
@@ -62,7 +62,7 @@ export default function ProjectPage() {
             interactive tables and charts
           </span>
 
-          <ul className="mb-8">
+          <ul className='mb-8'>
             <li>
               The app provides a beautiful and intuitive interface, wherein, the
               user can upload a csv file and view visualizations in the form of
@@ -80,38 +80,38 @@ export default function ProjectPage() {
 
         <fieldset>
           <legend>
-            <p className="dark:text-yellow-200 text-rose-500">stickz</p>
+            <p className='dark:text-yellow-200 text-rose-500'>stickz</p>
             <span>
               <a
-                rel="noopener noreferrer"
-                target="_blank"
-                href="https://github.com/oceakun/stickz-frontend"
+                rel='noopener noreferrer'
+                target='_blank'
+                href='https://github.com/oceakun/stickz-frontend'
               >
                 <GitHubIcon />
               </a>
               <a
-                rel="noopener noreferrer"
-                target="_blank"
-                href="https://stickz.vercel.app/home"
+                rel='noopener noreferrer'
+                target='_blank'
+                href='https://stickz.vercel.app/home'
               >
                 <LinkIcon />
               </a>
             </span>
           </legend>
 
-          <span className="flex flex-row mb-2">
+          <span className='flex flex-row mb-2'>
             <StackIcon />
-            <span className="italic text-sm dark:text-neutral-400">
-              {" "}
-              &nbsp; Typescript-React, Context API, Styled Components{" "}
+            <span className='italic text-sm dark:text-neutral-400'>
+              {' '}
+              &nbsp; Typescript-React, Context API, Styled Components{' '}
             </span>
           </span>
 
-          <span className="flex flex-row mb-5">
+          <span className='flex flex-row mb-5'>
             <HashIcon />
-            <span className="italic text-sm dark:text-neutral-400">
-              {" "}
-              &nbsp; ui,responsive, state management{" "}
+            <span className='italic text-sm dark:text-neutral-400'>
+              {' '}
+              &nbsp; ui,responsive, state management{' '}
             </span>
           </span>
 
@@ -120,7 +120,7 @@ export default function ProjectPage() {
             textual notes and embed images as well.
           </span>
 
-          <ul className="mb-8">
+          <ul className='mb-8'>
             <li>
               The application leverages local storage to store data pertaining
               to each session, if its a one-time user, but in case of an
@@ -139,37 +139,37 @@ export default function ProjectPage() {
 
         <fieldset>
           <legend>
-            <p className="dark:text-yellow-200 text-rose-500">state-map</p>
+            <p className='dark:text-yellow-200 text-rose-500'>state-map</p>
             <span>
               <a
-                rel="noopener noreferrer"
-                target="_blank"
-                href="https://github.com/oceakun/state-map-d3"
+                rel='noopener noreferrer'
+                target='_blank'
+                href='https://github.com/oceakun/state-map-d3'
               >
                 <GitHubIcon />
               </a>
               <a
-                rel="noopener noreferrer"
-                target="_blank"
-                href="https://d3-exercise.vercel.app/"
+                rel='noopener noreferrer'
+                target='_blank'
+                href='https://d3-exercise.vercel.app/'
               >
                 <LinkIcon />
               </a>
             </span>
           </legend>
 
-          <span className="flex flex-row mb-2">
+          <span className='flex flex-row mb-2'>
             <StackIcon />
-            <span className="italic text-sm dark:text-neutral-400">
-              {" "}
+            <span className='italic text-sm dark:text-neutral-400'>
+              {' '}
               &nbsp; Js, d3, HTMl, CSS
             </span>
           </span>
 
-          <span className="flex flex-row mb-5">
+          <span className='flex flex-row mb-5'>
             <HashIcon />
-            <span className="italic text-sm dark:text-neutral-400">
-              {" "}
+            <span className='italic text-sm dark:text-neutral-400'>
+              {' '}
               &nbsp; visualization, responsive
             </span>
           </span>
@@ -179,7 +179,7 @@ export default function ProjectPage() {
             visualizations of consitutency elections.
           </span>
 
-          <ul className="mb-8">
+          <ul className='mb-8'>
             <li>
               The map serves as an interactive and responsive plot for various
               metrices acquired during constituency elections, held across the
@@ -190,44 +190,44 @@ export default function ProjectPage() {
 
         <fieldset>
           <legend>
-            <p className="dark:text-yellow-200 text-rose-500">get-repos</p>
+            <p className='dark:text-yellow-200 text-rose-500'>get-repos</p>
             <span>
               <a
-                rel="noopener noreferrer"
-                target="_blank"
-                href="https://github.com/oceakun/fyle-internship-challenge-23"
+                rel='noopener noreferrer'
+                target='_blank'
+                href='https://github.com/oceakun/fyle-internship-challenge-23'
               >
                 <GitHubIcon />
               </a>
               <a
-                rel="noopener noreferrer"
-                target="_blank"
-                href="https://654a42ff71ad24305eea15ec--golden-custard-8a760d.netlify.app/"
+                rel='noopener noreferrer'
+                target='_blank'
+                href='https://654a42ff71ad24305eea15ec--golden-custard-8a760d.netlify.app/'
               >
                 <LinkIcon />
               </a>
             </span>
           </legend>
 
-          <span className="flex flex-row mb-2">
+          <span className='flex flex-row mb-2'>
             <StackIcon />
-            <span className="italic text-sm dark:text-neutral-400">
-              {" "}
+            <span className='italic text-sm dark:text-neutral-400'>
+              {' '}
               &nbsp; Angular, TailwindCSS, Github API
             </span>
           </span>
 
-          <span className="flex flex-row mb-5">
+          <span className='flex flex-row mb-5'>
             <HashIcon />
-            <span className="italic text-sm dark:text-neutral-400">
-              {" "}
+            <span className='italic text-sm dark:text-neutral-400'>
+              {' '}
               &nbsp; skeleton-loader, responsive, server-side pagination
             </span>
           </span>
 
           <span>retrieves a user's public repositories from GitHub</span>
 
-          <ul className="mb-8">
+          <ul className='mb-8'>
             <li>
               Provides an easy-to-use interface where users can input a GitHub
               username, and the application fetches and displays all the public
@@ -238,48 +238,49 @@ export default function ProjectPage() {
 
         <fieldset>
           <legend>
-            <p className="dark:text-yellow-200 text-rose-500">
+            <p className='dark:text-yellow-200 text-rose-500'>
               admin-dashboard
             </p>
             <span>
               <a
-                rel="noopener noreferrer"
-                target="_blank"
-                href="https://github.com/oceakun/admin-dashboard"
+                rel='noopener noreferrer'
+                target='_blank'
+                href='https://github.com/oceakun/admin-dashboard'
               >
                 <GitHubIcon />
               </a>
               <a
-                rel="noopener noreferrer"
-                target="_blank"
-                href="https://admin-dashboard-oceakun.vercel.app/"
+                rel='noopener noreferrer'
+                target='_blank'
+                href='https://admin-dashboard-oceakun.vercel.app/'
               >
                 <LinkIcon />
               </a>
             </span>
           </legend>
 
-          <span className="flex flex-row mb-2">
+          <span className='flex flex-row mb-2'>
             <StackIcon />
-            <span className="italic text-sm dark:text-neutral-400">
-              {" "}
+            <span className='italic text-sm dark:text-neutral-400'>
+              {' '}
               &nbsp; Next.js, TailwindCSS
             </span>
           </span>
 
-          <span className="flex flex-row mb-5">
+          <span className='flex flex-row mb-5'>
             <HashIcon />
-            <span className="italic text-sm dark:text-neutral-400">
-              {" "}
+            <span className='italic text-sm dark:text-neutral-400'>
+              {' '}
               &nbsp; admin-dashboard, responsive, pagination
             </span>
           </span>
 
           <span>admin dashboard to view and edit data</span>
 
-          <ul className="mb-8">
+          <ul className='mb-8'>
             <li>
-              Dashboard to view, search and edit data(in place deleting and editting).
+              Dashboard to view, search and edit data(in place deleting and
+              editting).
             </li>
           </ul>
         </fieldset>

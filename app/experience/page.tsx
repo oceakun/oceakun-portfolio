@@ -1,7 +1,5 @@
 import type { Metadata } from 'next';
-import {
-  StackIcon
-} from '../../components/icons';
+import { StackIcon } from '../../components/icons';
 
 export const metadata: Metadata = {
   title: 'Experience',
@@ -11,110 +9,110 @@ export const metadata: Metadata = {
 export default function ExperincePage() {
   return (
     <section>
-      <h1 className="font-bold text-3xl dark:text-neutral-200 font-serif">
+      <h1 className='font-bold text-3xl dark:text-neutral-200 font-serif'>
         Experience
       </h1>
-      <div className="prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-200 mt-10">
+      <div className='prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-200 mt-10'>
         <div>
-          <span className="grid grid-cols-[auto_1fr_auto] items-center mt-4 max-w-[650px]">
-            <mark className="bg-transparent dark:text-yellow-200 text-rose-500 ">
+          <span className='grid grid-cols-[auto_1fr_auto] items-center mt-4 max-w-[650px]'>
+            <mark className='bg-transparent dark:text-yellow-200 text-rose-500 '>
               IIT Delhi
             </mark>
-            <span className="h-[0.1em] bg-neutral-400 dark:bg-neutral-700 mx-2" />
-            <mark className="bg-transparent dark:text-neutral-400 italic">
+            <span className='h-[0.1em] bg-neutral-400 dark:bg-neutral-700 mx-2' />
+            <mark className='bg-transparent dark:text-neutral-400 italic'>
               June 1st, 2023 - Nov 30th, 2023
             </mark>
           </span>
 
-          <span className="flex flex-row justify-between">
-            <mark className="bg-transparent dark:text-neutral-400 italic">
+          <span className='flex flex-row justify-between'>
+            <mark className='bg-transparent dark:text-neutral-400 italic'>
               Project Intern
             </mark>
-            <mark className="bg-transparent dark:text-neutral-500 italic">
+            <mark className='bg-transparent dark:text-neutral-500 italic'>
               Remote
             </mark>
           </span>
 
           <p>
-            Built web apps powered by OpenAI's gpt-4 {"["}with Nuxt.js, React.js, FastAPI,
-            MySQL and Docker{"] "}
-            and developed components for a data visualization platform {"["}
-            with React.js, jquery and third party libraries{"]"}.
+            Built web apps powered by OpenAI's gpt-4 {'['}with Nuxt.js,
+            React.js, FastAPI, MySQL and Docker{'] '}
+            and developed components for a data visualization platform {'['}
+            with React.js, jquery and third party libraries{']'}.
           </p>
 
-          <span className="flex flex-row mb-14">
+          <span className='flex flex-row mb-14'>
             <StackIcon />
-            <span className="italic text-sm dark:text-neutral-400">
-              {" "}
+            <span className='italic text-sm dark:text-neutral-400'>
+              {' '}
               &nbsp; React.js, FastAPI, MySQL, Docker
             </span>
           </span>
         </div>
 
-        <div className="mt-12">
-          <span className="grid grid-cols-[auto_1fr_auto] items-center mt-4 max-w-[650px]">
-            <mark className="bg-transparent dark:text-yellow-200 text-rose-500">
+        <div className='mt-12'>
+          <span className='grid grid-cols-[auto_1fr_auto] items-center mt-4 max-w-[650px]'>
+            <mark className='bg-transparent dark:text-yellow-200 text-rose-500'>
               Devkit
             </mark>
-            <span className="h-[0.1em] bg-neutral-400  dark:bg-neutral-700 mx-2" />
-            <mark className="bg-transparent dark:text-neutral-400 italic">
+            <span className='h-[0.1em] bg-neutral-400  dark:bg-neutral-700 mx-2' />
+            <mark className='bg-transparent dark:text-neutral-400 italic'>
               Jan 3rd, 2023 - March 4th, 2023
             </mark>
           </span>
-          <span className="flex flex-row justify-between">
-            <mark className="bg-transparent dark:text-neutral-400 italic">
+          <span className='flex flex-row justify-between'>
+            <mark className='bg-transparent dark:text-neutral-400 italic'>
               Frontend heavy, Full-stack Development Intern
             </mark>
-            <mark className="bg-transparent dark:text-neutral-500 italic">
+            <mark className='bg-transparent dark:text-neutral-500 italic'>
               Remote
             </mark>
           </span>
 
           <p>
             Built online developer tools for p5.js and Tailwind CSS libraries
-            {"["}with Next.js, Typescript and Tailwind CSS{"]"}.
+            {'['}with Next.js, Typescript and Tailwind CSS{']'}.
           </p>
 
-          <span className="flex flex-row mb-14">
+          <span className='flex flex-row mb-14'>
             <StackIcon />
-            <span className="italic text-sm dark:text-neutral-400">
-              {" "}
+            <span className='italic text-sm dark:text-neutral-400'>
+              {' '}
               &nbsp; Next.js, Typescript, TailwindCSS
             </span>
           </span>
         </div>
 
-        <div className="mt-12">
-          <span className="grid grid-cols-[auto_1fr_auto] items-center mt-4 max-w-[650px]">
-            <mark className="bg-transparent dark:text-yellow-200 text-rose-500">
+        <div className='mt-12'>
+          <span className='grid grid-cols-[auto_1fr_auto] items-center mt-4 max-w-[650px]'>
+            <mark className='bg-transparent dark:text-yellow-200 text-rose-500'>
               Radiowalla
             </mark>
-            <span className="h-[0.1em] bg-neutral-400 dark:bg-neutral-700 mx-2" />
-            <mark className="bg-transparent dark:text-neutral-400 italic">
+            <span className='h-[0.1em] bg-neutral-400 dark:bg-neutral-700 mx-2' />
+            <mark className='bg-transparent dark:text-neutral-400 italic'>
               May 28th, 2022 - July 14th, 2022
             </mark>
           </span>
 
-          <span className="flex flex-row justify-between">
-            <mark className="bg-transparent dark:text-neutral-400 italic">
+          <span className='flex flex-row justify-between'>
+            <mark className='bg-transparent dark:text-neutral-400 italic'>
               Frontend Development Intern
             </mark>
-            <mark className="bg-transparent dark:text-neutral-500 italic">
+            <mark className='bg-transparent dark:text-neutral-500 italic'>
               Remote
             </mark>
           </span>
 
           <p>
-            Built a complete dashboard for data visualization from scratch {"["}
-            with React.js and Highcharts library{"]"} and integrated third party
+            Built a complete dashboard for data visualization from scratch {'['}
+            with React.js and Highcharts library{']'} and integrated third party
             and in-house APIs, token based authentication(JWT) and 'Role Based
             Access Control' system
           </p>
 
-          <span className="flex flex-row mb-10">
+          <span className='flex flex-row mb-10'>
             <StackIcon />
-            <span className="italic text-sm dark:text-neutral-400">
-              {" "}
+            <span className='italic text-sm dark:text-neutral-400'>
+              {' '}
               &nbsp; React.js, Highcharts, JWT
             </span>
           </span>

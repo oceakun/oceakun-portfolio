@@ -39,7 +39,7 @@ export default function ViewCounter({
   }, [slug]);
 
   return (
-    <p className="font-mono text-sm text-neutral-500 tracking-tighter">
+    <p className='font-mono text-sm text-neutral-500 tracking-tighter'>
       {data ? `${views.toLocaleString()} views` : '​'}
     </p>
   );

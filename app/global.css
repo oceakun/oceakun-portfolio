@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:root{
+:root {
   --ds-gray-100: #1a1a1a;
   --ds-gray-200: #1f1f1f;
   --ds-gray-300: #292929;
@@ -13,16 +13,16 @@
   --ds-gray-800: #7d7d7d;
   --ds-gray-900: #a1a1a1;
   --ds-gray-1000: #ededed;
-  --ds-gray-alpha-100: hsla(0,0%,100%,.07);
-  --ds-gray-alpha-200: hsla(0,0%,100%,.09);
-  --ds-gray-alpha-300: hsla(0,0%,100%,.13);
-  --ds-gray-alpha-400: hsla(0,0%,100%,.14);
-  --ds-gray-alpha-500: hsla(0,0%,100%,.24);
-  --ds-gray-alpha-600: hsla(0,0%,100%,.51);
-  --ds-gray-alpha-700: hsla(0,0%,100%,.54);
-  --ds-gray-alpha-800: hsla(0,0%,100%,.47);
-  --ds-gray-alpha-900: hsla(0,0%,100%,.61);
-  --ds-gray-alpha-1000: hsla(0,0%,100%,.92);
+  --ds-gray-alpha-100: hsla(0, 0%, 100%, 0.07);
+  --ds-gray-alpha-200: hsla(0, 0%, 100%, 0.09);
+  --ds-gray-alpha-300: hsla(0, 0%, 100%, 0.13);
+  --ds-gray-alpha-400: hsla(0, 0%, 100%, 0.14);
+  --ds-gray-alpha-500: hsla(0, 0%, 100%, 0.24);
+  --ds-gray-alpha-600: hsla(0, 0%, 100%, 0.51);
+  --ds-gray-alpha-700: hsla(0, 0%, 100%, 0.54);
+  --ds-gray-alpha-800: hsla(0, 0%, 100%, 0.47);
+  --ds-gray-alpha-900: hsla(0, 0%, 100%, 0.61);
+  --ds-gray-alpha-1000: hsla(0, 0%, 100%, 0.92);
   --ds-blue-100: #0f1c2e;
   --ds-blue-200: #10233d;
   --ds-blue-300: #0f2f57;
@@ -106,8 +106,8 @@ html {
   min-width: 360px;
 }
 
-.dark{
-  background:rgb(23 23 23);
+.dark {
+  background: rgb(23 23 23);
 }
 
 .prose .anchor {
@@ -234,20 +234,20 @@ table {
 
 fieldset {
   background-color: transparent;
-  border:none;
+  border: none;
   border-top: 1px solid var(--ds-gray-800);
 }
 
-fieldset span{
-  display:flex;
+fieldset span {
+  display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
   align-items: center;
-  gap:5px;
+  gap: 5px;
 }
 
-fieldset div span{
-  border:1px solid rgb(17, 16, 16);
+fieldset div span {
+  border: 1px solid rgb(17, 16, 16);
   background: rgb(17, 16, 16);
   border-radius: 50%;
 }
@@ -255,21 +255,21 @@ fieldset div span{
 legend {
   background-color: transparent;
   color: #e6cc85;
-  padding:0 4px 0 0;
-  display:flex;
+  padding: 0 4px 0 0;
+  display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
   align-items: center;
-  gap:20px;
+  gap: 20px;
 }
 
-legend span{
+legend span {
   color: #ebe8e0;
-  display:flex;
+  display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
   align-items: center;
-  gap:10px;
+  gap: 10px;
   /* position:absolute;
   z-index:2;
   margin-left:200px; */

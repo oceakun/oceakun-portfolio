@@ -3,7 +3,7 @@ import {
   GitHubIcon,
   ArrowIcon,
   XIcon,
-  LinkedinIcon
+  LinkedinIcon,
 } from '../../components/icons';
 
 export const metadata: Metadata = {
@@ -14,13 +14,13 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <section>
-      <h1 className="font-bold text-3xl dark:text-neutral-200 font-serif">
+      <h1 className='font-bold text-3xl dark:text-neutral-200 font-serif'>
         About Me
       </h1>
-      <p className="my-5 text-neutral-800 dark:text-neutral-200 mt-10">
+      <p className='my-5 text-neutral-800 dark:text-neutral-200 mt-10'>
         Hey, I'm Sagar, I go by <b>oceakun</b> online.
       </p>
-      <div className="prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-200">
+      <div className='prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-200'>
         <p>
           I'm currently interning at <b>IIT Delhi</b> while going through my
           senior year of <b>Computer Science Engineering</b> at Amity
@@ -28,7 +28,7 @@ export default function AboutPage() {
         </p>
 
         <fieldset>
-          <legend className="dark:text-yellow-200 text-rose-500">
+          <legend className='dark:text-yellow-200 text-rose-500'>
             |\/?&^*%$@#{`>`}
           </legend>
           <p>
@@ -40,7 +40,7 @@ export default function AboutPage() {
             Outside of work, I love building feature rich applications with
             minimalist design as side projects.
           </p>
-          <p className="mb-8">
+          <p className='mb-8'>
             To quench my curiosity, I'm always reading blogs on new
             technological concepts. Moreover, I believe in learning through
             practicing so, for every piece of software I read about, I develop
@@ -48,40 +48,40 @@ export default function AboutPage() {
           </p>
         </fieldset>
 
-        <div className="flex flex-col gap-2 md:flex-row md:gap-2">
+        <div className='flex flex-col gap-2 md:flex-row md:gap-2'>
           <a
-            rel="noopener noreferrer"
-            target="_blank"
-            href="https://github.com/oceakun"
-            className="flex w-full border border-neutral-200 dark:border-neutral-800 hover:dark:border-neutral-700 hover:cursor-pointer rounded-lg p-4 no-underline items-center text-neutral-800 dark:text-neutral-200 hover:dark:bg-neutral-900 hover:bg-neutral-100 transition-all justify-between"
+            rel='noopener noreferrer'
+            target='_blank'
+            href='https://github.com/oceakun'
+            className='flex w-full border border-neutral-200 dark:border-neutral-800 hover:dark:border-neutral-700 hover:cursor-pointer rounded-lg p-4 no-underline items-center text-neutral-800 dark:text-neutral-200 hover:dark:bg-neutral-900 hover:bg-neutral-100 transition-all justify-between'
           >
-            <div className="flex items-center">
+            <div className='flex items-center'>
               <GitHubIcon />
-              <div className="ml-3">GitHub</div>
+              <div className='ml-3'>GitHub</div>
             </div>
             <ArrowIcon />
           </a>
           <a
-            rel="noopener noreferrer"
-            target="_blank"
-            href="https://www.linkedin.com/in/sagar-deep/"
-            className="flex w-full border border-neutral-200 dark:border-neutral-800 hover:dark:border-neutral-700 hover:cursor-pointer rounded-lg p-4 no-underline items-center text-neutral-800 dark:text-neutral-200 hover:dark:bg-neutral-900 hover:bg-neutral-100 transition-all justify-between"
+            rel='noopener noreferrer'
+            target='_blank'
+            href='https://www.linkedin.com/in/sagar-deep/'
+            className='flex w-full border border-neutral-200 dark:border-neutral-800 hover:dark:border-neutral-700 hover:cursor-pointer rounded-lg p-4 no-underline items-center text-neutral-800 dark:text-neutral-200 hover:dark:bg-neutral-900 hover:bg-neutral-100 transition-all justify-between'
           >
-            <div className="flex items-center">
+            <div className='flex items-center'>
               <LinkedinIcon />
-              <div className="ml-3">Linkedin</div>
+              <div className='ml-3'>Linkedin</div>
             </div>
             <ArrowIcon />
           </a>
           <a
-            rel="noopener noreferrer"
-            target="_blank"
-            href="https://twitter.com/oceakun"
-            className="flex w-full border border-neutral-200 dark:border-neutral-800 hover:dark:border-neutral-700 hover:cursor-pointer rounded-lg p-4 no-underline items-center text-neutral-800 dark:text-neutral-200 hover:dark:bg-neutral-900 hover:bg-neutral-100 transition-all justify-between"
+            rel='noopener noreferrer'
+            target='_blank'
+            href='https://twitter.com/oceakun'
+            className='flex w-full border border-neutral-200 dark:border-neutral-800 hover:dark:border-neutral-700 hover:cursor-pointer rounded-lg p-4 no-underline items-center text-neutral-800 dark:text-neutral-200 hover:dark:bg-neutral-900 hover:bg-neutral-100 transition-all justify-between'
           >
-            <div className="flex items-center">
+            <div className='flex items-center'>
               <XIcon />
-              <div className="ml-3">X</div>
+              <div className='ml-3'>X</div>
             </div>
             <ArrowIcon />
           </a>

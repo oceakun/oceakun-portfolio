@@ -1,31 +1,31 @@
-import React from "react";
-import { LeftArrowIcon } from "../../../components/icons";
-import Link from "next/link";
-import Image from "next/image";
-import tailwindConfigJs from "../../../public/tailwind-config-js.png";
-import themeSwitcher from "../../../public/theme-switcher.png";
-import darkMode from "../../../public/dark-mode.png";
-import lightMode from "../../../public/light-mode.png";
+import React from 'react';
+import { LeftArrowIcon } from '../../../components/icons';
+import Link from 'next/link';
+import Image from 'next/image';
+import tailwindConfigJs from '../../../public/tailwind-config-js.png';
+import themeSwitcher from '../../../public/theme-switcher.png';
+import darkMode from '../../../public/dark-mode.png';
+import lightMode from '../../../public/light-mode.png';
 // import CodeBlock from "@/components/codeBlock";
 
 export default function BlogPage() {
   return (
     <section>
-      <h1 className="font-bold text-2xl dark:text-neutral-200 font-serif text-center md:text-left">
+      <h1 className='font-bold text-2xl dark:text-neutral-200 font-serif text-center md:text-left'>
         Persistent and flickerless 'Dark theme'
       </h1>
-      <div className="prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-300 mt-12 text-justify">
-        <div className="text-justify">
-          <p className="w-full flex flex-row justify-between items-end">
-            <span className="font-[300] text-[14px] dark:text-yellow-200 text-rose-500">
-              <span className="font-[300] text-[12px] dark:text-yellow-200 text-rose-500 italic">
-               (Last Updated on)
-              </span>
-              {" "}22-12-2023
+      <div className='prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-300 mt-12 text-justify'>
+        <div className='text-justify'>
+          <p className='w-full flex flex-row justify-between items-end'>
+            <span className='font-[300] text-[14px] dark:text-yellow-200 text-rose-500'>
+              <span className='font-[300] text-[12px] dark:text-yellow-200 text-rose-500 italic'>
+                (Last Updated on)
+              </span>{' '}
+              22-12-2023
             </span>
             <Link
-              href="/blog"
-              className="dark:text-yellow-200 text-rose-500 hover:cursor-pointer no-underline font-[300]"
+              href='/blog'
+              className='dark:text-yellow-200 text-rose-500 hover:cursor-pointer no-underline font-[300]'
             >
               {/* <LeftArrowIcon /> */}
               <span>Back</span>
@@ -33,31 +33,31 @@ export default function BlogPage() {
           </p>
           <br />
           {/* <br /> */}
-          <div className="flex flex-col justify-center items-center gap-4 mb-6 ">
-            <Image src={darkMode} alt="dark-mode-image" />
+          <div className='flex flex-col justify-center items-center gap-4 mb-6 '>
+            <Image src={darkMode} alt='dark-mode-image' />
             {/* <CodeBlock/> */}
           </div>
-          <div className="flex flex-col justify-center items-center gap-4 mb-6">
-            <Image src={lightMode} alt="light-mode-image" />
+          <div className='flex flex-col justify-center items-center gap-4 mb-6'>
+            <Image src={lightMode} alt='light-mode-image' />
           </div>
-          <span className="text-justify mt-6">
+          <span className='text-justify mt-6'>
             'Dark mode' has a number of merits to it's name, such as, reduced
             eye strain, improved readability, reduced glare and customizability,
             among others.
             <br />
             <br />
-            Here's a brief guide for implementing the same either with{" "}
-            <mark className="bg-transparent italic dark:text-neutral-300">
+            Here's a brief guide for implementing the same either with{' '}
+            <mark className='bg-transparent italic dark:text-neutral-300'>
               ReactJS & Styled Components
-            </mark>{" "}
-            or{" "}
-            <mark className="bg-transparent italic dark:text-neutral-300">
+            </mark>{' '}
+            or{' '}
+            <mark className='bg-transparent italic dark:text-neutral-300'>
               NextJS , TailwindCSS & next-themes
             </mark>
             .
             <br />
             <br />
-            <h1 className="text-xl dark:text-neutral-200 font-serif">
+            <h1 className='text-xl dark:text-neutral-200 font-serif'>
               Persistance
             </h1>
             While using a site with the dark/light theme feature, you might have
@@ -65,7 +65,7 @@ export default function BlogPage() {
             page navigation.
             <br />
             <br />
-            <h1 className="text-xl dark:text-neutral-200 font-serif">
+            <h1 className='text-xl dark:text-neutral-200 font-serif'>
               Flicker-less behaviour
             </h1>
             Also, during reloads and page navigation, there's no
@@ -79,9 +79,9 @@ export default function BlogPage() {
             responsible parts.
             <br />
             <br />
-            <h1 className="text-xl font-serif">
-              Dark-theme with{" "}
-              <mark className="bg-transparent italic dark:text-neutral-200">
+            <h1 className='text-xl font-serif'>
+              Dark-theme with{' '}
+              <mark className='bg-transparent italic dark:text-neutral-200'>
                 NextJS , TailwindCSS & 'next-themes'
               </mark>
             </h1>
@@ -94,19 +94,19 @@ export default function BlogPage() {
               <li>tailwindcss (3.3.2)</li>
             </ul>
             Then,
-            <ol type="a">
-              {" "}
+            <ol type='a'>
+              {' '}
               <li>
-                {" "}
-                add "darkMode: "class"" to the module.exports object in{" "}
-                <mark className="bg-transparent italic dark:text-neutral-300">
+                {' '}
+                add "darkMode: "class"" to the module.exports object in{' '}
+                <mark className='bg-transparent italic dark:text-neutral-300'>
                   tailwind.config.js.
-                </mark>{" "}
-              </li>{" "}
+                </mark>{' '}
+              </li>{' '}
               <li>
                 create a component 'ThemeSwitcher' like the one below
-                <div className="flex flex-row justify-center w-full my-4">
-                  <Image src={themeSwitcher} alt="themeSwitcher.js" />
+                <div className='flex flex-row justify-center w-full my-4'>
+                  <Image src={themeSwitcher} alt='themeSwitcher.js' />
                 </div>
                 Here's how the component works,
                 <br />
@@ -167,12 +167,12 @@ export default function BlogPage() {
             </h1> */}
             {/* <br /> */}
             {/* <br /> */}
-            <h1 className="text-xl font-serif">References</h1>
+            <h1 className='text-xl font-serif'>References</h1>
             <ul>
               <li>
                 <Link
-                  className="font-[200]"
-                  href="https://egghead.io/blog/tailwindcss-dark-mode-nextjs-typography-prose"
+                  className='font-[200]'
+                  href='https://egghead.io/blog/tailwindcss-dark-mode-nextjs-typography-prose'
                 >
                   TailwindCSS Dark Mode in Next.js with Tailwind Typography
                   Prose Classes
@@ -180,8 +180,8 @@ export default function BlogPage() {
               </li>
               <li>
                 <Link
-                  className="font-[200]"
-                  href="https://blog.logrocket.com/dark-mode-react-in-depth-guide/"
+                  className='font-[200]'
+                  href='https://blog.logrocket.com/dark-mode-react-in-depth-guide/'
                 >
                   Dark mode in React: An in-depth guide
                 </Link>

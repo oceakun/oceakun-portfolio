@@ -10,7 +10,15 @@ module.exports = {
     extend: {
       fontFamily: {
         serif: ['var(--font-kaisei)'],
-        nunito:['Nunito','-apple-system','system-ui','BlinkMacSystemFont','Helvetica','Arial','sans-serif']
+        nunito: [
+          'Nunito',
+          '-apple-system',
+          'system-ui',
+          'BlinkMacSystemFont',
+          'Helvetica',
+          'Arial',
+          'sans-serif',
+        ],
       },
       typography: {
         quoteless: {
@@ -22,7 +30,7 @@ module.exports = {
       },
       grayscale: {
         50: '50%',
-      }
+      },
     },
   },
   future: {

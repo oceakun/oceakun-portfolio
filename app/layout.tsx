@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import Sidebar from '../components/sidebar';
-import ToggleSwitch from "../components/themeToggler";
+import ToggleSwitch from '../components/themeToggler';
 import { Analytics } from '@vercel/analytics/react';
 
 const kaisei = localFont({
@@ -65,18 +65,18 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="en"
+      lang='en'
       className={clsx(
-        "text-black bg-white dark:text-white dark:bg-[#111010]",
+        'text-black bg-white dark:text-white dark:bg-[#111010]',
         kaisei.variable
       )}
     >
-      <body className="antialiased max-w-4xl mb-40 flex flex-col md:flex-row mx-4 mt-8 md:mt-20 mx-auto">
-        <div className="md:hidden block flex flex-row mx-auto">
+      <body className='antialiased max-w-4xl mb-40 flex flex-col md:flex-row mx-4 mt-8 md:mt-20 mx-auto'>
+        <div className='md:hidden block flex flex-row mx-auto'>
           <ToggleSwitch />
-        </div>{" "}
+        </div>{' '}
         <Sidebar />
-        <main className="flex-auto min-w-0 mt-6 md:mt-0 flex flex-col px-2 mx-auto">
+        <main className='flex-auto min-w-0 mt-6 md:mt-0 flex flex-col px-2 mx-auto'>
           {children}
           <Analytics />
         </main>
