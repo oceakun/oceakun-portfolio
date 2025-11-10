@@ -12,6 +12,12 @@ import {
   avatar,
 } from '../lib/info';
 import Typewriter from 'typewriter-effect';
+import {
+  GitHubIcon,
+  ArrowIcon,
+  XIcon,
+  LinkedinIcon,
+} from '../components/icons';
 
 export const revalidate = 60;
 
@@ -41,7 +47,33 @@ export default async function HomePage() {
             .start();
         }}
       />
-      <p className='mt-14 max-w-[460px] text-neutral-800 dark:text-neutral-200'>
+      <div className='mt-14 flex flex-row gap-4 items-center'>
+        <a
+          rel='noopener noreferrer'
+          target='_blank'
+          href='https://github.com/oceakun'
+          className='text-neutral-800 dark:text-neutral-200'
+        >
+          <GitHubIcon />
+        </a>
+        <a
+          rel='noopener noreferrer'
+          target='_blank'
+          href='https://www.linkedin.com/in/sagar-deep/'
+          className='text-neutral-800 dark:text-neutral-200'
+        >
+          <LinkedinIcon />
+        </a>
+        <a
+          rel='noopener noreferrer'
+          target='_blank'
+          href='https://twitter.com/oceakun'
+          className='text-neutral-800 dark:text-neutral-200'
+        >
+          <XIcon />
+        </a>
+      </div>
+      <p className='mt-5 max-w-[460px] text-neutral-800 dark:text-neutral-200'>
         {about()}
       </p>
       <div className='flex items-start md:items-center my-8 flex-col md:flex-row'>
@@ -61,10 +93,10 @@ export default async function HomePage() {
       <p className='my-10 max-w-[600px] text-neutral-800 dark:text-neutral-200'>
         {currentJob()}
       </p>
-      <hr className='my-8 max-w-[600px] border-neutral-300 dark:border-neutral-700' />
+      {/* <hr className='my-8 max-w-[600px] border-neutral-300 dark:border-neutral-700' />
       <p className='my-10 max-w-[600px] text-neutral-800 dark:text-neutral-200'>
         {prevJob()}
-      </p>
+      </p> */}
       <hr className='my-8 max-w-[600px] border-neutral-300 dark:border-neutral-700' />
       <p className='my-10 max-w-[600px] text-neutral-800 dark:text-neutral-200'>
         {summary()}
