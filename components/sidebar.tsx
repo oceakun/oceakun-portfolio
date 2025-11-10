@@ -8,17 +8,17 @@ import ToggleSwitch from './themeToggler';
 
 const navItems = {
   '/': {
-    name: 'home',
+    name: 'me',
   },
-  '/about': {
-    name: 'about',
-  },
-  '/projects': {
-    name: 'projects',
-  },
-  '/experience': {
-    name: 'experience',
-  },
+  // '/about': {
+  //   name: 'about',
+  // },
+  // '/projects': {
+  //   name: 'projects',
+  // },
+  // '/experience': {
+  //   name: 'experience',
+  // },
   '/blog': {
     name: 'blog',
   },

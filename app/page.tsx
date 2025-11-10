@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { name, alias, about, bio, avatar } from '../lib/info';
+import { name, alias, about, bio, currentJob, prevJob, summary, avatar } from '../lib/info';
 import Typewriter from 'typewriter-effect';
 
 export const revalidate = 60;
@@ -47,6 +47,18 @@ export default async function HomePage() {
       </div>
       <p className='my-5 max-w-[600px] text-neutral-800 dark:text-neutral-200'>
         {bio()}
+      </p>
+      <hr className='my-8 max-w-[600px] border-neutral-300 dark:border-neutral-700' />
+      <p className='my-10 max-w-[600px] text-neutral-800 dark:text-neutral-200'>
+        {currentJob()}
+      </p>
+      <hr className='my-8 max-w-[600px] border-neutral-300 dark:border-neutral-700' />
+      <p className='my-10 max-w-[600px] text-neutral-800 dark:text-neutral-200'>
+        {prevJob()}
+      </p>
+      <hr className='my-8 max-w-[600px] border-neutral-300 dark:border-neutral-700' />
+      <p className='my-10 max-w-[600px] text-neutral-800 dark:text-neutral-200'>
+        {summary()}
       </p>
     </section>
   );
