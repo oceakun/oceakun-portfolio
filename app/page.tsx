@@ -1,7 +1,16 @@
 'use client';
 
 import Image from 'next/image';
-import { name, alias, about, bio, currentJob, prevJob, summary, avatar } from '../lib/info';
+import {
+  name,
+  alias,
+  about,
+  bio,
+  currentJob,
+  prevJob,
+  summary,
+  avatar,
+} from '../lib/info';
 import Typewriter from 'typewriter-effect';
 
 export const revalidate = 60;

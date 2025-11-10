@@ -34,7 +34,8 @@ export const currentJob = () => {
       workflows with schema validation via Zod, build APIs for seamless data
       integration between ERP systems and the platform database, and manage
       production deployments using nginx and Supervisor for staging and
-      production environments. <br /><br />
+      production environments. <br />
+      <br />
       <strong>Tech Stack:</strong> TypeScript, React, Vitest, Zod, Django,
       Python, WeClapp, nginx, Supervisor.
     </>
@@ -50,7 +51,8 @@ export const prevJob = () => {
       optimized build pipelines using Vite and Rollup, and deployed production
       systems through AWS Lambda, EC2, S3, and CloudFront. I also set up
       business-critical logging and monitoring systems using AWS CloudWatch and
-      LoadBalancer. <br /><br />
+      LoadBalancer. <br />
+      <br />
       <strong>Tech Stack:</strong> TypeScript, FastAPI, Python, LangGraph,
       LangChain, React, Postgres, AWS, pgvector.
     </>
