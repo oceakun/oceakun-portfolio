@@ -1,53 +1,35 @@
-'use client';
-
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import {
   name,
   alias,
   about,
   bio,
   currentJob,
-  prevJob,
   summary,
   avatar,
 } from '../lib/info';
-import Typewriter from 'typewriter-effect';
-import {
-  GitHubIcon,
-  ArrowIcon,
-  XIcon,
-  LinkedinIcon,
-} from '../components/icons';
+import { GitHubIcon, XIcon, LinkedinIcon } from '../components/icons';
+
+const TypewriterClient = dynamic(
+  () => import('../components/TypewriterClient'),
+  {
+    ssr: false,
+    loading: () => (
+      <div className='dark:text-yellow-200 text-rose-500'>{name}</div>
+    ),
+  }
+);
 
 export const revalidate = 60;
 
 export default async function HomePage() {
   return (
     <section>
-      <Typewriter
-        options={{
-          autoStart: true,
-          loop: true,
-        }}
-        onInit={(typewriter) => {
-          typewriter
-            .typeString(
-              `<span class="dark:text-yellow-200 text-rose-500">${name}</span>`
-            )
-            .pauseFor(2500)
-            .deleteAll()
-            .callFunction(() => {
-              console.log('All strings were deleted');
-            })
-            .typeString(
-              `<span class="dark:text-yellow-200 text-rose-500">${alias}</span>`
-            )
-            .pauseFor(2500)
-            .deleteAll()
-            .start();
-        }}
-      />
-      <div className='mt-14 flex flex-row gap-4 items-center'>
+      <div className='min-h-[2.5rem]'>
+        <TypewriterClient name={name} alias={alias} />
+      </div>
+      <div className='mt-10 flex flex-row gap-4 items-center'>
         <a
           rel='noopener noreferrer'
           target='_blank'
