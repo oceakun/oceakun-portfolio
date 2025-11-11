@@ -14,15 +14,15 @@ export default function BlogList() {
       slug: '/persistent-and-flicker-less-dark-theme',
       date: '25-09-2023',
       stack: 'Next, TailwindCSS, React, Styled Components',
-      topic: 'Frontend',
+      tags: ['Frontend', 'CSS', 'Dark Mode'],
     },
-    {
-      title: 'Grafana as a local service and beyond',
-      slug: '/grafana-as-a-local-service',
-      date: '22-09-2023',
-      stack: 'Grafana, Docker-compose',
-      topic: 'Data Visualization',
-    },
+    // {
+    //   title: 'Grafana as a local service and beyond',
+    //   slug: '/grafana-as-a-local-service',
+    //   date: '22-09-2023',
+    //   stack: 'Grafana, Docker-compose',
+    //   tags: ['Data Visualization', 'DevOps'],
+    // },
   ];
 
   return (
@@ -49,12 +49,18 @@ export default function BlogList() {
                   </span> */}
                 </Link>
 
-                <span className='flex flex-row gap-[10px] text-justify mt-2'>
+                <div className='flex flex-row gap-2 flex-wrap mt-2'>
                   <HashIcon />
-                  <span className='italic italic text-sm dark:text-neutral-400 '>
-                    {blog.topic}
-                  </span>
-                </span>
+
+                  {blog.tags.map((tag, index) => (
+                    <span
+                      key={index}
+                      className='px-3 py-1 text-xs rounded-[5px] bg-rose-200 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200'
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
             );
           })}

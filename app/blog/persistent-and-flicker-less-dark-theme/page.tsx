@@ -1,36 +1,56 @@
 import React from 'react';
-import { LeftArrowIcon } from '../../../components/icons';
-import Link from 'next/link';
 import Image from 'next/image';
-import tailwindConfigJs from '../../../public/tailwind-config-js.png';
+import type { Metadata } from 'next';
+import BlogHeader from '../_components/BlogHeader';
+import References from '../_components/References';
 import themeSwitcher from '../../../public/theme-switcher.png';
 import darkMode from '../../../public/dark-mode.png';
 import lightMode from '../../../public/light-mode.png';
-// import CodeBlock from "@/components/codeBlock";
+
+export const metadata: Metadata = {
+  title: "Persistent and flickerless 'Dark theme'",
+  description: 'A guide to implementing a persistent and flicker-free dark mode in Next.js using TailwindCSS and next-themes.',
+  openGraph: {
+    title: "Persistent and flickerless 'Dark theme'",
+    description: 'A guide to implementing a persistent and flicker-free dark mode in Next.js using TailwindCSS and next-themes.',
+    images: [
+      {
+        url: darkMode.src,
+        width: darkMode.width,
+        height: darkMode.height,
+        alt: 'Dark mode example',
+      },
+    ],
+    type: 'article',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Persistent and flickerless 'Dark theme'",
+    description: 'A guide to implementing a persistent and flicker-free dark mode in Next.js using TailwindCSS and next-themes.',
+    images: [darkMode.src],
+  },
+};
+
+const references = [
+  {
+    name: 'TailwindCSS Dark Mode in Next.js with Tailwind Typography Prose Classes',
+    url: 'https://egghead.io/blog/tailwindcss-dark-mode-nextjs-typography-prose',
+  },
+  {
+    name: 'Dark mode in React: An in-depth guide',
+    url: 'https://blog.logrocket.com/dark-mode-react-in-depth-guide/',
+  },
+];
 
 export default function BlogPage() {
   return (
     <section>
-      <h1 className='font-bold text-2xl dark:text-neutral-200 font-serif text-center md:text-left'>
-        Persistent and flickerless 'Dark theme'
-      </h1>
+      <BlogHeader
+        title="Persistent and flickerless 'Dark theme'"
+        date='22-12-2023'
+      />
       <div className='prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-300 mt-12 text-justify'>
         <div className='text-justify'>
-          <p className='w-full flex flex-row justify-between items-end'>
-            <span className='font-[300] text-[14px] dark:text-yellow-200 text-rose-500'>
-              <span className='font-[300] text-[12px] dark:text-yellow-200 text-rose-500 italic'>
-                (Last Updated on)
-              </span>{' '}
-              22-12-2023
-            </span>
-            <Link
-              href='/blog'
-              className='dark:text-yellow-200 text-rose-500 hover:cursor-pointer no-underline font-[300]'
-            >
-              {/* <LeftArrowIcon /> */}
-              <span>Back</span>
-            </Link>
-          </p>
           <br />
           {/* <br /> */}
           <div className='flex flex-col justify-center items-center gap-4 mb-6 '>
@@ -167,30 +187,8 @@ export default function BlogPage() {
             </h1> */}
             {/* <br /> */}
             {/* <br /> */}
-            <h1 className='text-xl font-serif'>References</h1>
-            <ul>
-              <li>
-                <Link
-                  className='font-[200]'
-                  href='https://egghead.io/blog/tailwindcss-dark-mode-nextjs-typography-prose'
-                >
-                  TailwindCSS Dark Mode in Next.js with Tailwind Typography
-                  Prose Classes
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className='font-[200]'
-                  href='https://blog.logrocket.com/dark-mode-react-in-depth-guide/'
-                >
-                  Dark mode in React: An in-depth guide
-                </Link>
-              </li>
-            </ul>
+            <References refs={references} />
           </span>
-          {/* <p className="text-center bg-gradient-to-r from-rose-500 to-pink-900 dark:from-white dark:to-yellow-900 inline-block text-transparent bg-clip-text flex flex-row justify-center items-center ">
-            Coming soon..
-          </p> */}
         </div>
       </div>
     </section>
