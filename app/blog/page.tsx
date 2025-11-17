@@ -10,6 +10,27 @@ export const metadata: Metadata = {
 export default function BlogList() {
   const blogList = [
     {
+      title: 'SSR and Server Components',
+      slug: '/ssr-and-server-components',
+      date: '11-11-2025',
+      stack: 'React, Next.js, SSR',
+      tags: ['React', 'Next.js', 'SSR', 'Server Components', 'Frontend'],
+    },
+    {
+      title: 'Deploy your project with nginx and supervisor',
+      slug: '/deploy-your-project-with-nginx-and-supervisor',
+      date: '11-11-2025',
+      stack: 'nginx, supervisor, DevOps',
+      tags: ['DevOps', 'nginx', 'supervisor', 'Deployment'],
+    },
+    {
+      title: 'React Hooks: From useState to useOptimistic',
+      slug: '/react-hooks-from-usestate-to-useoptimistic',
+      date: '11-11-2025',
+      stack: 'React, Hooks',
+      tags: ['React', 'Hooks', 'Frontend'],
+    },
+    {
       title: "Persistent and flickerless 'Dark theme'",
       slug: '/persistent-and-flicker-less-dark-theme',
       date: '25-09-2023',
