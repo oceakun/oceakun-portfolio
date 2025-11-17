@@ -17,7 +17,7 @@ function References({ refs }: ReferencesProps) {
       <ul>
         {refs.map((ref, i) => {
           return (
-            <li>
+            <li key={i}>
               <Link className='font-[200]' href={ref.url}>
                 {ref.name}
               </Link>

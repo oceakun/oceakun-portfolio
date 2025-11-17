@@ -9,10 +9,12 @@ import lightMode from '../../../public/light-mode.png';
 
 export const metadata: Metadata = {
   title: "Persistent and flickerless 'Dark theme'",
-  description: 'A guide to implementing a persistent and flicker-free dark mode in Next.js using TailwindCSS and next-themes.',
+  description:
+    'A guide to implementing a persistent and flicker-free dark mode in Next.js using TailwindCSS and next-themes.',
   openGraph: {
     title: "Persistent and flickerless 'Dark theme'",
-    description: 'A guide to implementing a persistent and flicker-free dark mode in Next.js using TailwindCSS and next-themes.',
+    description:
+      'A guide to implementing a persistent and flicker-free dark mode in Next.js using TailwindCSS and next-themes.',
     images: [
       {
         url: darkMode.src,
@@ -26,7 +28,8 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: "Persistent and flickerless 'Dark theme'",
-    description: 'A guide to implementing a persistent and flicker-free dark mode in Next.js using TailwindCSS and next-themes.',
+    description:
+      'A guide to implementing a persistent and flicker-free dark mode in Next.js using TailwindCSS and next-themes.',
     images: [darkMode.src],
   },
 };
