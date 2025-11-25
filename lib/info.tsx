@@ -7,7 +7,16 @@ export const avatar = me;
 export const about = () => {
   return (
     <>
-      Hey, I'm Sagar, a <b>Full stack developer</b>.
+      Hey, I'm Sagar, an <b>SDE 1</b> at{' '}
+      <a
+        href='https://essentia.dev/'
+        target='_blank'
+        rel='noopener noreferrer'
+        className='underline decoration-rose-500 dark:decoration-yellow-200 hover:decoration-2 transition-all'
+      >
+        essentia(.dev)
+      </a>
+      .
     </>
   );
 };
@@ -15,10 +24,66 @@ export const about = () => {
 export const bio = () => {
   return (
     <>
-      I graduated with a B.Tech degree in Computer Science Engineering in 2024
-      and have been working as a Full Stack Software Engineer ever since. My
-      work focuses on building robust, scalable, and maintainable applications
-      that blend modern web development with intelligent system design.
+      I graduated with a B.Tech degree in{' '}
+      <b>Computer Science Engineering in June 2024</b> and have been working as
+      a Software Engineer ever since.
+      <br />
+      <br />A majority of my work now focuses on <b>productionizing </b> small
+      to medium scale <b> applications</b> by re-designing and re-writing major
+      features (sometimes, even the whole app) which includes:
+      <br />
+      <span>
+        &nbsp;&nbsp;&nbsp;<i>1. Implementing best coding practices</i>
+      </span>
+      <br />
+      <span>
+        &nbsp;&nbsp;&nbsp;<i>2. Adding comprehensive test coverage</i>
+      </span>
+      <br />
+      <span>
+        &nbsp;&nbsp;&nbsp;<i>3. Improving type safety and error handling</i>
+      </span>
+      <br />
+      <span>
+        &nbsp;&nbsp;&nbsp;<i>4. Benchmarking and optimizing performance</i>
+      </span>
+      <br />
+      <span>
+        &nbsp;&nbsp;&nbsp;<i>5. Preparing and owning staging environments</i>
+      </span>
+      <br />
+      <br />
+      Here are a few types of projects that I have contributed to:
+      <br />
+      <span>
+        &nbsp;&nbsp;&nbsp;
+        <i>
+          1. Enterprise B2B service marketplace with integrated CRM (React,
+          Django and ERP system)
+        </i>
+      </span>
+      <br />
+      <span>
+        &nbsp;&nbsp;&nbsp;
+        <i>
+          2. Server-rendered travel platform with SEO optimization having
+          integrated CMS (React and Nodejs)
+        </i>
+      </span>
+      <br />
+      <span>
+        &nbsp;&nbsp;&nbsp;
+        <i>
+          3. Social networking platform with real-time messaging and
+          availability matching(React Native and Firebase)
+        </i>
+      </span>
+      <br />
+      <br />
+      <span>
+        In addition to my client work, I also <b>mentor interns</b> on their
+        respective projects.
+      </span>
     </>
   );
 };
@@ -26,7 +91,7 @@ export const bio = () => {
 export const currentJob = () => {
   return (
     <>
-      Currently, I work at <strong>Essentia</strong>, where I maintain and
+      {/* Currently, I work at <b>Essentia</b>, where I maintain and
       extend an enterprise B2B service marketplace with integrated CRM
       functionality. I build automated test suites with Vitest and Playwright,
       implement RBAC, i18n, performance monitoring, and state management using
@@ -35,26 +100,9 @@ export const currentJob = () => {
       integration between ERP systems and the platform database, and manage
       production deployments using nginx and Supervisor for staging and
       production environments. <br />
-      <br />
-      <strong>Tech Stack:</strong> TypeScript, React, Vitest, Zod, Django,
-      Python, WeClapp, nginx, Supervisor.
-    </>
-  );
-};
-
-export const prevJob = () => {
-  return (
-    <>
-      Previously at <strong>Navikenz</strong>, I built full-stack applications
-      end-to-end, developed microservices and agentic RAG workflows, and led UI
-      development across multiple projects. I published reusable NPM packages,
-      optimized build pipelines using Vite and Rollup, and deployed production
-      systems through AWS Lambda, EC2, S3, and CloudFront. I also set up
-      business-critical logging and monitoring systems using AWS CloudWatch and
-      LoadBalancer. <br />
-      <br />
-      <strong>Tech Stack:</strong> TypeScript, FastAPI, Python, LangGraph,
-      LangChain, React, Postgres, AWS, pgvector.
+      <br /> */}
+      <b>Tech Stack:</b> TypeScript, React, Next, Python, Django, React Native,
+      Vitest, PyTest, Nginx, Docker
     </>
   );
 };
