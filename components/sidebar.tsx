@@ -13,14 +13,14 @@ const navItems = {
   // '/about': {
   //   name: 'about',
   // },
-  // '/projects': {
-  //   name: 'projects',
-  // },
   // '/experience': {
   //   name: 'experience',
   // },
   '/blog': {
     name: 'blog',
+  },
+  '/projects': {
+    name: 'projects',
   },
 };
 
