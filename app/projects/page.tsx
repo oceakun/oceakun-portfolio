@@ -5,7 +5,7 @@ import {
   StackIcon,
   HashIcon,
 } from '../../components/icons';
-import Carousel from '../../components/Carousel';
+import Carousel from '../../components/carousel';
 
 export const metadata: Metadata = {
   title: 'Projects',
@@ -184,7 +184,10 @@ export default function ProjectPage() {
               </span>
 
               {project.previewImages && project.previewImages.length > 0 && (
-                <Carousel images={project.previewImages} altPrefix={project.name} />
+                <Carousel
+                  images={project.previewImages}
+                  altPrefix={project.name}
+                />
               )}
 
               <span>{project.shortDescription}</span>

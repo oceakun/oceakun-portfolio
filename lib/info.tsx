@@ -28,9 +28,8 @@ export const bio = () => {
       <b>Computer Science Engineering in June 2024</b> and have been working as
       a Software Engineer ever since.
       <br />
-      <br />A majority of my work now focuses on {' '}
-      <b>productionizing </b> small to medium scale{' '}
-      <b> applications</b> by re-designing and re-writing major
+      <br />A majority of my work now focuses on <b>productionizing </b> small
+      to medium scale <b> applications</b> by re-designing and re-writing major
       features (sometimes, even the whole app) which includes:
       <br />
       <span>
@@ -53,18 +52,31 @@ export const bio = () => {
         &nbsp;&nbsp;&nbsp;<i>5. Preparing and owning staging environments</i>
       </span>
       <br />
-      <br />Here are a few types of projects that I have contributed to:
+      <br />
+      Here are a few types of projects that I have contributed to:
       <br />
       <span>
-        &nbsp;&nbsp;&nbsp;<i>1. Enterprise B2B service marketplace with integrated CRM (React, Django and ERP system)</i>
+        &nbsp;&nbsp;&nbsp;
+        <i>
+          1. Enterprise B2B service marketplace with integrated CRM (React,
+          Django and ERP system)
+        </i>
       </span>
       <br />
       <span>
-        &nbsp;&nbsp;&nbsp;<i>2. Server-rendered travel platform with SEO optimization having integrated CMS (React and Nodejs)</i>
+        &nbsp;&nbsp;&nbsp;
+        <i>
+          2. Server-rendered travel platform with SEO optimization having
+          integrated CMS (React and Nodejs)
+        </i>
       </span>
       <br />
       <span>
-        &nbsp;&nbsp;&nbsp;<i>3. Social networking platform with real-time messaging and availability matching(React Native and Firebase)</i>
+        &nbsp;&nbsp;&nbsp;
+        <i>
+          3. Social networking platform with real-time messaging and
+          availability matching(React Native and Firebase)
+        </i>
       </span>
       <br />
       <br />
