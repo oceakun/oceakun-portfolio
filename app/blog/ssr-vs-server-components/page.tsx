@@ -3,18 +3,18 @@ import type { Metadata } from 'next';
 import BlogHeader from '../_components/BlogHeader';
 
 export const metadata: Metadata = {
-  title: 'SSR and Server Components',
+  title: 'SSR vs Server Components',
   description:
     'A deep dive into Server-Side Rendering (SSR) and React Server Components in Next.js, understanding their differences, use cases, and implementation patterns.',
   openGraph: {
-    title: 'SSR and Server Components',
+    title: 'SSR vs Server Components',
     description:
       'A deep dive into Server-Side Rendering (SSR) and React Server Components in Next.js, understanding their differences, use cases, and implementation patterns.',
     type: 'article',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'SSR and Server Components',
+    title: 'SSR vs Server Components',
     description:
       'A deep dive into Server-Side Rendering (SSR) and React Server Components in Next.js, understanding their differences, use cases, and implementation patterns.',
   },
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 export default function BlogPage() {
   return (
     <section>
-      <BlogHeader title='SSR and Server Components' date='11-11-2025' />
+      <BlogHeader title='SSR vs Server Components' date='11-11-2025' />
       <div className='prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-300 mt-12 text-justify'>
         <div className='text-justify'>
           <h2 className='text-xl dark:text-neutral-200 font-serif'>Content</h2>

@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 export default function BlogList() {
   const blogList = [
     {
-      title: 'SSR and Server Components',
-      slug: '/ssr-and-server-components',
+      title: 'SSR vs Server Components',
+      slug: '/ssr-vs-server-components',
       date: '11-11-2025',
       stack: 'React, Next.js, SSR',
       tags: ['React', 'Next.js', 'SSR', 'Server Components', 'Frontend'],
