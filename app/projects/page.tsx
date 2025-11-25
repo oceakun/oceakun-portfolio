@@ -5,7 +5,7 @@ import {
   StackIcon,
   HashIcon,
 } from '../../components/icons';
-import Carousel from '../../components/carousel';
+import Carousel from '../../components/Carousel';
 
 export const metadata: Metadata = {
   title: 'Projects',
