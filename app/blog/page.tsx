@@ -10,6 +10,14 @@ export const metadata: Metadata = {
 export default function BlogList() {
   const blogList = [
     {
+      title: 'Git Hooks',
+      slug: '/git-hooks',
+      date: '11-01-2026',
+      stack: 'Git, DevOps, Automation',
+      tags: ['Git', 'DevOps', 'Automation', 'Productivity', 'Best Practices'],
+      readyForRelease: false,
+    },
+    {
       title: 'Anatomy of React State',
       slug: '/anatomy-of-react-state',
       date: '10-01-2026',
@@ -92,7 +100,7 @@ export default function BlogList() {
   ];
 
   // Filter to only show blogs that are ready for release
-  const publishedBlogs = blogList.filter(blog => blog.readyForRelease);
+  const publishedBlogs = blogList.filter((blog) => blog.readyForRelease);
 
   return (
     <section>
