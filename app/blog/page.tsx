@@ -10,11 +10,44 @@ export const metadata: Metadata = {
 export default function BlogList() {
   const blogList = [
     {
+      title: 'Anatomy of React State',
+      slug: '/anatomy-of-react-state',
+      date: '10-01-2026',
+      stack: 'React, State Management, Frontend',
+      tags: ['React', 'State Management', 'Frontend', 'JavaScript'],
+      readyForRelease: false,
+    },
+    {
+      title: 'Build and scale a chat API',
+      slug: '/build-and-scale-a-chat-api',
+      date: '08-01-2026',
+      stack: 'Backend, API, WebSockets',
+      tags: ['Backend', 'API', 'WebSockets', 'Scaling', 'Architecture'],
+      readyForRelease: false,
+    },
+    {
+      title: 'Django for FastAPI Developers',
+      slug: '/django-for-fastapi-developers',
+      date: '20-12-2025',
+      stack: 'Django, FastAPI, Python',
+      tags: ['Python', 'Django', 'FastAPI', 'Backend', 'Web Development'],
+      readyForRelease: false,
+    },
+    {
+      title: 'Debouncing, Deferring and Throttling',
+      slug: '/debouncing-deferring-and-throttling',
+      date: '04-12-2025',
+      stack: 'JavaScript, React, Performance',
+      tags: ['JavaScript', 'React', 'Performance', 'Optimization', 'Frontend'],
+      readyForRelease: false,
+    },
+    {
       title: 'SSR vs Server Components',
       slug: '/ssr-vs-server-components',
       date: '11-11-2025',
       stack: 'React, Next.js, SSR',
       tags: ['React', 'Next.js', 'SSR', 'Server Components', 'Frontend'],
+      readyForRelease: false,
     },
     {
       title: 'Deploy your project with nginx and supervisor',
@@ -22,6 +55,7 @@ export default function BlogList() {
       date: '11-11-2025',
       stack: 'nginx, supervisor, DevOps',
       tags: ['DevOps', 'nginx', 'supervisor', 'Deployment'],
+      readyForRelease: false,
     },
     {
       title: 'React Hooks: From useState to useOptimistic',
@@ -29,6 +63,7 @@ export default function BlogList() {
       date: '11-11-2025',
       stack: 'React, Hooks',
       tags: ['React', 'Hooks', 'Frontend'],
+      readyForRelease: true,
     },
     {
       title: "Persistent and flickerless 'Dark theme'",
@@ -36,6 +71,7 @@ export default function BlogList() {
       date: '25-09-2023',
       stack: 'Next, TailwindCSS, React, Styled Components',
       tags: ['Frontend', 'CSS', 'Dark Mode'],
+      readyForRelease: false,
     },
     // {
     //   title: 'Grafana as a local service and beyond',
@@ -43,8 +79,20 @@ export default function BlogList() {
     //   date: '22-09-2023',
     //   stack: 'Grafana, Docker-compose',
     //   tags: ['Data Visualization', 'DevOps'],
+    //   readyForRelease: false,
     // },
+    {
+      title: "Deploy Fullstack applications with S3, cloudfront and Lambda'",
+      slug: '/deploy-fullstack-apps-with-s3-cloudfront-lambda',
+      date: '25-09-2023',
+      stack: 'Next, TailwindCSS, React, Styled Components',
+      tags: ['Devops', 'AWS', 'Cloudfront', 'S3', 'Lambda'],
+      readyForRelease: false,
+    },
   ];
+
+  // Filter to only show blogs that are ready for release
+  const publishedBlogs = blogList.filter(blog => blog.readyForRelease);
 
   return (
     <section>
@@ -53,7 +101,7 @@ export default function BlogList() {
       </h1>
       <div className=' text-neutral-800 dark:text-neutral-200 mt-8'>
         <div>
-          {blogList.map((blog, i) => {
+          {publishedBlogs.map((blog, i) => {
             return (
               <div className='mb-8 mt-8' key={i}>
                 <Link
