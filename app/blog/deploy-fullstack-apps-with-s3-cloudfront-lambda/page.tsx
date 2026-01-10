@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import BlogHeader from '../_components/BlogHeader';
+import CodeBlock from '../../../components/codeBlock';
 
 export const metadata: Metadata = {
   title: 'Deploy Your Full-Stack Application with S3, CloudFront and Lambda',
@@ -113,8 +114,7 @@ export default function BlogPage() {
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Step 1: Create an S3 Bucket
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`# Create S3 bucket
+          <CodeBlock>{`# Create S3 bucket
 aws s3 mb s3://your-app-frontend --region us-east-1
 
 # Or using AWS Console:
@@ -123,14 +123,12 @@ aws s3 mb s3://your-app-frontend --region us-east-1
 # 3. Enter bucket name (must be globally unique)
 # 4. Choose region
 # 5. Uncheck "Block all public access" (we'll use CloudFront)
-# 6. Click "Create bucket"`}</code>
-          </pre>
+# 6. Click "Create bucket"`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Step 2: Configure Bucket for Static Website Hosting
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`# Enable static website hosting
+          <CodeBlock>{`# Enable static website hosting
 aws s3 website s3://your-app-frontend \\
   --index-document index.html \\
   --error-document index.html
@@ -143,8 +141,7 @@ aws s3 website s3://your-app-frontend \\
 # 5. Enable static website hosting
 # 6. Set index document: index.html
 # 7. Set error document: index.html (for SPA routing)
-# 8. Save changes`}</code>
-          </pre>
+# 8. Save changes`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Step 3: Set Bucket Policy
@@ -152,8 +149,7 @@ aws s3 website s3://your-app-frontend \\
           <p>
             Create a bucket policy to allow CloudFront to access your content:
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`{
+          <CodeBlock>{`{
   "Version": "2012-10-17",
   "Statement": [
     {
@@ -169,14 +165,12 @@ aws s3 website s3://your-app-frontend \\
 # Apply the policy
 aws s3api put-bucket-policy \\
   --bucket your-app-frontend \\
-  --policy file://bucket-policy.json`}</code>
-          </pre>
+  --policy file://bucket-policy.json`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Step 4: Build and Upload Your Frontend
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`# Build your frontend (example for React)
+          <CodeBlock>{`# Build your frontend (example for React)
 npm run build
 
 # Upload to S3
@@ -195,8 +189,7 @@ aws s3 sync ./build s3://your-app-frontend \\
 
 # Don't cache index.html (always serve fresh)
 aws s3 cp ./build/index.html s3://your-app-frontend/index.html \\
-  --cache-control "max-age=0,no-cache,no-store,must-revalidate"`}</code>
-          </pre>
+  --cache-control "max-age=0,no-cache,no-store,must-revalidate"`}</CodeBlock>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif'>
             Part 2: Configuring CloudFront for CDN
@@ -205,8 +198,7 @@ aws s3 cp ./build/index.html s3://your-app-frontend/index.html \\
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Step 1: Create CloudFront Distribution
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`# Using AWS Console (recommended for first time):
+          <CodeBlock>{`# Using AWS Console (recommended for first time):
 # 1. Go to CloudFront Console
 # 2. Click "Create Distribution"
 # 3. Origin Settings:
@@ -227,14 +219,12 @@ aws s3 cp ./build/index.html s3://your-app-frontend/index.html \\
 # 6. Click "Create Distribution"
 
 # Wait for deployment (15-20 minutes)
-# Note the CloudFront domain name (e.g., d123abc.cloudfront.net)`}</code>
-          </pre>
+# Note the CloudFront domain name (e.g., d123abc.cloudfront.net)`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Step 2: Configure Error Pages for SPA Routing
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`# In CloudFront Console:
+          <CodeBlock>{`# In CloudFront Console:
 # 1. Select your distribution
 # 2. Go to "Error Pages" tab
 # 3. Click "Create Custom Error Response"
@@ -244,14 +234,12 @@ aws s3 cp ./build/index.html s3://your-app-frontend/index.html \\
 #    - Response Page Path: /index.html
 #    - HTTP Response Code: 200 (OK)
 # 5. Repeat for 404 error code
-# This ensures client-side routing works correctly`}</code>
-          </pre>
+# This ensures client-side routing works correctly`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Step 3: Request SSL Certificate (Optional but Recommended)
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`# Using AWS Certificate Manager (ACM)
+          <CodeBlock>{`# Using AWS Certificate Manager (ACM)
 # IMPORTANT: Must be in us-east-1 region for CloudFront
 
 # 1. Go to AWS Certificate Manager in us-east-1
@@ -263,8 +251,7 @@ aws s3 cp ./build/index.html s3://your-app-frontend/index.html \\
 # 5. Validation method: DNS validation (recommended)
 # 6. Add CNAME records to your DNS provider
 # 7. Wait for validation (5-30 minutes)
-# 8. Attach certificate to CloudFront distribution`}</code>
-          </pre>
+# 8. Attach certificate to CloudFront distribution`}</CodeBlock>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif'>
             Part 3: Deploying Lambda Functions for Backend
@@ -273,8 +260,7 @@ aws s3 cp ./build/index.html s3://your-app-frontend/index.html \\
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Step 1: Create a Lambda Function
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`// Example Lambda function (index.js)
+          <CodeBlock>{`// Example Lambda function (index.js)
 exports.handler = async (event) => {
   // Log the incoming event
   console.log('Event:', JSON.stringify(event, null, 2));
@@ -357,14 +343,12 @@ async function handlePut(id, body) {
 async function handleDelete(id) {
   // Your DELETE logic here
   return { message: \`DELETE request successful for ID: \${id}\` };
-}`}</code>
-          </pre>
+}`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Step 2: Deploy Lambda Function
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`# Create deployment package
+          <CodeBlock>{`# Create deployment package
 zip -r function.zip index.js node_modules/
 
 # Create Lambda function
@@ -390,14 +374,12 @@ aws lambda update-function-code \\
 # 5. Runtime: Node.js 20.x
 # 6. Create function
 # 7. Upload your code via zip or inline editor
-# 8. Configure environment variables, timeout, memory`}</code>
-          </pre>
+# 8. Configure environment variables, timeout, memory`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Step 3: Set Up API Gateway
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`# Using AWS Console for API Gateway:
+          <CodeBlock>{`# Using AWS Console for API Gateway:
 # 1. Go to API Gateway Console
 # 2. Choose "HTTP API" (simpler and cheaper) or "REST API"
 # 3. Click "Build"
@@ -427,8 +409,7 @@ aws lambda add-permission \\
   --function-name my-api-function \\
   --statement-id apigateway-invoke \\
   --action lambda:InvokeFunction \\
-  --principal apigateway.amazonaws.com`}</code>
-          </pre>
+  --principal apigateway.amazonaws.com`}</CodeBlock>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif'>
             Part 4: Connecting Frontend to Lambda API
@@ -437,22 +418,19 @@ aws lambda add-permission \\
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Environment Variables for Frontend
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`// .env.production
+          <CodeBlock>{`// .env.production
 REACT_APP_API_URL=https://xyz123.execute-api.us-east-1.amazonaws.com
 
 // For Next.js
 NEXT_PUBLIC_API_URL=https://xyz123.execute-api.us-east-1.amazonaws.com
 
 // For Vite
-VITE_API_URL=https://xyz123.execute-api.us-east-1.amazonaws.com`}</code>
-          </pre>
+VITE_API_URL=https://xyz123.execute-api.us-east-1.amazonaws.com`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             API Service Implementation
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`// api.js
+          <CodeBlock>{`// api.js
 const API_URL = process.env.REACT_APP_API_URL || process.env.NEXT_PUBLIC_API_URL;
 
 export const apiClient = {
@@ -523,14 +501,12 @@ export const apiClient = {
 export const getUsers = () => apiClient.get('/users');
 export const createUser = (userData) => apiClient.post('/users', userData);
 export const updateUser = (id, userData) => apiClient.put(\`/users/\${id}\`, userData);
-export const deleteUser = (id) => apiClient.delete(\`/users/\${id}\`);`}</code>
-          </pre>
+export const deleteUser = (id) => apiClient.delete(\`/users/\${id}\`);`}</CodeBlock>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif'>
             Setting Up Custom Domain with Route 53
           </h2>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`# If your domain is in Route 53:
+          <CodeBlock>{`# If your domain is in Route 53:
 # 1. Go to Route 53 Console
 # 2. Select your hosted zone
 # 3. Click "Create Record"
@@ -552,8 +528,7 @@ export const deleteUser = (id) => apiClient.delete(\`/users/\${id}\`);`}</code>
 # 5. Certificate: Select ACM certificate
 # 6. Create domain
 # 7. Add API mapping to your API
-# 8. Create Route 53 A record pointing to API Gateway domain`}</code>
-          </pre>
+# 8. Create Route 53 A record pointing to API Gateway domain`}</CodeBlock>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif'>
             Best Practices and Optimization
@@ -562,8 +537,7 @@ export const deleteUser = (id) => apiClient.delete(\`/users/\${id}\`);`}</code>
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             1. CloudFront Caching Strategy
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`# Cache-Control headers for different file types:
+          <CodeBlock>{`# Cache-Control headers for different file types:
 
 # Static assets (JS, CSS, images) - long cache
 Cache-Control: public, max-age=31536000, immutable
@@ -577,8 +551,7 @@ Cache-Control: public, max-age=300, s-maxage=600
 # Use CloudFront cache behaviors for different paths
 # /static/* - Cache everything
 # /api/* - Don't cache or short TTL
-# /* - Cache HTML with custom TTL`}</code>
-          </pre>
+# /* - Cache HTML with custom TTL`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             2. Lambda Optimization
@@ -609,8 +582,7 @@ Cache-Control: public, max-age=300, s-maxage=600
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             3. Security Best Practices
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`# 1. Use CloudFront Origin Access Control (OAC)
+          <CodeBlock>{`# 1. Use CloudFront Origin Access Control (OAC)
 #    - Prevents direct S3 access, forces through CloudFront
 
 # 2. Enable AWS WAF on CloudFront
@@ -628,14 +600,12 @@ Cache-Control: public, max-age=300, s-maxage=600
 #    - Implement CORS properly
 
 # 5. Enable CloudFront access logs
-#    - Monitor and analyze traffic patterns`}</code>
-          </pre>
+#    - Monitor and analyze traffic patterns`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             4. Deployment Automation
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`#!/bin/bash
+          <CodeBlock>{`#!/bin/bash
 # deploy.sh - Automated deployment script
 
 set -e
@@ -671,8 +641,7 @@ echo "Deployment complete!"
 # Add to package.json scripts:
 # "deploy": "./deploy.sh"
 # "deploy:frontend": "npm run build && aws s3 sync ./build s3://your-app-frontend"
-# "deploy:backend": "cd lambda && zip -r function.zip . && aws lambda update-function-code --function-name my-api-function --zip-file fileb://function.zip"`}</code>
-          </pre>
+# "deploy:backend": "cd lambda && zip -r function.zip . && aws lambda update-function-code --function-name my-api-function --zip-file fileb://function.zip"`}</CodeBlock>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif'>
             Cost Considerations

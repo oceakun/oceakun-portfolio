@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import BlogHeader from '../_components/BlogHeader';
+import CodeBlock from '../../../components/codeBlock';
 
 export const metadata: Metadata = {
   title: 'Build and scale a chat API',
@@ -106,8 +107,7 @@ export default function BlogPage() {
             <strong>Cons:</strong> Complex to scale, requires sticky sessions or
             Redis Pub/Sub
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`// WebSocket connection
+          <CodeBlock>{`// WebSocket connection
 const ws = new WebSocket('wss://api.example.com/chat');
 
 ws.onmessage = (event) => {
@@ -119,8 +119,7 @@ ws.send(JSON.stringify({
   type: 'message',
   content: 'Hello!',
   channelId: '123'
-}));`}</code>
-          </pre>
+}));`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Long Polling
@@ -159,8 +158,7 @@ ws.send(JSON.stringify({
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Connection Lifecycle
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`// Node.js WebSocket server with ws library
+          <CodeBlock>{`// Node.js WebSocket server with ws library
 import WebSocket, { WebSocketServer } from 'ws';
 import { verifyToken } from './auth';
 
@@ -205,15 +203,13 @@ wss.on('connection', async (ws, req) => {
   ws.on('error', (error) => {
     console.error(\`WebSocket error for user \${userId}:\`, error);
   });
-});`}</code>
-          </pre>
+});`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Heartbeat and Reconnection
           </h3>
           <p>Detect stale connections and handle reconnections gracefully:</p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`// Server-side heartbeat
+          <CodeBlock>{`// Server-side heartbeat
 function heartbeat() {
   this.isAlive = true;
 }
@@ -237,8 +233,7 @@ const interval = setInterval(() => {
 
 wss.on('close', () => {
   clearInterval(interval);
-});`}</code>
-          </pre>
+});`}</CodeBlock>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             Message Delivery Guarantees
@@ -264,8 +259,7 @@ wss.on('close', () => {
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Implementing At-Least-Once Delivery
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`async function sendMessage(senderId, channelId, content) {
+          <CodeBlock>{`async function sendMessage(senderId, channelId, content) {
   // 1. Generate unique message ID
   const messageId = generateUUID();
 
@@ -311,14 +305,12 @@ wss.on('close', () => {
   await db.messages.update(messageId, { delivered: true });
 
   return messageId;
-}`}</code>
-          </pre>
+}`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Handling Offline Users
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`// When user reconnects, send pending messages
+          <CodeBlock>{`// When user reconnects, send pending messages
 async function sendPendingMessages(userId, ws) {
   const lastSeenTimestamp = await db.users.getLastSeen(userId);
 
@@ -342,15 +334,13 @@ async function sendPendingMessages(userId, ws) {
 
   // Update last seen
   await db.users.updateLastSeen(userId, Date.now());
-}`}</code>
-          </pre>
+}`}</CodeBlock>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             Database Schema and Message Storage
           </h2>
           <p>Efficient schema design is critical for chat performance:</p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`-- Users table
+          <CodeBlock>{`-- Users table
 CREATE TABLE users (
   id UUID PRIMARY KEY,
   username VARCHAR(50) UNIQUE NOT NULL,
@@ -388,8 +378,7 @@ CREATE TABLE messages (
 
 -- Indexes for common queries
 CREATE INDEX idx_messages_channel_time ON messages(channel_id, created_at DESC);
-CREATE INDEX idx_channel_members_user ON channel_members(user_id);`}</code>
-          </pre>
+CREATE INDEX idx_channel_members_user ON channel_members(user_id);`}</CodeBlock>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             Scaling Horizontally with Redis Pub/Sub
@@ -399,8 +388,7 @@ CREATE INDEX idx_channel_members_user ON channel_members(user_id);`}</code>
             different instances. Redis Pub/Sub coordinates messages across
             servers:
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`import Redis from 'ioredis';
+          <CodeBlock>{`import Redis from 'ioredis';
 
 const publisher = new Redis();
 const subscriber = new Redis();
@@ -431,14 +419,12 @@ async function broadcastMessage(channelId, messageData) {
     channelId,
     messageData
   }));
-}`}</code>
-          </pre>
+}`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Presence System with Redis
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`// Track online users across servers
+          <CodeBlock>{`// Track online users across servers
 async function setUserOnline(userId) {
   await redis.sadd('online_users', userId);
   await redis.expire(\`user:\${userId}:heartbeat\`, 60); // 60 second TTL
@@ -473,8 +459,7 @@ setInterval(async () => {
       }));
     }
   }
-}, 10000);`}</code>
-          </pre>
+}, 10000);`}</CodeBlock>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             Rate Limiting and Security
@@ -483,8 +468,7 @@ setInterval(async () => {
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Per-User Rate Limiting
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`import { RateLimiterRedis } from 'rate-limiter-flexible';
+          <CodeBlock>{`import { RateLimiterRedis } from 'rate-limiter-flexible';
 
 const rateLimiter = new RateLimiterRedis({
   storeClient: redis,
@@ -509,14 +493,12 @@ async function handleMessage(userId, data) {
       }));
     }
   }
-}`}</code>
-          </pre>
+}`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Input Validation and Sanitization
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`import { z } from 'zod';
+          <CodeBlock>{`import { z } from 'zod';
 import sanitizeHtml from 'sanitize-html';
 
 const messageSchema = z.object({
@@ -536,8 +518,7 @@ function validateAndSanitize(data) {
   });
 
   return parsed;
-}`}</code>
-          </pre>
+}`}</CodeBlock>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             Monitoring and Observability
@@ -560,8 +541,7 @@ function validateAndSanitize(data) {
               <strong>Redis Pub/Sub lag:</strong> Message propagation delay
             </li>
           </ul>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`import prometheus from 'prom-client';
+          <CodeBlock>{`import prometheus from 'prom-client';
 
 const activeConnections = new prometheus.Gauge({
   name: 'chat_active_connections',
@@ -587,8 +567,7 @@ wss.on('connection', () => {
 
 ws.on('close', () => {
   activeConnections.dec();
-});`}</code>
-          </pre>
+});`}</CodeBlock>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             Production Deployment Considerations
@@ -598,8 +577,7 @@ ws.on('close', () => {
             Load Balancing
           </h3>
           <p>Use a load balancer with sticky sessions or consistent hashing:</p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`# nginx configuration with IP hash for sticky sessions
+          <CodeBlock>{`# nginx configuration with IP hash for sticky sessions
 upstream websocket_backend {
   ip_hash; # Same client always goes to same server
   server ws1.example.com:8080;
@@ -616,14 +594,12 @@ server {
     proxy_set_header Host $host;
     proxy_read_timeout 86400; # 24 hours
   }
-}`}</code>
-          </pre>
+}`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Graceful Shutdown
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`process.on('SIGTERM', async () => {
+          <CodeBlock>{`process.on('SIGTERM', async () => {
   console.log('SIGTERM received. Starting graceful shutdown...');
 
   // 1. Stop accepting new connections
@@ -646,8 +622,7 @@ server {
   await redis.quit();
 
   process.exit(0);
-});`}</code>
-          </pre>
+});`}</CodeBlock>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             Conclusion

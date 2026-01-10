@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import BlogHeader from '../_components/BlogHeader';
+import CodeBlock from '../../../components/codeBlock';
 
 export const metadata: Metadata = {
   title: 'Debouncing, Deferring and Throttling',
@@ -273,8 +274,7 @@ export default function BlogPage() {
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Debouncing Implementation
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`// Vanilla JavaScript debounce
+          <CodeBlock>{`// Vanilla JavaScript debounce
 function debounce(func, delay) {
   let timeoutId;
   return function (...args) {
@@ -330,14 +330,12 @@ function SearchComponent() {
       placeholder="Search..."
     />
   );
-}`}</code>
-          </pre>
+}`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Throttling Implementation
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`// Vanilla JavaScript throttle
+          <CodeBlock>{`// Vanilla JavaScript throttle
 function throttle(func, limit) {
   let inThrottle;
   return function (...args) {
@@ -388,14 +386,12 @@ function ScrollTracker() {
   }, [handleScroll]);
 
   return <div>Scroll position: {scrollPosition}px</div>;
-}`}</code>
-          </pre>
+}`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Deferring Implementation (React)
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`import { useDeferredValue, useState, memo } from 'react';
+          <CodeBlock>{`import { useDeferredValue, useState, memo } from 'react';
 
 // Expensive list component
 const SlowList = memo(({ items }) => {
@@ -473,8 +469,7 @@ function SearchWithTransition() {
       <ResultsList results={filteredResults} />
     </div>
   );
-}`}</code>
-          </pre>
+}`}</CodeBlock>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             Conclusion

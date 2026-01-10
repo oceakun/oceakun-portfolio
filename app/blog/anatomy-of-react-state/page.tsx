@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import BlogHeader from '../_components/BlogHeader';
+import CodeBlock from '../../../components/codeBlock';
 
 export const metadata: Metadata = {
   title: 'Anatomy of React State',
@@ -86,16 +87,14 @@ export default function BlogPage() {
             your component." Instead, it stores state in a linked list of hooks
             attached to the component's Fiber node.
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`function Component() {
+          <CodeBlock>{`function Component() {
   const [count, setCount] = useState(0);  // Hook #1
   const [name, setName] = useState('');   // Hook #2
   const [active, setActive] = useState(false);  // Hook #3
 
   // React maintains a linked list:
   // Fiber.memoizedState -> Hook1 -> Hook2 -> Hook3
-}`}</code>
-          </pre>
+}`}</CodeBlock>
           <p>
             This is why hooks must be called in the same order on every render -
             React relies on call order to match hooks with their stored state.
@@ -110,15 +109,13 @@ export default function BlogPage() {
             <strong>all state updates are automatically batched</strong>, even
             in async functions.
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`function handleClick() {
+          <CodeBlock>{`function handleClick() {
   setCount(c => c + 1);
   setName('John');
   setActive(true);
 
   // React batches all three updates into a single re-render
-}`}</code>
-          </pre>
+}`}</CodeBlock>
           <p>
             <strong>Before React 18:</strong> Batching only worked in event
             handlers
@@ -132,8 +129,7 @@ export default function BlogPage() {
             Synchronous vs Asynchronous Updates
           </h3>
           <p>State updates are scheduled, not immediate:</p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`const [count, setCount] = useState(0);
+          <CodeBlock>{`const [count, setCount] = useState(0);
 
 function handleClick() {
   setCount(1);
@@ -144,8 +140,7 @@ function handleClick() {
     console.log(prev);  // This will be 1
     return prev + 1;
   });
-}`}</code>
-          </pre>
+}`}</CodeBlock>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             Reconciliation and Re-renders
@@ -192,8 +187,7 @@ function handleClick() {
               flows down.
             </strong>
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`// State - component owns and manages this data
+          <CodeBlock>{`// State - component owns and manages this data
 function Counter() {
   const [count, setCount] = useState(0);
   return <button onClick={() => setCount(c => c + 1)}>{count}</button>;
@@ -202,8 +196,7 @@ function Counter() {
 // Props - parent provides this data
 function Display({ count }) {
   return <div>Count: {count}</div>;
-}`}</code>
-          </pre>
+}`}</CodeBlock>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             Common Pitfalls and Anti-patterns
@@ -212,8 +205,7 @@ function Display({ count }) {
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             1. Stale Closures
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`const [count, setCount] = useState(0);
+          <CodeBlock>{`const [count, setCount] = useState(0);
 
 useEffect(() => {
   const interval = setInterval(() => {
@@ -224,14 +216,12 @@ useEffect(() => {
 }, []); // Empty deps means count is stale
 
 // Fix: Use callback form
-setCount(c => c + 1);  // ✅ Always uses latest value`}</code>
-          </pre>
+setCount(c => c + 1);  // ✅ Always uses latest value`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             2. Derived State
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`// ❌ Bad - storing derived state
+          <CodeBlock>{`// ❌ Bad - storing derived state
 const [items, setItems] = useState([]);
 const [count, setCount] = useState(0);
 
@@ -241,14 +231,12 @@ useEffect(() => {
 
 // ✅ Good - calculate during render
 const [items, setItems] = useState([]);
-const count = items.length;  // Just derive it!`}</code>
-          </pre>
+const count = items.length;  // Just derive it!`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             3. Initializing State from Props
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`// ❌ Anti-pattern - props changes won't update state
+          <CodeBlock>{`// ❌ Anti-pattern - props changes won't update state
 function Component({ initialValue }) {
   const [value, setValue] = useState(initialValue);
   // If initialValue prop changes, value state stays the same!
@@ -265,8 +253,7 @@ function Component({ value }) {
 // ✅ Option 3: Use useEffect to sync (rare cases)
 useEffect(() => {
   setValue(initialValue);
-}, [initialValue]);`}</code>
-          </pre>
+}, [initialValue]);`}</CodeBlock>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             State Colocation and Lifting State Up
@@ -275,8 +262,7 @@ useEffect(() => {
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Colocation: Keep State Close to Where It's Used
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`// ❌ Bad - state in parent, only used by child
+          <CodeBlock>{`// ❌ Bad - state in parent, only used by child
 function Parent() {
   const [modalOpen, setModalOpen] = useState(false);
   return (
@@ -291,14 +277,12 @@ function Parent() {
 function Modal() {
   const [open, setOpen] = useState(false);
   // Modal manages its own state
-}`}</code>
-          </pre>
+}`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Lifting State Up: Share State Between Siblings
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`// When siblings need to share state, lift it to parent
+          <CodeBlock>{`// When siblings need to share state, lift it to parent
 function Parent() {
   const [selected, setSelected] = useState(null);
 
@@ -308,8 +292,7 @@ function Parent() {
       <Content selected={selected} />
     </>
   );
-}`}</code>
-          </pre>
+}`}</CodeBlock>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             Performance Optimization Techniques
@@ -318,40 +301,34 @@ function Parent() {
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             1. Lazy Initial State
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`// ❌ Expensive calculation runs on every render
+          <CodeBlock>{`// ❌ Expensive calculation runs on every render
 const [data, setData] = useState(expensiveComputation());
 
 // ✅ Lazy initializer runs only once
-const [data, setData] = useState(() => expensiveComputation());`}</code>
-          </pre>
+const [data, setData] = useState(() => expensiveComputation());`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             2. Bail Out of Updates
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`// React skips re-render if new state === old state (Object.is comparison)
+          <CodeBlock>{`// React skips re-render if new state === old state (Object.is comparison)
 const [count, setCount] = useState(0);
 setCount(0);  // No re-render if count is already 0
 
 // For objects, use immutable updates
 const [user, setUser] = useState({ name: 'John', age: 30 });
 setUser(prev => prev);  // No re-render - same object reference
-setUser({ ...user });   // Re-renders - new object reference`}</code>
-          </pre>
+setUser({ ...user });   // Re-renders - new object reference`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             3. State Splitting
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`// ❌ One state object - updating firstName re-renders everything
+          <CodeBlock>{`// ❌ One state object - updating firstName re-renders everything
 const [form, setForm] = useState({ firstName: '', lastName: '', email: '' });
 
 // ✅ Split state - independent updates
 const [firstName, setFirstName] = useState('');
 const [lastName, setLastName] = useState('');
-const [email, setEmail] = useState('');`}</code>
-          </pre>
+const [email, setEmail] = useState('');`}</CodeBlock>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             The Mental Model

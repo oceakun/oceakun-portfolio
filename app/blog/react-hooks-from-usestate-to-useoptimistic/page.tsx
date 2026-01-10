@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import BlogHeader from '../_components/BlogHeader';
+import CodeBlock from '../../../components/codeBlock';
 
 export const metadata: Metadata = {
   title: 'React Hooks: From useState to useOptimistic',
@@ -152,11 +153,9 @@ export default function BlogPage() {
             In AddTaskForm.tsx, useState tracks multiple form fields and
             submission state:
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`const [title, setTitle] = useState('');
+          <CodeBlock>{`const [title, setTitle] = useState('');
 const [priority, setPriority] = useState<Task['priority']>('medium');
-const [isSubmitting, setIsSubmitting] = useState(false);`}</code>
-          </pre>
+const [isSubmitting, setIsSubmitting] = useState(false);`}</CodeBlock>
           <p>
             <strong>Problem solved:</strong> Track form field values and
             submission state synchronously. Each state change triggers a
@@ -170,12 +169,10 @@ const [isSubmitting, setIsSubmitting] = useState(false);`}</code>
             In DashboardPage.tsx, useState holds fetched API data and loading
             states:
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`const [lineData, setLineData] = useState<ChartData[]>([]);
+          <CodeBlock>{`const [lineData, setLineData] = useState<ChartData[]>([]);
 const [barData, setBarData] = useState<ChartData[]>([]);
 const [pieData, setPieData] = useState<ChartData[]>([]);
-const [isLoading, setIsLoading] = useState(true);`}</code>
-          </pre>
+const [isLoading, setIsLoading] = useState(true);`}</CodeBlock>
           <p>
             <strong>Why useState:</strong> Data changes need to trigger UI
             re-renders automatically to display updated charts.
@@ -188,15 +185,13 @@ const [isLoading, setIsLoading] = useState(true);`}</code>
             In ThemeContext.tsx, useState uses an initializer function for
             expensive initialization:
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`const [theme, setTheme] = useState<Theme>(() => {
+          <CodeBlock>{`const [theme, setTheme] = useState<Theme>(() => {
   const stored = localStorage.getItem('theme') as Theme;
   if (stored) return stored;
   return window.matchMedia('(prefers-color-scheme: dark)').matches
     ? 'dark'
     : 'light';
-});`}</code>
-          </pre>
+});`}</CodeBlock>
           <p>
             <strong>Problem solved:</strong> Initialize theme from localStorage
             or system preference. The function runs only once on mount, avoiding
@@ -223,8 +218,7 @@ const [isLoading, setIsLoading] = useState(true);`}</code>
             In WidgetContainer.tsx, stable callbacks prevent child button
             re-renders:
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`const refreshAllWidgets = useCallback(() => {
+          <CodeBlock>{`const refreshAllWidgets = useCallback(() => {
   widgetRefs.current.forEach((widget, id) => {
     widget.refresh();
   });
@@ -234,8 +228,7 @@ const resetAllPositions = useCallback(() => {
   widgetRefs.current.forEach((widget, id) => {
     widget.resetPosition();
   });
-}, []);`}</code>
-          </pre>
+}, []);`}</CodeBlock>
           <p>
             <strong>Problem solved:</strong> Button components receiving these
             callbacks don't re-render unnecessarily when parent updates.
@@ -248,8 +241,7 @@ const resetAllPositions = useCallback(() => {
             In useDragAndDrop.ts, stable handlers are crucial for event
             listeners:
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`const handleMouseDown = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+          <CodeBlock>{`const handleMouseDown = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
   e.preventDefault();
   setDragState({
     isDragging: true,
@@ -267,8 +259,7 @@ const handleMouseMove = useCallback((e: MouseEvent) => {
   const newY = e.clientY - dragState.startY;
 
   setPosition({ x: newX, y: newY });
-}, [dragState.isDragging, dragState.startX, dragState.startY]);`}</code>
-          </pre>
+}, [dragState.isDragging, dragState.startX, dragState.startY]);`}</CodeBlock>
           <p>
             <strong>Why useCallback:</strong> Prevents removing and re-adding
             event listeners on every render, which would cause drag operations
@@ -314,8 +305,7 @@ const handleMouseMove = useCallback((e: MouseEvent) => {
             In DashboardPage.tsx, statistics are recalculated only when data
             changes:
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`const stats = useMemo(() => {
+          <CodeBlock>{`const stats = useMemo(() => {
   const totalDataPoints = lineData.length + barData.length + pieData.length;
   const avgLineValue = lineData.length > 0
     ? lineData.reduce((sum, d) => sum + d.value, 0) / lineData.length
@@ -326,8 +316,7 @@ const handleMouseMove = useCallback((e: MouseEvent) => {
     avgLineValue: avgLineValue.toFixed(0),
     categories: new Set(lineData.map(d => d.category).filter(Boolean)).size,
   };
-}, [lineData, barData, pieData]);`}</code>
-          </pre>
+}, [lineData, barData, pieData]);`}</CodeBlock>
           <p>
             <strong>Problem solved:</strong> Aggregating data from hundreds of
             points is expensive. useMemo prevents recalculation on every render,
@@ -338,8 +327,7 @@ const handleMouseMove = useCallback((e: MouseEvent) => {
             2. Chart Data Transformation
           </h4>
           <p>In LineChart.tsx, moving average calculation is memoized:</p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`const processedData = useMemo(() => {
+          <CodeBlock>{`const processedData = useMemo(() => {
   console.log('Processing line chart data...'); // Only logs when data changes
 
   return data.map(item => ({
@@ -349,8 +337,7 @@ const handleMouseMove = useCallback((e: MouseEvent) => {
       .slice(Math.max(0, data.indexOf(item) - 2), data.indexOf(item) + 1)
       .reduce((sum, d) => sum + d.value, 0) / 3,
   }));
-}, [data]);`}</code>
-          </pre>
+}, [data]);`}</CodeBlock>
           <p>
             <strong>Why useMemo:</strong> Charts re-render frequently during
             drag operations. Processing data on every render would cause visible
@@ -363,8 +350,7 @@ const handleMouseMove = useCallback((e: MouseEvent) => {
           <p>
             In TasksPage.tsx, filtering and sorting form a two-stage pipeline:
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`// Stage 1: Filter
+          <CodeBlock>{`// Stage 1: Filter
 const filteredTasks = useMemo(() => {
   let filtered = tasks;
 
@@ -402,8 +388,7 @@ const sortedTasks = useMemo(() => {
   }
 
   return sorted;
-}, [filteredTasks, sortBy]);`}</code>
-          </pre>
+}, [filteredTasks, sortBy]);`}</CodeBlock>
           <p>
             <strong>Problem solved:</strong> With 1000+ tasks, re-filtering and
             sorting on every keystroke would freeze the UI. Each stage only
@@ -413,16 +398,14 @@ const sortedTasks = useMemo(() => {
           <p>
             <strong>Important: When NOT to use useMemo</strong>
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`//  Bad - premature optimization
+          <CodeBlock>{`//  Bad - premature optimization
 const fullName = useMemo(
   () => firstName + ' ' + lastName,
   [firstName, lastName]
 );
 
 //  Good - just do it directly
-const fullName = firstName + ' ' + lastName;`}</code>
-          </pre>
+const fullName = firstName + ' ' + lastName;`}</CodeBlock>
           <p>
             useMemo adds overhead (memory and comparison logic). Only use it
             when the calculation is genuinely expensive or when preventing
@@ -447,8 +430,7 @@ const fullName = firstName + ' ' + lastName;`}</code>
           <p>
             In ThemeContext.tsx, the theme is accessible throughout the app:
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+          <CodeBlock>{`const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const useTheme = () => {
   const context = useContext(ThemeContext);
@@ -459,8 +441,7 @@ export const useTheme = () => {
 };
 
 // Usage in Navigation.tsx
-const { theme, toggleTheme } = useTheme();`}</code>
-          </pre>
+const { theme, toggleTheme } = useTheme();`}</CodeBlock>
           <p>
             <strong>Problem solved:</strong> Over 20 components need theme
             access. Passing props through every level would be impractical and
@@ -471,8 +452,7 @@ const { theme, toggleTheme } = useTheme();`}</code>
             2. Application Settings
           </h4>
           <p>In SettingsContext.tsx, global configuration is shared:</p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`export const useSettings = () => {
+          <CodeBlock>{`export const useSettings = () => {
   const context = useContext(SettingsContext);
   if (!context) {
     throw new Error('useSettings must be used within SettingsProvider');
@@ -482,8 +462,7 @@ const { theme, toggleTheme } = useTheme();`}</code>
 
 // Usage in DashboardPage.tsx
 const { settings } = useSettings();
-// Access refreshInterval for auto-refresh logic`}</code>
-          </pre>
+// Access refreshInterval for auto-refresh logic`}</CodeBlock>
           <p>
             <strong>Why useContext:</strong> Application-wide settings like
             refresh intervals need to be consistently accessible across the
@@ -525,8 +504,7 @@ const { settings } = useSettings();
             1. Initial Data Fetching
           </h4>
           <p>In DashboardPage.tsx, chart data is loaded on mount:</p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`useEffect(() => {
+          <CodeBlock>{`useEffect(() => {
   const fetchData = async () => {
     setIsLoading(true);
     try {
@@ -545,8 +523,7 @@ const { settings } = useSettings();
     }
   };
   fetchData();
-}, []); // Empty deps = run once on mount`}</code>
-          </pre>
+}, []); // Empty deps = run once on mount`}</CodeBlock>
           <p>
             <strong>Problem solved:</strong> Load initial data after component
             mounts. Empty dependency array ensures this runs only once.
@@ -559,8 +536,7 @@ const { settings } = useSettings();
             In DashboardPage.tsx, real-time updates are subscribed to with
             proper cleanup:
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`useEffect(() => {
+          <CodeBlock>{`useEffect(() => {
   const unsubscribe = mockApi.subscribeToLiveData((newData) => {
     setLineData(prev => [...prev.slice(-11), newData]);
   });
@@ -569,8 +545,7 @@ const { settings } = useSettings();
   return () => {
     unsubscribe();
   };
-}, []); // No deps = subscribe once, cleanup on unmount`}</code>
-          </pre>
+}, []); // No deps = subscribe once, cleanup on unmount`}</CodeBlock>
           <p>
             <strong>Why cleanup:</strong> Without the cleanup function,
             re-renders would create multiple subscriptions, causing memory leaks
@@ -581,8 +556,7 @@ const { settings } = useSettings();
             3. Interval-Based Auto-Refresh
           </h4>
           <p>In DashboardPage.tsx, configurable auto-refresh is implemented:</p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`useEffect(() => {
+          <CodeBlock>{`useEffect(() => {
   if (!settings.refreshInterval) return;
 
   const refreshData = async () => {
@@ -596,8 +570,7 @@ const { settings } = useSettings();
 
   const interval = setInterval(refreshData, settings.refreshInterval);
   return () => clearInterval(interval);
-}, [settings.refreshInterval]); // Re-run when interval changes`}</code>
-          </pre>
+}, [settings.refreshInterval]); // Re-run when interval changes`}</CodeBlock>
           <p>
             <strong>Problem solved:</strong> When settings change, the old
             interval is cleared and a new one is created with the updated value.
@@ -607,11 +580,9 @@ const { settings } = useSettings();
             4. Syncing Props to State
           </h4>
           <p>In TaskList.tsx, internal state syncs with filtered props:</p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`useEffect(() => {
+          <CodeBlock>{`useEffect(() => {
   setTasks(initialTasks);
-}, [initialTasks]); // Update when filtered/sorted tasks change`}</code>
-          </pre>
+}, [initialTasks]); // Update when filtered/sorted tasks change`}</CodeBlock>
           <p>
             <strong>Why useEffect:</strong> React to external prop changes and
             update component state accordingly.
@@ -655,8 +626,7 @@ const { settings } = useSettings();
             In TasksPage.tsx, search input stays responsive even with expensive
             filtering:
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`const [searchQuery, setSearchQuery] = useState('');
+          <CodeBlock>{`const [searchQuery, setSearchQuery] = useState('');
 const deferredSearchQuery = useDeferredValue(searchQuery);
 
 // Filter with deferred value
@@ -673,8 +643,7 @@ const filteredTasks = useMemo(() => {
 }, [tasks, deferredSearchQuery]);
 
 // Show pending indicator
-const isFiltering = searchQuery !== deferredSearchQuery;`}</code>
-          </pre>
+const isFiltering = searchQuery !== deferredSearchQuery;`}</CodeBlock>
           <p>
             <strong>Problem solved:</strong> With 1000+ tasks, filtering on
             every keystroke would make typing feel laggy. useDeferredValue keeps
@@ -686,14 +655,12 @@ const isFiltering = searchQuery !== deferredSearchQuery;`}</code>
             Visual Feedback
           </h4>
           <p>Show users when deferred updates are pending:</p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`{isFiltering && (
+          <CodeBlock>{`{isFiltering && (
   <div className="text-sm text-blue-600 flex items-center gap-2">
     <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">...</svg>
     Filtering tasks...
   </div>
-)}`}</code>
-          </pre>
+)}`}</CodeBlock>
           <p>
             <strong>User experience:</strong> Input updates instantly, results
             update slightly delayed. Users can continue typing without
@@ -729,8 +696,7 @@ const isFiltering = searchQuery !== deferredSearchQuery;`}</code>
             In ThemeContext.tsx, theme changes happen before paint to prevent
             flicker:
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`useLayoutEffect(() => {
+          <CodeBlock>{`useLayoutEffect(() => {
   const root = document.documentElement;
 
   // Remove existing theme classes
@@ -741,8 +707,7 @@ const isFiltering = searchQuery !== deferredSearchQuery;`}</code>
 
   // Persist to localStorage
   localStorage.setItem('theme', theme);
-}, [theme]);`}</code>
-          </pre>
+}, [theme]);`}</CodeBlock>
           <p>
             <strong>Problem solved:</strong> Prevents "flash of wrong theme" on
             load. If we used useEffect instead, users would see a brief flash of
@@ -756,8 +721,7 @@ const isFiltering = searchQuery !== deferredSearchQuery;`}</code>
             In useDragAndDrop.ts, cursor and listeners update immediately during
             drag:
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`useLayoutEffect(() => {
+          <CodeBlock>{`useLayoutEffect(() => {
   if (dragState.isDragging) {
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseup', handleMouseUp);
@@ -773,8 +737,7 @@ const isFiltering = searchQuery !== deferredSearchQuery;`}</code>
       document.body.style.userSelect = '';
     };
   }
-}, [dragState.isDragging, handleMouseMove, handleMouseUp]);`}</code>
-          </pre>
+}, [dragState.isDragging, handleMouseMove, handleMouseUp]);`}</CodeBlock>
           <p>
             <strong>Why useLayoutEffect:</strong> Drag operations feel sluggish
             with useEffect's async timing. Synchronous updates make dragging
@@ -826,8 +789,7 @@ const isFiltering = searchQuery !== deferredSearchQuery;`}</code>
             In ThemeContext.tsx, CSS variables are injected before any other
             effects:
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`useInsertionEffect(() => {
+          <CodeBlock>{`useInsertionEffect(() => {
   const style = document.createElement('style');
   style.id = 'dynamic-theme-vars';
 
@@ -861,8 +823,7 @@ const isFiltering = searchQuery !== deferredSearchQuery;`}</code>
   document.head.appendChild(style);
 
   return () => style.remove();
-}, [theme]);`}</code>
-          </pre>
+}, [theme]);`}</CodeBlock>
           <p>
             <strong>Problem solved:</strong> CSS variables must be available
             before any component reads computed styles. useInsertionEffect
@@ -872,9 +833,7 @@ const isFiltering = searchQuery !== deferredSearchQuery;`}</code>
           <p>
             <strong>Execution order:</strong>
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`useInsertionEffect → useLayoutEffect → Browser Paint → useEffect`}</code>
-          </pre>
+          <CodeBlock>{`useInsertionEffect → useLayoutEffect → Browser Paint → useEffect`}</CodeBlock>
 
           <p>
             <strong>When to use:</strong>
@@ -912,8 +871,7 @@ const isFiltering = searchQuery !== deferredSearchQuery;`}</code>
             In useDragAndDrop.ts, useRef accesses the DOM node for drag
             calculations:
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`const elementRef = useRef<HTMLDivElement>(null);
+          <CodeBlock>{`const elementRef = useRef<HTMLDivElement>(null);
 const initialPosRef = useRef<Position>(initialPosition);
 
 // Later used to access the DOM element
@@ -922,8 +880,7 @@ const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = elementRef.current.getBoundingClientRect();
     // Use rect for calculations
   }
-};`}</code>
-          </pre>
+};`}</CodeBlock>
           <p>
             <strong>Why useRef:</strong> Accessing .current doesn't trigger
             re-renders, making it perfect for values that don't affect the
@@ -937,14 +894,12 @@ const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
             In WidgetContainer.tsx, useRef stores a Map of child component
             handles:
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`const widgetRefs = useRef<Map<string, WidgetHandle>>(new Map());
+          <CodeBlock>{`const widgetRefs = useRef<Map<string, WidgetHandle>>(new Map());
 
 // Later used to call imperative methods
 widgetRefs.current.forEach((widget, id) => {
   widget.refresh(); // Call method on child component
-});`}</code>
-          </pre>
+});`}</CodeBlock>
           <p>
             <strong>Problem solved:</strong> Parent needs to control child
             widgets imperatively. Storing the Map in state would cause
@@ -954,13 +909,11 @@ widgetRefs.current.forEach((widget, id) => {
           <p>
             <strong>useRef vs useState:</strong>
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`//  Bad - causes re-render on every timer tick
+          <CodeBlock>{`//  Bad - causes re-render on every timer tick
 const [intervalId, setIntervalId] = useState<number | null>(null);
 
 //  Good - no re-render needed
-const intervalIdRef = useRef<number | null>(null);`}</code>
-          </pre>
+const intervalIdRef = useRef<number | null>(null);`}</CodeBlock>
 
           <p>
             <strong>When to use:</strong>
@@ -998,8 +951,7 @@ const intervalIdRef = useRef<number | null>(null);`}</code>
             In DraggableWidget.tsx, a custom API is exposed to parent
             components:
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`export interface WidgetHandle {
+          <CodeBlock>{`export interface WidgetHandle {
   refresh: () => void;
   resetPosition: () => void;
   getPosition: () => { x: number; y: number };
@@ -1028,12 +980,10 @@ export const DraggableWidget = forwardRef<WidgetHandle, DraggableWidgetProps>(
 
     return <div>...</div>;
   }
-);`}</code>
-          </pre>
+);`}</CodeBlock>
 
           <p>Parent component usage (WidgetContainer.tsx):</p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`const widgetRefs = useRef<Map<string, WidgetHandle>>(new Map());
+          <CodeBlock>{`const widgetRefs = useRef<Map<string, WidgetHandle>>(new Map());
 
 const refreshAllWidgets = useCallback(() => {
   widgetRefs.current.forEach((widget, id) => {
@@ -1046,8 +996,7 @@ const refreshAllWidgets = useCallback(() => {
   ref={(el) => {
     if (el) widgetRefs.current.set(widget.id, el);
   }}
-/>`}</code>
-          </pre>
+/>`}</CodeBlock>
           <p>
             <strong>Problem solved:</strong> Parent needs to control multiple
             child widgets imperatively without exposing internal implementation
@@ -1088,18 +1037,15 @@ const refreshAllWidgets = useCallback(() => {
           <p>
             In AddTaskForm.tsx, useId creates stable IDs for form accessibility:
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`const titleId = useId();
+          <CodeBlock>{`const titleId = useId();
 const priorityId = useId();
 const formId = useId();
 
 const errorId = \`\${formId}-error\`;
-const helpId = \`\${formId}-help\`;`}</code>
-          </pre>
+const helpId = \`\${formId}-help\`;`}</CodeBlock>
 
           <p>Usage in JSX:</p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`<form id={formId} aria-describedby={error ? errorId : helpId}>
+          <CodeBlock>{`<form id={formId} aria-describedby={error ? errorId : helpId}>
   <label htmlFor={titleId}>Task Title</label>
   <input
     id={titleId}
@@ -1119,8 +1065,7 @@ const helpId = \`\${formId}-help\`;`}</code>
   <p id={helpId}>
     Add tasks with different priorities
   </p>
-</form>`}</code>
-          </pre>
+</form>`}</CodeBlock>
           <p>
             <strong>Problem solved:</strong> Form fields are properly associated
             with labels for screen readers. IDs are unique across the app with
@@ -1130,16 +1075,14 @@ const helpId = \`\${formId}-help\`;`}</code>
           <p>
             <strong>Why useId is better than alternatives:</strong>
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`//  Bad - changes on every render!
+          <CodeBlock>{`//  Bad - changes on every render!
 const id = Math.random().toString();
 
 //  Bad - collisions with multiple forms
 const id = 'title-input';
 
 //  Good - stable and unique
-const id = useId();`}</code>
-          </pre>
+const id = useId();`}</CodeBlock>
 
           <p>
             <strong>When to use:</strong>
@@ -1173,8 +1116,7 @@ const id = useId();`}</code>
             1. Task Toggle Operations
           </h4>
           <p>In TaskList.tsx, task updates don't block the UI:</p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`const [isPending, startTransition] = useTransition();
+          <CodeBlock>{`const [isPending, startTransition] = useTransition();
 
 const handleToggle = async (id: string) => {
   const task = tasks.find(t => t.id === id);
@@ -1193,8 +1135,7 @@ const handleToggle = async (id: string) => {
   } catch (error) {
     console.error('Failed to toggle task:', error);
   }
-};`}</code>
-          </pre>
+};`}</CodeBlock>
           <p>
             <strong>Problem solved:</strong> UI stays responsive during async
             task updates. React marks the setState as "low priority" and can
@@ -1207,8 +1148,7 @@ const handleToggle = async (id: string) => {
           <p>
             In AddTaskForm.tsx, form resets don't block subsequent interactions:
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`const handleSubmit = async (e: React.FormEvent) => {
+          <CodeBlock>{`const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
   setIsSubmitting(true);
 
@@ -1227,8 +1167,7 @@ const handleToggle = async (id: string) => {
   } finally {
     setIsSubmitting(false);
   }
-};`}</code>
-          </pre>
+};`}</CodeBlock>
           <p>
             <strong>Why useTransition:</strong> If the user immediately starts
             typing in the form again, React can prioritize that input over the
@@ -1252,9 +1191,7 @@ const handleToggle = async (id: string) => {
           <p>
             <strong>isPending indicator:</strong>
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`{isPending && <Spinner />}`}</code>
-          </pre>
+          <CodeBlock>{`{isPending && <Spinner />}`}</CodeBlock>
           <p>
             Use the isPending flag to show loading indicators during
             transitions.
@@ -1278,8 +1215,7 @@ const handleToggle = async (id: string) => {
           <p>
             In TaskList.tsx, tasks update instantly with automatic rollback:
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`const [optimisticTasks, addOptimisticUpdate] = useOptimistic<Task[], OptimisticAction>(
+          <CodeBlock>{`const [optimisticTasks, addOptimisticUpdate] = useOptimistic<Task[], OptimisticAction>(
   tasks,
   (state, action) => {
     switch (action.type) {
@@ -1311,8 +1247,7 @@ const handleToggle = async (id: string) => {
     // Error: AUTOMATICALLY rolls back to previous state
     alert('Failed to update task');
   }
-};`}</code>
-          </pre>
+};`}</CodeBlock>
           <p>
             <strong>Problem solved:</strong> Users see instant feedback before
             the server responds (typically 300-500ms). If the operation fails,
@@ -1323,8 +1258,7 @@ const handleToggle = async (id: string) => {
             Visual Pending State
           </h4>
           <p>Show which updates are pending confirmation:</p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`{optimisticTasks.map(task => {
+          <CodeBlock>{`{optimisticTasks.map(task => {
   const actualTask = tasks.find(t => t.id === task.id);
   const isPendingTask = !actualTask || actualTask.completed !== task.completed;
 
@@ -1335,8 +1269,7 @@ const handleToggle = async (id: string) => {
       isPending={isPendingTask} // Show visual feedback
     />
   );
-})}`}</code>
-          </pre>
+})}`}</CodeBlock>
           <p>
             <strong>User experience comparison:</strong>
           </p>
@@ -1382,15 +1315,13 @@ const handleToggle = async (id: string) => {
             The most common mistake is premature optimization. These hooks add
             overhead—don't use them unless there's a measurable benefit.
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`//  Bad - premature optimization
+          <CodeBlock>{`//  Bad - premature optimization
 const name = useMemo(() => firstName + ' ' + lastName, [firstName, lastName]);
 const handleClick = useCallback(() => setCount(count + 1), [count]);
 
 //  Good - just do it directly
 const name = firstName + ' ' + lastName;
-const handleClick = () => setCount(count + 1);`}</code>
-          </pre>
+const handleClick = () => setCount(count + 1);`}</CodeBlock>
           <p>
             <strong>When to actually use:</strong>
           </p>
@@ -1412,8 +1343,7 @@ const handleClick = () => setCount(count + 1);`}</code>
             Context causes all consumers to re-render when any value changes.
             Avoid it for rapidly changing values.
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`//  Bad - every consumer re-renders on every mouse move!
+          <CodeBlock>{`//  Bad - every consumer re-renders on every mouse move!
 const MouseContext = createContext({ x: 0, y: 0 });
 
 function MouseProvider({ children }) {
@@ -1432,8 +1362,7 @@ function MouseProvider({ children }) {
 function Component() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   // Handle locally or use zustand/redux for fine-grained updates
-}`}</code>
-          </pre>
+}`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             3. Storing Non-Reactive Values in State
@@ -1442,8 +1371,7 @@ function Component() {
             If a value doesn't affect rendering, don't store it in state—use
             useRef instead.
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`//  Bad - causes unnecessary re-renders
+          <CodeBlock>{`//  Bad - causes unnecessary re-renders
 const [timerId, setTimerId] = useState<number | null>(null);
 
 useEffect(() => {
@@ -1458,8 +1386,7 @@ const timerIdRef = useRef<number | null>(null);
 useEffect(() => {
   timerIdRef.current = setInterval(() => console.log('tick'), 1000);
   return () => clearInterval(timerIdRef.current);
-}, []);`}</code>
-          </pre>
+}, []);`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             4. Side Effects in Render
@@ -1468,8 +1395,7 @@ useEffect(() => {
             Never perform side effects directly in the component body—always use
             useEffect.
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`function Component() {
+          <CodeBlock>{`function Component() {
   //  Bad - modifying DOM during render
   document.title = 'My App';
 
@@ -1490,8 +1416,7 @@ function Component() {
   }, []);
 
   return <div>...</div>;
-}`}</code>
-          </pre>
+}`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             5. Excessive useEffect Dependencies
@@ -1500,8 +1425,7 @@ function Component() {
             Adding too many dependencies can cause infinite loops or excessive
             re-runs.
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`//  Bad - infinite loop
+          <CodeBlock>{`//  Bad - infinite loop
 const [count, setCount] = useState(0);
 
 useEffect(() => {
@@ -1511,8 +1435,7 @@ useEffect(() => {
 //  Good - use functional update
 useEffect(() => {
   setCount(c => c + 1); // No dependency needed
-}, []);`}</code>
-          </pre>
+}, []);`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             6. Forgetting useEffect Cleanup
@@ -1521,8 +1444,7 @@ useEffect(() => {
             Always clean up subscriptions, timers, and event listeners to
             prevent memory leaks.
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`//  Bad - memory leak
+          <CodeBlock>{`//  Bad - memory leak
 useEffect(() => {
   const interval = setInterval(() => console.log('tick'), 1000);
   // Missing cleanup!
@@ -1532,8 +1454,7 @@ useEffect(() => {
 useEffect(() => {
   const interval = setInterval(() => console.log('tick'), 1000);
   return () => clearInterval(interval);
-}, []);`}</code>
-          </pre>
+}, []);`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Summary: The Golden Rule

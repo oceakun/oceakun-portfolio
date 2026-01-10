@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import BlogHeader from '../_components/BlogHeader';
+import CodeBlock from '../../../components/codeBlock';
 
 export const metadata: Metadata = {
   title: 'Django for FastAPI Developers',
@@ -88,18 +89,15 @@ export default function BlogPage() {
             In FastAPI, you typically start with a simple structure and add what
             you need:
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`# FastAPI structure
+          <CodeBlock>{`# FastAPI structure
 myapp/
 ├── main.py
 ├── models.py
 ├── schemas.py
 ├── crud.py
-└── database.py`}</code>
-          </pre>
+└── database.py`}</CodeBlock>
           <p>Django, on the other hand, uses a project-and-apps structure:</p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`# Django structure
+          <CodeBlock>{`# Django structure
 myproject/
 ├── manage.py
 ├── myproject/
@@ -114,8 +112,7 @@ myproject/
     ├── urls.py
     ├── admin.py
     ├── apps.py
-    └── migrations/`}</code>
-          </pre>
+    └── migrations/`}</CodeBlock>
           <p>
             Django projects contain multiple apps, where each app is a
             self-contained module handling a specific functionality. This
@@ -128,8 +125,7 @@ myproject/
           <p>
             FastAPI uses decorators and path operations that feel intuitive:
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`# FastAPI
+          <CodeBlock>{`# FastAPI
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -145,14 +141,12 @@ async def read_item(item_id: int):
 
 @app.post("/items/")
 async def create_item(item: Item):
-    return item`}</code>
-          </pre>
+    return item`}</CodeBlock>
           <p>
             Django has multiple ways to define views, but with Django REST
             Framework (DRF), it becomes similar:
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`# Django REST Framework
+          <CodeBlock>{`# Django REST Framework
 from rest_framework import viewsets, serializers
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -175,21 +169,18 @@ def create_item(request):
 # Or using ViewSets (more Django-ish)
 class ItemViewSet(viewsets.ModelViewSet):
     serializer_class = ItemSerializer
-    queryset = Item.objects.all()`}</code>
-          </pre>
+    queryset = Item.objects.all()`}</CodeBlock>
           <p>
             Django's URL routing is centralized in <code>urls.py</code> files:
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`# urls.py
+          <CodeBlock>{`# urls.py
 from django.urls import path
 from . import views
 
 urlpatterns = [
     path('items/<int:item_id>/', views.read_item),
     path('items/', views.create_item),
-]`}</code>
-          </pre>
+]`}</CodeBlock>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif'>
             ORM vs SQLAlchemy
@@ -198,8 +189,7 @@ urlpatterns = [
             FastAPI commonly uses SQLAlchemy, which offers flexibility and
             explicit control:
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`# SQLAlchemy (FastAPI)
+          <CodeBlock>{`# SQLAlchemy (FastAPI)
 from sqlalchemy import Column, Integer, String
 from database import Base
 
@@ -212,11 +202,9 @@ class User(Base):
 
 # Querying
 user = db.query(User).filter(User.email == "test@example.com").first()
-users = db.query(User).offset(0).limit(10).all()`}</code>
-          </pre>
+users = db.query(User).offset(0).limit(10).all()`}</CodeBlock>
           <p>Django's ORM is more integrated and uses a different syntax:</p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`# Django ORM
+          <CodeBlock>{`# Django ORM
 from django.db import models
 
 class User(models.Model):
@@ -235,8 +223,7 @@ users = User.objects.filter(
     name__icontains="john"
 ).exclude(
     email__endswith="@spam.com"
-).order_by('-created_at')`}</code>
-          </pre>
+).order_by('-created_at')`}</CodeBlock>
           <p>
             <strong>Key differences:</strong>
           </p>
@@ -264,8 +251,7 @@ users = User.objects.filter(
           <p>
             FastAPI automatically validates and serializes data using Pydantic:
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`# FastAPI - automatic validation
+          <CodeBlock>{`# FastAPI - automatic validation
 class UserCreate(BaseModel):
     email: EmailStr
     password: str
@@ -274,11 +260,9 @@ class UserCreate(BaseModel):
 @app.post("/users/")
 async def create_user(user: UserCreate):
     # user is already validated!
-    return {"email": user.email}`}</code>
-          </pre>
+    return {"email": user.email}`}</CodeBlock>
           <p>Django REST Framework uses serializers:</p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`# Django REST Framework
+          <CodeBlock>{`# Django REST Framework
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -297,8 +281,7 @@ def create_user(request):
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data)
-    return Response(serializer.errors, status=400)`}</code>
-          </pre>
+    return Response(serializer.errors, status=400)`}</CodeBlock>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif'>
             Dependency Injection vs Django's Approach
@@ -307,8 +290,7 @@ def create_user(request):
             FastAPI's dependency injection system is one of its standout
             features:
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`# FastAPI dependencies
+          <CodeBlock>{`# FastAPI dependencies
 from fastapi import Depends
 
 def get_db():
@@ -325,8 +307,7 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
 async def read_users_me(
     current_user: User = Depends(get_current_user)
 ):
-    return current_user`}</code>
-          </pre>
+    return current_user`}</CodeBlock>
           <p>
             Django doesn't have built-in dependency injection. Instead, it uses:
           </p>
@@ -341,8 +322,7 @@ async def read_users_me(
               <strong>Decorators</strong> for reusable logic
             </li>
           </ul>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`# Django approach
+          <CodeBlock>{`# Django approach
 from django.contrib.auth.decorators import login_required
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -354,8 +334,7 @@ def read_users_me(request):
     return Response({
         'email': request.user.email,
         'name': request.user.name
-    })`}</code>
-          </pre>
+    })`}</CodeBlock>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif'>
             Authentication and Permissions
@@ -365,8 +344,7 @@ def read_users_me(request):
             like
             <code>python-jose</code> and <code>passlib</code>:
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`# FastAPI - manual setup
+          <CodeBlock>{`# FastAPI - manual setup
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 
@@ -378,11 +356,9 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
         username = payload.get("sub")
         # ... validate and return user
     except JWTError:
-        raise HTTPException(status_code=401)`}</code>
-          </pre>
+        raise HTTPException(status_code=401)`}</CodeBlock>
           <p>Django provides authentication out of the box:</p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`# Django - built-in auth
+          <CodeBlock>{`# Django - built-in auth
 from django.contrib.auth import authenticate, login
 from rest_framework.authtoken.models import Token
 
@@ -400,8 +376,7 @@ class MyView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        return Response({"message": f"Hello {request.user.username}"})`}</code>
-          </pre>
+        return Response({"message": f"Hello {request.user.username}"})`}</CodeBlock>
           <p>
             Django also supports JWT, OAuth2, and social auth through packages
             like
@@ -416,8 +391,7 @@ class MyView(APIView):
             FastAPI relies on Pydantic for validation, while Django has its own
             form system:
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`# Django Forms (useful for HTML forms)
+          <CodeBlock>{`# Django Forms (useful for HTML forms)
 from django import forms
 
 class UserForm(forms.ModelForm):
@@ -434,8 +408,7 @@ class UserForm(forms.ModelForm):
 # In view
 form = UserForm(request.POST)
 if form.is_valid():
-    form.save()`}</code>
-          </pre>
+    form.save()`}</CodeBlock>
           <p>
             For APIs, you'd typically use DRF serializers instead of forms, but
             Django's form system is powerful for server-rendered HTML
@@ -450,8 +423,7 @@ if form.is_valid():
             interface, while Django provides a full-featured admin panel out of
             the box:
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`# Django admin.py
+          <CodeBlock>{`# Django admin.py
 from django.contrib import admin
 from .models import User, Product
 
@@ -468,8 +440,7 @@ class ProductAdmin(admin.ModelAdmin):
     actions = ['mark_as_discontinued']
 
     def mark_as_discontinued(self, request, queryset):
-        queryset.update(is_active=False)`}</code>
-          </pre>
+        queryset.update(is_active=False)`}</CodeBlock>
           <p>
             With just a few lines of code, you get a complete admin interface
             with CRUD operations, filtering, searching, bulk actions, and more.
@@ -489,16 +460,14 @@ class ProductAdmin(admin.ModelAdmin):
             Django was originally built for server-rendered websites and has
             excellent template support:
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`# Django template view
+          <CodeBlock>{`# Django template view
 from django.shortcuts import render
 
 def product_list(request):
     products = Product.objects.filter(is_active=True)
     return render(request, 'products/list.html', {
         'products': products
-    })`}</code>
-          </pre>
+    })`}</CodeBlock>
           <p>
             Django templates support inheritance, includes, filters, and tags,
             making them powerful for building traditional web applications.
@@ -510,8 +479,7 @@ def product_list(request):
             Middleware
           </h2>
           <p>Both frameworks support middleware, but with different APIs:</p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`# FastAPI middleware
+          <CodeBlock>{`# FastAPI middleware
 from fastapi import Request
 
 @app.middleware("http")
@@ -520,10 +488,8 @@ async def add_process_time_header(request: Request, call_next):
     response = await call_next(request)
     process_time = time.time() - start_time
     response.headers["X-Process-Time"] = str(process_time)
-    return response`}</code>
-          </pre>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`# Django middleware
+    return response`}</CodeBlock>
+          <CodeBlock>{`# Django middleware
 class ProcessTimeMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
@@ -539,24 +505,20 @@ class ProcessTimeMiddleware:
 MIDDLEWARE = [
     'myapp.middleware.ProcessTimeMiddleware',
     # ... other middleware
-]`}</code>
-          </pre>
+]`}</CodeBlock>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif'>Testing</h2>
           <p>FastAPI uses standard pytest with TestClient:</p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`# FastAPI testing
+          <CodeBlock>{`# FastAPI testing
 from fastapi.testclient import TestClient
 
 def test_read_item():
     client = TestClient(app)
     response = client.get("/items/1")
     assert response.status_code == 200
-    assert response.json() == {"item_id": 1}`}</code>
-          </pre>
+    assert response.json() == {"item_id": 1}`}</CodeBlock>
           <p>Django has a comprehensive testing framework built-in:</p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`# Django testing
+          <CodeBlock>{`# Django testing
 from django.test import TestCase, Client
 from rest_framework.test import APITestCase
 
@@ -573,8 +535,7 @@ class UserAPITest(APITestCase):
         data = {'email': 'new@example.com', 'name': 'New User'}
         response = self.client.post('/users/', data)
         self.assertEqual(response.status_code, 201)
-        self.assertTrue(User.objects.filter(email='new@example.com').exists())`}</code>
-          </pre>
+        self.assertTrue(User.objects.filter(email='new@example.com').exists())`}</CodeBlock>
           <p>
             Django's test framework includes database transactions, fixtures,
             test client, and more. It automatically creates a test database for
@@ -613,8 +574,7 @@ class UserAPITest(APITestCase):
               prefetch_related
             </li>
           </ul>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
-            <code>{`# Django async views (Django 3.1+)
+          <CodeBlock>{`# Django async views (Django 3.1+)
 from django.http import JsonResponse
 
 async def my_async_view(request):
@@ -624,8 +584,7 @@ async def my_async_view(request):
 
 # Query optimization
 users = User.objects.select_related('profile').prefetch_related('orders')
-# This reduces N+1 query problems`}</code>
-          </pre>
+# This reduces N+1 query problems`}</CodeBlock>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif'>
             When to Choose Django

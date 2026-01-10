@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import BlogHeader from '../_components/BlogHeader';
+import CodeBlock from '../../../components/codeBlock';
 
 export const metadata: Metadata = {
   title: 'Git Hooks: Automate Your Workflow',
@@ -135,8 +136,7 @@ export default function BlogPage() {
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Step 1: Create the Hook File
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`#!/bin/bash
+          <CodeBlock>{`#!/bin/bash
 
 # Navigate to repository root
 cd "$(git rev-parse --show-toplevel)"
@@ -155,26 +155,21 @@ if [ $RESULT -ne 0 ]; then
 fi
 
 echo "✅ ESLint passed!"
-exit 0`}</code>
-          </pre>
+exit 0`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Step 2: Make It Executable
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`chmod +x .git/hooks/pre-commit`}</code>
-          </pre>
+          <CodeBlock>{`chmod +x .git/hooks/pre-commit`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Step 3: Test It
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`# Make a change and try to commit
+          <CodeBlock>{`# Make a change and try to commit
 git add .
 git commit -m "test commit"
 
-# Hook runs automatically`}</code>
-          </pre>
+# Hook runs automatically`}</CodeBlock>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             Client-Side Hooks Deep Dive
@@ -187,8 +182,7 @@ git commit -m "test commit"
             The most commonly used hook. Perfect for enforcing code standards
             before commits enter history.
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`#!/bin/bash
+          <CodeBlock>{`#!/bin/bash
 
 echo "🔍 Running pre-commit checks..."
 
@@ -225,8 +219,7 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "✅ All checks passed!"
-exit 0`}</code>
-          </pre>
+exit 0`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             2. commit-msg: Enforce Commit Message Standards
@@ -235,8 +228,7 @@ exit 0`}</code>
             Validate commit messages against Conventional Commits or custom
             formats.
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`#!/bin/bash
+          <CodeBlock>{`#!/bin/bash
 
 # Read commit message from file
 COMMIT_MSG=$(cat "$1")
@@ -259,15 +251,13 @@ if ! echo "$COMMIT_MSG" | grep -qE "$PATTERN"; then
 fi
 
 echo "✅ Commit message valid"
-exit 0`}</code>
-          </pre>
+exit 0`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             3. pre-push: Final Safety Check
           </h3>
           <p>Run comprehensive tests before pushing to remote.</p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`#!/bin/bash
+          <CodeBlock>{`#!/bin/bash
 
 echo "🚀 Running pre-push checks..."
 
@@ -313,14 +303,12 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "✅ All checks passed! Pushing..."
-exit 0`}</code>
-          </pre>
+exit 0`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             4. post-merge: Automatic Dependency Updates
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`#!/bin/bash
+          <CodeBlock>{`#!/bin/bash
 
 echo "🔄 Post-merge hook running..."
 
@@ -337,8 +325,7 @@ if git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD | grep --quiet "mi
 fi
 
 echo "✅ Post-merge tasks complete"
-exit 0`}</code>
-          </pre>
+exit 0`}</CodeBlock>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             Server-Side Hooks
@@ -348,8 +335,7 @@ exit 0`}</code>
             post-receive: Automated Deployment
           </h3>
           <p>Deploy your application automatically when code is pushed.</p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`#!/bin/bash
+          <CodeBlock>{`#!/bin/bash
 
 # This runs on the server after receiving a push
 
@@ -379,8 +365,7 @@ while read oldrev newrev refname; do
   fi
 done
 
-exit 0`}</code>
-          </pre>
+exit 0`}</CodeBlock>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             Managing Hooks with Husky
@@ -393,8 +378,7 @@ exit 0`}</code>
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Setup Husky
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`# Install Husky
+          <CodeBlock>{`# Install Husky
 npm install --save-dev husky
 
 # Initialize Husky
@@ -404,15 +388,13 @@ npx husky init
 npx husky add .husky/pre-commit "npm test"
 
 # Create commit-msg hook
-npx husky add .husky/commit-msg "npx commitlint --edit $1"`}</code>
-          </pre>
+npx husky add .husky/commit-msg "npx commitlint --edit $1"`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Husky + lint-staged: Only Lint Changed Files
           </h3>
           <p>Run linters only on staged files for faster commits.</p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`# Install dependencies
+          <CodeBlock>{`# Install dependencies
 npm install --save-dev husky lint-staged
 
 # package.json
@@ -433,14 +415,12 @@ npm install --save-dev husky lint-staged
 
 # .husky/pre-commit
 #!/bin/bash
-npx lint-staged`}</code>
-          </pre>
+npx lint-staged`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Husky + commitlint: Enforce Commit Messages
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`# Install commitlint
+          <CodeBlock>{`# Install commitlint
 npm install --save-dev @commitlint/cli @commitlint/config-conventional
 
 # Create commitlint.config.js
@@ -458,8 +438,7 @@ module.exports = {
 
 # .husky/commit-msg
 #!/bin/bash
-npx commitlint --edit $1`}</code>
-          </pre>
+npx commitlint --edit $1`}</CodeBlock>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             Best Practices
@@ -472,23 +451,20 @@ npx commitlint --edit $1`}</code>
             Slow hooks disrupt developer flow. If checks take longer than 30
             seconds, move them to CI/CD.
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`# ❌ Bad - runs all tests (slow)
+          <CodeBlock>{`# ❌ Bad - runs all tests (slow)
 npm test
 
 # ✅ Good - only tests related to changed files
 npm test -- --findRelatedTests $STAGED_FILES --passWithNoTests
 
 # ✅ Better - run full suite in CI, quick checks locally
-npm run test:quick  # Unit tests only, no integration tests`}</code>
-          </pre>
+npm run test:quick  # Unit tests only, no integration tests`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             2. Make Hooks Portable
           </h3>
           <p>Use package.json scripts instead of hard-coding tools.</p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`# ❌ Bad - assumes ESLint is installed globally
+          <CodeBlock>{`# ❌ Bad - assumes ESLint is installed globally
 eslint src/
 
 # ✅ Good - uses project's ESLint
@@ -500,14 +476,12 @@ npm run lint
     "lint": "eslint src/",
     "test:quick": "jest --onlyChanged"
   }
-}`}</code>
-          </pre>
+}`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             3. Provide Clear Error Messages
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`# ❌ Bad
+          <CodeBlock>{`# ❌ Bad
 echo "Failed"
 exit 1
 
@@ -515,8 +489,7 @@ exit 1
 echo "❌ ESLint found errors:"
 echo "  → Run 'npm run lint:fix' to auto-fix"
 echo "  → Or bypass with 'git commit --no-verify' (not recommended)"
-exit 1`}</code>
-          </pre>
+exit 1`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             4. Version Control Your Hooks
@@ -525,12 +498,10 @@ exit 1`}</code>
             Use Husky or commit hooks to <code>.githooks/</code> and configure
             Git:
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`# Set custom hooks directory
+          <CodeBlock>{`# Set custom hooks directory
 git config core.hooksPath .githooks/
 
-# Now .githooks/ is tracked by Git and shared with team`}</code>
-          </pre>
+# Now .githooks/ is tracked by Git and shared with team`}</CodeBlock>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             Bypassing Hooks (When and Why)
@@ -540,13 +511,11 @@ git config core.hooksPath .githooks/
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Skip Hooks
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`# Skip pre-commit and commit-msg hooks
+          <CodeBlock>{`# Skip pre-commit and commit-msg hooks
 git commit --no-verify -m "emergency hotfix"
 
 # Skip pre-push hook
-git push --no-verify`}</code>
-          </pre>
+git push --no-verify`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             When to Bypass
@@ -577,22 +546,19 @@ git push --no-verify`}</code>
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Hook Not Running
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`# Check if hook is executable
+          <CodeBlock>{`# Check if hook is executable
 ls -la .git/hooks/pre-commit
 
 # Make it executable
 chmod +x .git/hooks/pre-commit
 
 # Check for typos in hook name
-# Must be exactly: pre-commit (no extension)`}</code>
-          </pre>
+# Must be exactly: pre-commit (no extension)`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Hook Fails with "Command Not Found"
           </h3>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`# Problem: Hook can't find npm/node
+          <CodeBlock>{`# Problem: Hook can't find npm/node
 # Solution: Add explicit PATH
 
 #!/bin/bash
@@ -601,21 +567,18 @@ chmod +x .git/hooks/pre-commit
 export PATH="/usr/local/bin:$PATH"
 
 # Or use absolute paths
-/usr/local/bin/node /usr/local/bin/npm test`}</code>
-          </pre>
+/usr/local/bin/node /usr/local/bin/npm test`}</CodeBlock>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Hook Works Locally but Not for Team
           </h3>
           <p>Use Husky or set custom hooks directory:</p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`# Add to package.json postinstall script
+          <CodeBlock>{`# Add to package.json postinstall script
 {
   "scripts": {
     "postinstall": "git config core.hooksPath .githooks"
   }
-}`}</code>
-          </pre>
+}`}</CodeBlock>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             Real-World Example: Complete Setup
@@ -624,8 +587,7 @@ export PATH="/usr/local/bin:$PATH"
             Here's a production-ready hooks setup for a React + TypeScript
             project:
           </p>
-          <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-            <code>{`# Install tools
+          <CodeBlock>{`# Install tools
 npm install --save-dev husky lint-staged @commitlint/cli @commitlint/config-conventional
 
 # package.json
@@ -670,8 +632,7 @@ echo "🧪 Running tests..."
 npm run test:quick
 
 echo "🔷 Type checking..."
-npm run type-check`}</code>
-          </pre>
+npm run type-check`}</CodeBlock>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             Conclusion

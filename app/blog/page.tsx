@@ -63,7 +63,7 @@ export default function BlogList() {
       date: '11-11-2025',
       stack: 'nginx, supervisor, DevOps',
       tags: ['DevOps', 'nginx', 'supervisor', 'Deployment'],
-      readyForRelease: false,
+      readyForRelease: true,
     },
     {
       title: 'React Hooks: From useState to useOptimistic',
@@ -79,7 +79,7 @@ export default function BlogList() {
       date: '25-09-2023',
       stack: 'Next, TailwindCSS, React, Styled Components',
       tags: ['Frontend', 'CSS', 'Dark Mode'],
-      readyForRelease: false,
+      readyForRelease: true,
     },
     // {
     //   title: 'Grafana as a local service and beyond',
