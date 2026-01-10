@@ -23,10 +23,7 @@ export const metadata: Metadata = {
 export default function BlogPage() {
   return (
     <section>
-      <BlogHeader
-        title='Anatomy of React State'
-        date='10-01-2026'
-      />
+      <BlogHeader title='Anatomy of React State' date='10-01-2026' />
       <div className='prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-300 mt-12 text-justify'>
         <div className='text-justify'>
           <h2 className='text-xl dark:text-neutral-200 font-serif'>Content</h2>
@@ -48,76 +45,95 @@ export default function BlogPage() {
             Introduction: What is State?
           </h2>
           <p>
-            State is React's way of making components remember information between renders. But to truly understand state, we need to look beyond the API and understand what happens when you call <code>setState</code>.
+            State is React's way of making components remember information
+            between renders. But to truly understand state, we need to look
+            beyond the API and understand what happens when you call{' '}
+            <code>setState</code>.
           </p>
           <p>
-            In this article, we'll dissect React state from the ground up - exploring the internals, the mental models, and the patterns that separate good React code from great React code.
+            In this article, we'll dissect React state from the ground up -
+            exploring the internals, the mental models, and the patterns that
+            separate good React code from great React code.
           </p>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             The React Fiber Architecture
           </h2>
           <p>
-            Before we dive into state, we need to understand React's Fiber architecture. Fiber is React's reconciliation algorithm - the engine that decides what needs to update when state changes.
+            Before we dive into state, we need to understand React's Fiber
+            architecture. Fiber is React's reconciliation algorithm - the engine
+            that decides what needs to update when state changes.
           </p>
           <p>
             <strong>Key concepts:</strong>
           </p>
           <ul>
             <li>Each component instance has a corresponding Fiber node</li>
-            <li>Fiber nodes form a tree structure parallel to your component tree</li>
+            <li>
+              Fiber nodes form a tree structure parallel to your component tree
+            </li>
             <li>State is stored on the Fiber node, not in your component</li>
-            <li>When state updates, React schedules work to reconcile the tree</li>
+            <li>
+              When state updates, React schedules work to reconcile the tree
+            </li>
           </ul>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             How useState Works Under the Hood
           </h2>
           <p>
-            When you call <code>useState</code>, React doesn't store state "in your component." Instead, it stores state in a linked list of hooks attached to the component's Fiber node.
+            When you call <code>useState</code>, React doesn't store state "in
+            your component." Instead, it stores state in a linked list of hooks
+            attached to the component's Fiber node.
           </p>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-<code>{`function Component() {
+            <code>{`function Component() {
   const [count, setCount] = useState(0);  // Hook #1
   const [name, setName] = useState('');   // Hook #2
   const [active, setActive] = useState(false);  // Hook #3
 
   // React maintains a linked list:
   // Fiber.memoizedState -> Hook1 -> Hook2 -> Hook3
-}`}</code></pre>
+}`}</code>
+          </pre>
           <p>
-            This is why hooks must be called in the same order on every render - React relies on call order to match hooks with their stored state.
+            This is why hooks must be called in the same order on every render -
+            React relies on call order to match hooks with their stored state.
           </p>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             State Updates and Batching
           </h2>
           <p>
-            One of the most misunderstood aspects of React state is how updates are batched. As of React 18, <strong>all state updates are automatically batched</strong>, even in async functions.
+            One of the most misunderstood aspects of React state is how updates
+            are batched. As of React 18,{' '}
+            <strong>all state updates are automatically batched</strong>, even
+            in async functions.
           </p>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-<code>{`function handleClick() {
+            <code>{`function handleClick() {
   setCount(c => c + 1);
   setName('John');
   setActive(true);
 
   // React batches all three updates into a single re-render
-}`}</code></pre>
+}`}</code>
+          </pre>
           <p>
-            <strong>Before React 18:</strong> Batching only worked in event handlers
+            <strong>Before React 18:</strong> Batching only worked in event
+            handlers
           </p>
           <p>
-            <strong>After React 18:</strong> Batching works everywhere (promises, setTimeout, native events)
+            <strong>After React 18:</strong> Batching works everywhere
+            (promises, setTimeout, native events)
           </p>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Synchronous vs Asynchronous Updates
           </h3>
-          <p>
-            State updates are scheduled, not immediate:
-          </p>
+          <p>State updates are scheduled, not immediate:</p>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-<code>{`const [count, setCount] = useState(0);
+            <code>{`const [count, setCount] = useState(0);
 
 function handleClick() {
   setCount(1);
@@ -128,19 +144,32 @@ function handleClick() {
     console.log(prev);  // This will be 1
     return prev + 1;
   });
-}`}</code></pre>
+}`}</code>
+          </pre>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             Reconciliation and Re-renders
           </h2>
           <p>
-            When state changes, React doesn't immediately update the DOM. Instead, it triggers a reconciliation process:
+            When state changes, React doesn't immediately update the DOM.
+            Instead, it triggers a reconciliation process:
           </p>
           <ol>
-            <li><strong>Schedule Update:</strong> Mark the Fiber node as needing work</li>
-            <li><strong>Render Phase:</strong> Call your component function to get new JSX</li>
-            <li><strong>Reconciliation:</strong> Compare new JSX with previous render</li>
-            <li><strong>Commit Phase:</strong> Update only the changed DOM nodes</li>
+            <li>
+              <strong>Schedule Update:</strong> Mark the Fiber node as needing
+              work
+            </li>
+            <li>
+              <strong>Render Phase:</strong> Call your component function to get
+              new JSX
+            </li>
+            <li>
+              <strong>Reconciliation:</strong> Compare new JSX with previous
+              render
+            </li>
+            <li>
+              <strong>Commit Phase:</strong> Update only the changed DOM nodes
+            </li>
           </ol>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
@@ -157,10 +186,14 @@ function handleClick() {
             State vs Props: When to Use What
           </h2>
           <p>
-            The golden rule: <strong>Use state for data that changes over time. Use props for data that flows down.</strong>
+            The golden rule:{' '}
+            <strong>
+              Use state for data that changes over time. Use props for data that
+              flows down.
+            </strong>
           </p>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-<code>{`// State - component owns and manages this data
+            <code>{`// State - component owns and manages this data
 function Counter() {
   const [count, setCount] = useState(0);
   return <button onClick={() => setCount(c => c + 1)}>{count}</button>;
@@ -169,7 +202,8 @@ function Counter() {
 // Props - parent provides this data
 function Display({ count }) {
   return <div>Count: {count}</div>;
-}`}</code></pre>
+}`}</code>
+          </pre>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             Common Pitfalls and Anti-patterns
@@ -179,7 +213,7 @@ function Display({ count }) {
             1. Stale Closures
           </h3>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-<code>{`const [count, setCount] = useState(0);
+            <code>{`const [count, setCount] = useState(0);
 
 useEffect(() => {
   const interval = setInterval(() => {
@@ -190,13 +224,14 @@ useEffect(() => {
 }, []); // Empty deps means count is stale
 
 // Fix: Use callback form
-setCount(c => c + 1);  // ✅ Always uses latest value`}</code></pre>
+setCount(c => c + 1);  // ✅ Always uses latest value`}</code>
+          </pre>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             2. Derived State
           </h3>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-<code>{`// ❌ Bad - storing derived state
+            <code>{`// ❌ Bad - storing derived state
 const [items, setItems] = useState([]);
 const [count, setCount] = useState(0);
 
@@ -206,13 +241,14 @@ useEffect(() => {
 
 // ✅ Good - calculate during render
 const [items, setItems] = useState([]);
-const count = items.length;  // Just derive it!`}</code></pre>
+const count = items.length;  // Just derive it!`}</code>
+          </pre>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             3. Initializing State from Props
           </h3>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-<code>{`// ❌ Anti-pattern - props changes won't update state
+            <code>{`// ❌ Anti-pattern - props changes won't update state
 function Component({ initialValue }) {
   const [value, setValue] = useState(initialValue);
   // If initialValue prop changes, value state stays the same!
@@ -229,7 +265,8 @@ function Component({ value }) {
 // ✅ Option 3: Use useEffect to sync (rare cases)
 useEffect(() => {
   setValue(initialValue);
-}, [initialValue]);`}</code></pre>
+}, [initialValue]);`}</code>
+          </pre>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             State Colocation and Lifting State Up
@@ -239,7 +276,7 @@ useEffect(() => {
             Colocation: Keep State Close to Where It's Used
           </h3>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-<code>{`// ❌ Bad - state in parent, only used by child
+            <code>{`// ❌ Bad - state in parent, only used by child
 function Parent() {
   const [modalOpen, setModalOpen] = useState(false);
   return (
@@ -254,13 +291,14 @@ function Parent() {
 function Modal() {
   const [open, setOpen] = useState(false);
   // Modal manages its own state
-}`}</code></pre>
+}`}</code>
+          </pre>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Lifting State Up: Share State Between Siblings
           </h3>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-<code>{`// When siblings need to share state, lift it to parent
+            <code>{`// When siblings need to share state, lift it to parent
 function Parent() {
   const [selected, setSelected] = useState(null);
 
@@ -270,7 +308,8 @@ function Parent() {
       <Content selected={selected} />
     </>
   );
-}`}</code></pre>
+}`}</code>
+          </pre>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             Performance Optimization Techniques
@@ -280,61 +319,68 @@ function Parent() {
             1. Lazy Initial State
           </h3>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-<code>{`// ❌ Expensive calculation runs on every render
+            <code>{`// ❌ Expensive calculation runs on every render
 const [data, setData] = useState(expensiveComputation());
 
 // ✅ Lazy initializer runs only once
-const [data, setData] = useState(() => expensiveComputation());`}</code></pre>
+const [data, setData] = useState(() => expensiveComputation());`}</code>
+          </pre>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             2. Bail Out of Updates
           </h3>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-<code>{`// React skips re-render if new state === old state (Object.is comparison)
+            <code>{`// React skips re-render if new state === old state (Object.is comparison)
 const [count, setCount] = useState(0);
 setCount(0);  // No re-render if count is already 0
 
 // For objects, use immutable updates
 const [user, setUser] = useState({ name: 'John', age: 30 });
 setUser(prev => prev);  // No re-render - same object reference
-setUser({ ...user });   // Re-renders - new object reference`}</code></pre>
+setUser({ ...user });   // Re-renders - new object reference`}</code>
+          </pre>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             3. State Splitting
           </h3>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-<code>{`// ❌ One state object - updating firstName re-renders everything
+            <code>{`// ❌ One state object - updating firstName re-renders everything
 const [form, setForm] = useState({ firstName: '', lastName: '', email: '' });
 
 // ✅ Split state - independent updates
 const [firstName, setFirstName] = useState('');
 const [lastName, setLastName] = useState('');
-const [email, setEmail] = useState('');`}</code></pre>
+const [email, setEmail] = useState('');`}</code>
+          </pre>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             The Mental Model
           </h2>
-          <p>
-            To master React state, internalize these principles:
-          </p>
+          <p>To master React state, internalize these principles:</p>
           <ol>
             <li>
-              <strong>State is a snapshot:</strong> Each render sees state at that moment in time
+              <strong>State is a snapshot:</strong> Each render sees state at
+              that moment in time
             </li>
             <li>
-              <strong>Updates are scheduled:</strong> setState doesn't update immediately
+              <strong>Updates are scheduled:</strong> setState doesn't update
+              immediately
             </li>
             <li>
-              <strong>Batching is automatic:</strong> Multiple setState calls = one re-render
+              <strong>Batching is automatic:</strong> Multiple setState calls =
+              one re-render
             </li>
             <li>
-              <strong>State lives in Fiber:</strong> Not in your component, in React's internal tree
+              <strong>State lives in Fiber:</strong> Not in your component, in
+              React's internal tree
             </li>
             <li>
-              <strong>Immutability matters:</strong> React uses reference equality to detect changes
+              <strong>Immutability matters:</strong> React uses reference
+              equality to detect changes
             </li>
             <li>
-              <strong>Closures capture state:</strong> Functions inside useEffect see state from when they were created
+              <strong>Closures capture state:</strong> Functions inside
+              useEffect see state from when they were created
             </li>
           </ol>
 
@@ -342,10 +388,15 @@ const [email, setEmail] = useState('');`}</code></pre>
             Conclusion
           </h2>
           <p>
-            Understanding React state at this level transforms how you write components. You'll make better decisions about when to use state, how to structure it, and how to optimize performance.
+            Understanding React state at this level transforms how you write
+            components. You'll make better decisions about when to use state,
+            how to structure it, and how to optimize performance.
           </p>
           <p>
-            The key is to think in terms of React's execution model: renders are snapshots, updates are scheduled, and React optimizes when possible. Master these concepts, and React state becomes intuitive rather than mysterious.
+            The key is to think in terms of React's execution model: renders are
+            snapshots, updates are scheduled, and React optimizes when possible.
+            Master these concepts, and React state becomes intuitive rather than
+            mysterious.
           </p>
         </div>
       </div>

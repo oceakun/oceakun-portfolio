@@ -23,10 +23,7 @@ export const metadata: Metadata = {
 export default function BlogPage() {
   return (
     <section>
-      <BlogHeader
-        title='Build and scale a chat API'
-        date='08-01-2026'
-      />
+      <BlogHeader title='Build and scale a chat API' date='08-01-2026' />
       <div className='prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-300 mt-12 text-justify'>
         <div className='text-justify'>
           <h2 className='text-xl dark:text-neutral-200 font-serif'>Content</h2>
@@ -49,10 +46,16 @@ export default function BlogPage() {
             Introduction: Chat API Fundamentals
           </h2>
           <p>
-            Building a chat API is deceptively complex. What seems simple—sending messages between users—quickly becomes a distributed systems challenge when you need real-time delivery, reliable message ordering, presence tracking, and the ability to scale to millions of concurrent connections.
+            Building a chat API is deceptively complex. What seems
+            simple—sending messages between users—quickly becomes a distributed
+            systems challenge when you need real-time delivery, reliable message
+            ordering, presence tracking, and the ability to scale to millions of
+            concurrent connections.
           </p>
           <p>
-            In this guide, we'll build a production-ready chat API from scratch, tackling the hard problems: connection management, message delivery guarantees, and horizontal scaling.
+            In this guide, we'll build a production-ready chat API from scratch,
+            tackling the hard problems: connection management, message delivery
+            guarantees, and horizontal scaling.
           </p>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
@@ -62,12 +65,27 @@ export default function BlogPage() {
             A scalable chat system requires several components working together:
           </p>
           <ul>
-            <li><strong>WebSocket Server:</strong> Handles persistent client connections</li>
-            <li><strong>Message Queue:</strong> Ensures reliable message delivery</li>
-            <li><strong>Redis Pub/Sub:</strong> Coordinates messages across server instances</li>
-            <li><strong>Database:</strong> Persists messages, users, and chat metadata</li>
-            <li><strong>API Gateway:</strong> Routes REST API requests</li>
-            <li><strong>Presence Service:</strong> Tracks online/offline status</li>
+            <li>
+              <strong>WebSocket Server:</strong> Handles persistent client
+              connections
+            </li>
+            <li>
+              <strong>Message Queue:</strong> Ensures reliable message delivery
+            </li>
+            <li>
+              <strong>Redis Pub/Sub:</strong> Coordinates messages across server
+              instances
+            </li>
+            <li>
+              <strong>Database:</strong> Persists messages, users, and chat
+              metadata
+            </li>
+            <li>
+              <strong>API Gateway:</strong> Routes REST API requests
+            </li>
+            <li>
+              <strong>Presence Service:</strong> Tracks online/offline status
+            </li>
           </ul>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
@@ -81,13 +99,15 @@ export default function BlogPage() {
             WebSockets
           </h3>
           <p>
-            <strong>Pros:</strong> Full-duplex, low latency, efficient (persistent connection)
+            <strong>Pros:</strong> Full-duplex, low latency, efficient
+            (persistent connection)
           </p>
           <p>
-            <strong>Cons:</strong> Complex to scale, requires sticky sessions or Redis Pub/Sub
+            <strong>Cons:</strong> Complex to scale, requires sticky sessions or
+            Redis Pub/Sub
           </p>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-<code>{`// WebSocket connection
+            <code>{`// WebSocket connection
 const ws = new WebSocket('wss://api.example.com/chat');
 
 ws.onmessage = (event) => {
@@ -99,7 +119,8 @@ ws.send(JSON.stringify({
   type: 'message',
   content: 'Hello!',
   channelId: '123'
-}));`}</code></pre>
+}));`}</code>
+          </pre>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Long Polling
@@ -115,27 +136,31 @@ ws.send(JSON.stringify({
             Server-Sent Events (SSE)
           </h3>
           <p>
-            <strong>Pros:</strong> Simple, automatic reconnection, works over HTTP
+            <strong>Pros:</strong> Simple, automatic reconnection, works over
+            HTTP
           </p>
           <p>
             <strong>Cons:</strong> Unidirectional (server → client only)
           </p>
           <p>
-            <strong>Verdict:</strong> WebSockets for chat. The bidirectional nature and low latency make it the best choice despite scaling complexity.
+            <strong>Verdict:</strong> WebSockets for chat. The bidirectional
+            nature and low latency make it the best choice despite scaling
+            complexity.
           </p>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             Building the Core: Connection Management
           </h2>
           <p>
-            The foundation of a chat API is managing WebSocket connections reliably.
+            The foundation of a chat API is managing WebSocket connections
+            reliably.
           </p>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Connection Lifecycle
           </h3>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-<code>{`// Node.js WebSocket server with ws library
+            <code>{`// Node.js WebSocket server with ws library
 import WebSocket, { WebSocketServer } from 'ws';
 import { verifyToken } from './auth';
 
@@ -180,16 +205,15 @@ wss.on('connection', async (ws, req) => {
   ws.on('error', (error) => {
     console.error(\`WebSocket error for user \${userId}:\`, error);
   });
-});`}</code></pre>
+});`}</code>
+          </pre>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Heartbeat and Reconnection
           </h3>
-          <p>
-            Detect stale connections and handle reconnections gracefully:
-          </p>
+          <p>Detect stale connections and handle reconnections gracefully:</p>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-<code>{`// Server-side heartbeat
+            <code>{`// Server-side heartbeat
 function heartbeat() {
   this.isAlive = true;
 }
@@ -213,25 +237,35 @@ const interval = setInterval(() => {
 
 wss.on('close', () => {
   clearInterval(interval);
-});`}</code></pre>
+});`}</code>
+          </pre>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             Message Delivery Guarantees
           </h2>
           <p>
-            Chat requires reliable message delivery. You need to handle three scenarios:
+            Chat requires reliable message delivery. You need to handle three
+            scenarios:
           </p>
           <ol>
-            <li><strong>At-most-once:</strong> Message may be lost (unacceptable)</li>
-            <li><strong>At-least-once:</strong> Message delivered, may duplicate (acceptable)</li>
-            <li><strong>Exactly-once:</strong> Message delivered once (ideal but complex)</li>
+            <li>
+              <strong>At-most-once:</strong> Message may be lost (unacceptable)
+            </li>
+            <li>
+              <strong>At-least-once:</strong> Message delivered, may duplicate
+              (acceptable)
+            </li>
+            <li>
+              <strong>Exactly-once:</strong> Message delivered once (ideal but
+              complex)
+            </li>
           </ol>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Implementing At-Least-Once Delivery
           </h3>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-<code>{`async function sendMessage(senderId, channelId, content) {
+            <code>{`async function sendMessage(senderId, channelId, content) {
   // 1. Generate unique message ID
   const messageId = generateUUID();
 
@@ -277,13 +311,14 @@ wss.on('close', () => {
   await db.messages.update(messageId, { delivered: true });
 
   return messageId;
-}`}</code></pre>
+}`}</code>
+          </pre>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Handling Offline Users
           </h3>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-<code>{`// When user reconnects, send pending messages
+            <code>{`// When user reconnects, send pending messages
 async function sendPendingMessages(userId, ws) {
   const lastSeenTimestamp = await db.users.getLastSeen(userId);
 
@@ -307,16 +342,15 @@ async function sendPendingMessages(userId, ws) {
 
   // Update last seen
   await db.users.updateLastSeen(userId, Date.now());
-}`}</code></pre>
+}`}</code>
+          </pre>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             Database Schema and Message Storage
           </h2>
-          <p>
-            Efficient schema design is critical for chat performance:
-          </p>
+          <p>Efficient schema design is critical for chat performance:</p>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-<code>{`-- Users table
+            <code>{`-- Users table
 CREATE TABLE users (
   id UUID PRIMARY KEY,
   username VARCHAR(50) UNIQUE NOT NULL,
@@ -354,16 +388,19 @@ CREATE TABLE messages (
 
 -- Indexes for common queries
 CREATE INDEX idx_messages_channel_time ON messages(channel_id, created_at DESC);
-CREATE INDEX idx_channel_members_user ON channel_members(user_id);`}</code></pre>
+CREATE INDEX idx_channel_members_user ON channel_members(user_id);`}</code>
+          </pre>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             Scaling Horizontally with Redis Pub/Sub
           </h2>
           <p>
-            When you add multiple WebSocket servers, clients might connect to different instances. Redis Pub/Sub coordinates messages across servers:
+            When you add multiple WebSocket servers, clients might connect to
+            different instances. Redis Pub/Sub coordinates messages across
+            servers:
           </p>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-<code>{`import Redis from 'ioredis';
+            <code>{`import Redis from 'ioredis';
 
 const publisher = new Redis();
 const subscriber = new Redis();
@@ -394,13 +431,14 @@ async function broadcastMessage(channelId, messageData) {
     channelId,
     messageData
   }));
-}`}</code></pre>
+}`}</code>
+          </pre>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Presence System with Redis
           </h3>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-<code>{`// Track online users across servers
+            <code>{`// Track online users across servers
 async function setUserOnline(userId) {
   await redis.sadd('online_users', userId);
   await redis.expire(\`user:\${userId}:heartbeat\`, 60); // 60 second TTL
@@ -435,7 +473,8 @@ setInterval(async () => {
       }));
     }
   }
-}, 10000);`}</code></pre>
+}, 10000);`}</code>
+          </pre>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             Rate Limiting and Security
@@ -445,7 +484,7 @@ setInterval(async () => {
             Per-User Rate Limiting
           </h3>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-<code>{`import { RateLimiterRedis } from 'rate-limiter-flexible';
+            <code>{`import { RateLimiterRedis } from 'rate-limiter-flexible';
 
 const rateLimiter = new RateLimiterRedis({
   storeClient: redis,
@@ -470,13 +509,14 @@ async function handleMessage(userId, data) {
       }));
     }
   }
-}`}</code></pre>
+}`}</code>
+          </pre>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Input Validation and Sanitization
           </h3>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-<code>{`import { z } from 'zod';
+            <code>{`import { z } from 'zod';
 import sanitizeHtml from 'sanitize-html';
 
 const messageSchema = z.object({
@@ -496,23 +536,32 @@ function validateAndSanitize(data) {
   });
 
   return parsed;
-}`}</code></pre>
+}`}</code>
+          </pre>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             Monitoring and Observability
           </h2>
-          <p>
-            Track key metrics for a healthy chat system:
-          </p>
+          <p>Track key metrics for a healthy chat system:</p>
           <ul>
-            <li><strong>Active connections:</strong> Current WebSocket connections</li>
-            <li><strong>Message throughput:</strong> Messages per second</li>
-            <li><strong>Message latency:</strong> Time from send to delivery</li>
-            <li><strong>Error rate:</strong> Failed deliveries, connection errors</li>
-            <li><strong>Redis Pub/Sub lag:</strong> Message propagation delay</li>
+            <li>
+              <strong>Active connections:</strong> Current WebSocket connections
+            </li>
+            <li>
+              <strong>Message throughput:</strong> Messages per second
+            </li>
+            <li>
+              <strong>Message latency:</strong> Time from send to delivery
+            </li>
+            <li>
+              <strong>Error rate:</strong> Failed deliveries, connection errors
+            </li>
+            <li>
+              <strong>Redis Pub/Sub lag:</strong> Message propagation delay
+            </li>
           </ul>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-<code>{`import prometheus from 'prom-client';
+            <code>{`import prometheus from 'prom-client';
 
 const activeConnections = new prometheus.Gauge({
   name: 'chat_active_connections',
@@ -538,7 +587,8 @@ wss.on('connection', () => {
 
 ws.on('close', () => {
   activeConnections.dec();
-});`}</code></pre>
+});`}</code>
+          </pre>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             Production Deployment Considerations
@@ -547,11 +597,9 @@ ws.on('close', () => {
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Load Balancing
           </h3>
-          <p>
-            Use a load balancer with sticky sessions or consistent hashing:
-          </p>
+          <p>Use a load balancer with sticky sessions or consistent hashing:</p>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-<code>{`# nginx configuration with IP hash for sticky sessions
+            <code>{`# nginx configuration with IP hash for sticky sessions
 upstream websocket_backend {
   ip_hash; # Same client always goes to same server
   server ws1.example.com:8080;
@@ -568,13 +616,14 @@ server {
     proxy_set_header Host $host;
     proxy_read_timeout 86400; # 24 hours
   }
-}`}</code></pre>
+}`}</code>
+          </pre>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             Graceful Shutdown
           </h3>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded-lg overflow-x-auto'>
-<code>{`process.on('SIGTERM', async () => {
+            <code>{`process.on('SIGTERM', async () => {
   console.log('SIGTERM received. Starting graceful shutdown...');
 
   // 1. Stop accepting new connections
@@ -597,17 +646,20 @@ server {
   await redis.quit();
 
   process.exit(0);
-});`}</code></pre>
+});`}</code>
+          </pre>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
             Conclusion
           </h2>
           <p>
-            Building a scalable chat API requires careful attention to connection management, message delivery, and distributed systems challenges. The patterns we've covered—Redis Pub/Sub for horizontal scaling, at-least-once delivery guarantees, and proper monitoring—form the foundation of production chat systems.
+            Building a scalable chat API requires careful attention to
+            connection management, message delivery, and distributed systems
+            challenges. The patterns we've covered—Redis Pub/Sub for horizontal
+            scaling, at-least-once delivery guarantees, and proper
+            monitoring—form the foundation of production chat systems.
           </p>
-          <p>
-            The key takeaways:
-          </p>
+          <p>The key takeaways:</p>
           <ul>
             <li>Use WebSockets for real-time bidirectional communication</li>
             <li>Persist messages before delivery (durability)</li>
@@ -617,7 +669,9 @@ server {
             <li>Monitor everything—connections, latency, errors</li>
           </ul>
           <p>
-            With these foundations in place, you can build a chat system that scales to millions of users while maintaining reliability and performance.
+            With these foundations in place, you can build a chat system that
+            scales to millions of users while maintaining reliability and
+            performance.
           </p>
         </div>
       </div>

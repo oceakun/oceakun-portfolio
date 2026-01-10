@@ -23,10 +23,7 @@ export const metadata: Metadata = {
 export default function BlogPage() {
   return (
     <section>
-      <BlogHeader
-        title='Django for FastAPI Developers'
-        date='20-12-2025'
-      />
+      <BlogHeader title='Django for FastAPI Developers' date='20-12-2025' />
       <div className='prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-300 mt-12 text-justify'>
         <div className='text-justify'>
           <h2 className='text-xl dark:text-neutral-200 font-serif'>Content</h2>
@@ -53,38 +50,43 @@ export default function BlogPage() {
             Introduction
           </h2>
           <p>
-            If you're a FastAPI developer considering Django for your next project,
-            you might be wondering how these two popular Python web frameworks compare.
-            While FastAPI is modern, fast, and designed for building APIs with type hints
-            and async support, Django is a mature, batteries-included framework that's been
-            powering web applications since 2005.
+            If you're a FastAPI developer considering Django for your next
+            project, you might be wondering how these two popular Python web
+            frameworks compare. While FastAPI is modern, fast, and designed for
+            building APIs with type hints and async support, Django is a mature,
+            batteries-included framework that's been powering web applications
+            since 2005.
           </p>
           <p>
-            This guide will help you understand Django from a FastAPI perspective, highlighting
-            the key differences, similarities, and when you might want to choose one over the other.
+            This guide will help you understand Django from a FastAPI
+            perspective, highlighting the key differences, similarities, and
+            when you might want to choose one over the other.
           </p>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif'>
             Philosophy and Design Patterns
           </h2>
           <p>
-            <strong>FastAPI:</strong> FastAPI follows a minimalist, explicit approach.
-            You declare exactly what you need, leverage Python type hints for validation,
-            and build APIs that are fast and modern. It's heavily influenced by Flask but
-            adds automatic data validation, serialization, and interactive API documentation.
+            <strong>FastAPI:</strong> FastAPI follows a minimalist, explicit
+            approach. You declare exactly what you need, leverage Python type
+            hints for validation, and build APIs that are fast and modern. It's
+            heavily influenced by Flask but adds automatic data validation,
+            serialization, and interactive API documentation.
           </p>
           <p>
-            <strong>Django:</strong> Django follows the "batteries-included" philosophy.
-            It provides everything you need out of the box: ORM, admin panel, authentication,
-            form handling, and more. Django follows the MVT (Model-View-Template) pattern,
-            though when building APIs, you'll primarily work with Models and Views.
+            <strong>Django:</strong> Django follows the "batteries-included"
+            philosophy. It provides everything you need out of the box: ORM,
+            admin panel, authentication, form handling, and more. Django follows
+            the MVT (Model-View-Template) pattern, though when building APIs,
+            you'll primarily work with Models and Views.
           </p>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif'>
             Project Structure
           </h2>
           <p>
-            In FastAPI, you typically start with a simple structure and add what you need:
+            In FastAPI, you typically start with a simple structure and add what
+            you need:
           </p>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
             <code>{`# FastAPI structure
@@ -95,9 +97,7 @@ myapp/
 ├── crud.py
 └── database.py`}</code>
           </pre>
-          <p>
-            Django, on the other hand, uses a project-and-apps structure:
-          </p>
+          <p>Django, on the other hand, uses a project-and-apps structure:</p>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
             <code>{`# Django structure
 myproject/
@@ -117,8 +117,9 @@ myproject/
     └── migrations/`}</code>
           </pre>
           <p>
-            Django projects contain multiple apps, where each app is a self-contained module
-            handling a specific functionality. This encourages reusability and separation of concerns.
+            Django projects contain multiple apps, where each app is a
+            self-contained module handling a specific functionality. This
+            encourages reusability and separation of concerns.
           </p>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif'>
@@ -147,8 +148,8 @@ async def create_item(item: Item):
     return item`}</code>
           </pre>
           <p>
-            Django has multiple ways to define views, but with Django REST Framework (DRF),
-            it becomes similar:
+            Django has multiple ways to define views, but with Django REST
+            Framework (DRF), it becomes similar:
           </p>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
             <code>{`# Django REST Framework
@@ -194,7 +195,8 @@ urlpatterns = [
             ORM vs SQLAlchemy
           </h2>
           <p>
-            FastAPI commonly uses SQLAlchemy, which offers flexibility and explicit control:
+            FastAPI commonly uses SQLAlchemy, which offers flexibility and
+            explicit control:
           </p>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
             <code>{`# SQLAlchemy (FastAPI)
@@ -212,9 +214,7 @@ class User(Base):
 user = db.query(User).filter(User.email == "test@example.com").first()
 users = db.query(User).offset(0).limit(10).all()`}</code>
           </pre>
-          <p>
-            Django's ORM is more integrated and uses a different syntax:
-          </p>
+          <p>Django's ORM is more integrated and uses a different syntax:</p>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
             <code>{`# Django ORM
 from django.db import models
@@ -241,10 +241,21 @@ users = User.objects.filter(
             <strong>Key differences:</strong>
           </p>
           <ul>
-            <li>Django ORM uses <code>objects</code> manager pattern</li>
-            <li>Django has built-in migrations through <code>python manage.py makemigrations</code></li>
-            <li>Django's query syntax uses double underscores for lookups (<code>__icontains</code>, <code>__gte</code>)</li>
-            <li>Django models automatically get <code>id</code>, <code>created_at</code> fields if you want them</li>
+            <li>
+              Django ORM uses <code>objects</code> manager pattern
+            </li>
+            <li>
+              Django has built-in migrations through{' '}
+              <code>python manage.py makemigrations</code>
+            </li>
+            <li>
+              Django's query syntax uses double underscores for lookups (
+              <code>__icontains</code>, <code>__gte</code>)
+            </li>
+            <li>
+              Django models automatically get <code>id</code>,{' '}
+              <code>created_at</code> fields if you want them
+            </li>
           </ul>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif'>
@@ -265,9 +276,7 @@ async def create_user(user: UserCreate):
     # user is already validated!
     return {"email": user.email}`}</code>
           </pre>
-          <p>
-            Django REST Framework uses serializers:
-          </p>
+          <p>Django REST Framework uses serializers:</p>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
             <code>{`# Django REST Framework
 class UserSerializer(serializers.ModelSerializer):
@@ -295,7 +304,8 @@ def create_user(request):
             Dependency Injection vs Django's Approach
           </h2>
           <p>
-            FastAPI's dependency injection system is one of its standout features:
+            FastAPI's dependency injection system is one of its standout
+            features:
           </p>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
             <code>{`# FastAPI dependencies
@@ -321,9 +331,15 @@ async def read_users_me(
             Django doesn't have built-in dependency injection. Instead, it uses:
           </p>
           <ul>
-            <li><strong>Middleware</strong> for cross-cutting concerns</li>
-            <li><strong>Request object</strong> that carries user, session, etc.</li>
-            <li><strong>Decorators</strong> for reusable logic</li>
+            <li>
+              <strong>Middleware</strong> for cross-cutting concerns
+            </li>
+            <li>
+              <strong>Request object</strong> that carries user, session, etc.
+            </li>
+            <li>
+              <strong>Decorators</strong> for reusable logic
+            </li>
           </ul>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
             <code>{`# Django approach
@@ -345,7 +361,8 @@ def read_users_me(request):
             Authentication and Permissions
           </h2>
           <p>
-            FastAPI requires you to implement auth, typically with libraries like
+            FastAPI requires you to implement auth, typically with libraries
+            like
             <code>python-jose</code> and <code>passlib</code>:
           </p>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
@@ -363,9 +380,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
     except JWTError:
         raise HTTPException(status_code=401)`}</code>
           </pre>
-          <p>
-            Django provides authentication out of the box:
-          </p>
+          <p>Django provides authentication out of the box:</p>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
             <code>{`# Django - built-in auth
 from django.contrib.auth import authenticate, login
@@ -388,15 +403,18 @@ class MyView(APIView):
         return Response({"message": f"Hello {request.user.username}"})`}</code>
           </pre>
           <p>
-            Django also supports JWT, OAuth2, and social auth through packages like
-            <code>djangorestframework-simplejwt</code> and <code>django-allauth</code>.
+            Django also supports JWT, OAuth2, and social auth through packages
+            like
+            <code>djangorestframework-simplejwt</code> and{' '}
+            <code>django-allauth</code>.
           </p>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif'>
             Forms and Validation
           </h2>
           <p>
-            FastAPI relies on Pydantic for validation, while Django has its own form system:
+            FastAPI relies on Pydantic for validation, while Django has its own
+            form system:
           </p>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
             <code>{`# Django Forms (useful for HTML forms)
@@ -419,16 +437,18 @@ if form.is_valid():
     form.save()`}</code>
           </pre>
           <p>
-            For APIs, you'd typically use DRF serializers instead of forms, but Django's
-            form system is powerful for server-rendered HTML applications.
+            For APIs, you'd typically use DRF serializers instead of forms, but
+            Django's form system is powerful for server-rendered HTML
+            applications.
           </p>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif'>
             Admin Panel
           </h2>
           <p>
-            This is where Django truly shines. FastAPI has no built-in admin interface,
-            while Django provides a full-featured admin panel out of the box:
+            This is where Django truly shines. FastAPI has no built-in admin
+            interface, while Django provides a full-featured admin panel out of
+            the box:
           </p>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
             <code>{`# Django admin.py
@@ -451,21 +471,23 @@ class ProductAdmin(admin.ModelAdmin):
         queryset.update(is_active=False)`}</code>
           </pre>
           <p>
-            With just a few lines of code, you get a complete admin interface with
-            CRUD operations, filtering, searching, bulk actions, and more. This is
-            incredibly valuable for internal tools, content management, and rapid development.
+            With just a few lines of code, you get a complete admin interface
+            with CRUD operations, filtering, searching, bulk actions, and more.
+            This is incredibly valuable for internal tools, content management,
+            and rapid development.
           </p>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif'>
             Templates vs API-Only
           </h2>
           <p>
-            FastAPI is primarily designed for building APIs. If you need server-side
-            rendering, you'd integrate a template engine like Jinja2 manually.
+            FastAPI is primarily designed for building APIs. If you need
+            server-side rendering, you'd integrate a template engine like Jinja2
+            manually.
           </p>
           <p>
-            Django was originally built for server-rendered websites and has excellent
-            template support:
+            Django was originally built for server-rendered websites and has
+            excellent template support:
           </p>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
             <code>{`# Django template view
@@ -478,17 +500,16 @@ def product_list(request):
     })`}</code>
           </pre>
           <p>
-            Django templates support inheritance, includes, filters, and tags, making
-            them powerful for building traditional web applications. However, for modern
-            SPA backends, you'd typically use Django REST Framework and skip templates entirely.
+            Django templates support inheritance, includes, filters, and tags,
+            making them powerful for building traditional web applications.
+            However, for modern SPA backends, you'd typically use Django REST
+            Framework and skip templates entirely.
           </p>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif'>
             Middleware
           </h2>
-          <p>
-            Both frameworks support middleware, but with different APIs:
-          </p>
+          <p>Both frameworks support middleware, but with different APIs:</p>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
             <code>{`# FastAPI middleware
 from fastapi import Request
@@ -521,12 +542,8 @@ MIDDLEWARE = [
 ]`}</code>
           </pre>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
-            Testing
-          </h2>
-          <p>
-            FastAPI uses standard pytest with TestClient:
-          </p>
+          <h2 className='text-xl dark:text-neutral-200 font-serif'>Testing</h2>
+          <p>FastAPI uses standard pytest with TestClient:</p>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
             <code>{`# FastAPI testing
 from fastapi.testclient import TestClient
@@ -537,9 +554,7 @@ def test_read_item():
     assert response.status_code == 200
     assert response.json() == {"item_id": 1}`}</code>
           </pre>
-          <p>
-            Django has a comprehensive testing framework built-in:
-          </p>
+          <p>Django has a comprehensive testing framework built-in:</p>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
             <code>{`# Django testing
 from django.test import TestCase, Client
@@ -561,8 +576,9 @@ class UserAPITest(APITestCase):
         self.assertTrue(User.objects.filter(email='new@example.com').exists())`}</code>
           </pre>
           <p>
-            Django's test framework includes database transactions, fixtures, test client,
-            and more. It automatically creates a test database for each test run.
+            Django's test framework includes database transactions, fixtures,
+            test client, and more. It automatically creates a test database for
+            each test run.
           </p>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif'>
@@ -581,11 +597,21 @@ class UserAPITest(APITestCase):
             <strong>Django considerations:</strong>
           </p>
           <ul>
-            <li>Traditionally WSGI-based (synchronous), but Django 3.1+ supports ASGI</li>
-            <li>Can handle async views with <code>async def</code></li>
+            <li>
+              Traditionally WSGI-based (synchronous), but Django 3.1+ supports
+              ASGI
+            </li>
+            <li>
+              Can handle async views with <code>async def</code>
+            </li>
             <li>Heavier due to middleware and built-in features</li>
-            <li>Excellent caching support (Redis, Memcached, database-level)</li>
-            <li>Database query optimization through select_related and prefetch_related</li>
+            <li>
+              Excellent caching support (Redis, Memcached, database-level)
+            </li>
+            <li>
+              Database query optimization through select_related and
+              prefetch_related
+            </li>
           </ul>
           <pre className='bg-neutral-100 dark:bg-neutral-900 p-4 rounded overflow-x-auto'>
             <code>{`# Django async views (Django 3.1+)
@@ -604,60 +630,61 @@ users = User.objects.select_related('profile').prefetch_related('orders')
           <h2 className='text-xl dark:text-neutral-200 font-serif'>
             When to Choose Django
           </h2>
-          <p>
-            Choose Django when you need:
-          </p>
+          <p>Choose Django when you need:</p>
           <ul>
             <li>
-              <strong>Rapid development:</strong> The admin panel, built-in auth, and
-              ORM accelerate development significantly
+              <strong>Rapid development:</strong> The admin panel, built-in
+              auth, and ORM accelerate development significantly
             </li>
             <li>
-              <strong>Full-stack application:</strong> Building both backend API and
-              server-rendered pages
+              <strong>Full-stack application:</strong> Building both backend API
+              and server-rendered pages
             </li>
             <li>
-              <strong>Content management:</strong> The admin panel is unmatched for
-              managing content and data
+              <strong>Content management:</strong> The admin panel is unmatched
+              for managing content and data
             </li>
             <li>
-              <strong>Team familiarity:</strong> Your team knows Django or you're
-              building on existing Django codebases
+              <strong>Team familiarity:</strong> Your team knows Django or
+              you're building on existing Django codebases
             </li>
             <li>
               <strong>Batteries-included approach:</strong> You want everything
               integrated and working together
             </li>
             <li>
-              <strong>Complex business logic:</strong> Django's ORM and architecture
-              scale well for complex domains
+              <strong>Complex business logic:</strong> Django's ORM and
+              architecture scale well for complex domains
             </li>
             <li>
               <strong>Traditional CRUD applications:</strong> Django excels at
               database-driven applications
             </li>
           </ul>
-          <p>
-            Choose FastAPI when you need:
-          </p>
+          <p>Choose FastAPI when you need:</p>
           <ul>
             <li>
-              <strong>High performance APIs:</strong> Especially with async I/O operations
+              <strong>High performance APIs:</strong> Especially with async I/O
+              operations
             </li>
             <li>
-              <strong>Modern Python features:</strong> Type hints, async/await everywhere
+              <strong>Modern Python features:</strong> Type hints, async/await
+              everywhere
             </li>
             <li>
               <strong>Microservices:</strong> Lightweight, focused services
             </li>
             <li>
-              <strong>API-first design:</strong> No need for admin panels or templates
+              <strong>API-first design:</strong> No need for admin panels or
+              templates
             </li>
             <li>
-              <strong>OpenAPI documentation:</strong> Automatic, interactive docs are crucial
+              <strong>OpenAPI documentation:</strong> Automatic, interactive
+              docs are crucial
             </li>
             <li>
-              <strong>Data validation:</strong> Pydantic's validation is excellent
+              <strong>Data validation:</strong> Pydantic's validation is
+              excellent
             </li>
           </ul>
 
@@ -665,26 +692,38 @@ users = User.objects.select_related('profile').prefetch_related('orders')
             Conclusion
           </h2>
           <p>
-            Django and FastAPI are both excellent frameworks, but they solve different
-            problems. Django is a full-featured web framework designed for rapid development
-            of complete web applications, while FastAPI is a modern, high-performance
-            framework optimized for building APIs.
+            Django and FastAPI are both excellent frameworks, but they solve
+            different problems. Django is a full-featured web framework designed
+            for rapid development of complete web applications, while FastAPI is
+            a modern, high-performance framework optimized for building APIs.
           </p>
-          <p>
-            As a FastAPI developer learning Django, you'll find:
-          </p>
+          <p>As a FastAPI developer learning Django, you'll find:</p>
           <ul>
-            <li>The learning curve is manageable - many concepts translate directly</li>
-            <li>Django's "magic" (like the admin panel) can save enormous amounts of time</li>
-            <li>The ecosystem is mature with solutions for almost every problem</li>
-            <li>Django REST Framework brings Django's API development closer to FastAPI's experience</li>
-            <li>You can even use both - Django for your main app with admin, FastAPI for high-performance microservices</li>
+            <li>
+              The learning curve is manageable - many concepts translate
+              directly
+            </li>
+            <li>
+              Django's "magic" (like the admin panel) can save enormous amounts
+              of time
+            </li>
+            <li>
+              The ecosystem is mature with solutions for almost every problem
+            </li>
+            <li>
+              Django REST Framework brings Django's API development closer to
+              FastAPI's experience
+            </li>
+            <li>
+              You can even use both - Django for your main app with admin,
+              FastAPI for high-performance microservices
+            </li>
           </ul>
           <p>
-            The best choice depends on your project requirements. Many developers keep
-            both in their toolkit, choosing the right tool for each job. Don't think of
-            it as Django vs FastAPI - think of it as Django AND FastAPI, each excelling
-            in different scenarios.
+            The best choice depends on your project requirements. Many
+            developers keep both in their toolkit, choosing the right tool for
+            each job. Don't think of it as Django vs FastAPI - think of it as
+            Django AND FastAPI, each excelling in different scenarios.
           </p>
         </div>
       </div>

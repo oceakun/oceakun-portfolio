@@ -71,9 +71,9 @@ export default function BlogPage() {
               (HTML, CSS, JS, images) and serves them as a static website
             </li>
             <li>
-              <strong>Amazon CloudFront:</strong> Acts as a global CDN,
-              caching your content at edge locations worldwide for faster
-              delivery and HTTPS support
+              <strong>Amazon CloudFront:</strong> Acts as a global CDN, caching
+              your content at edge locations worldwide for faster delivery and
+              HTTPS support
             </li>
             <li>
               <strong>AWS Lambda:</strong> Runs your backend code in a
@@ -90,8 +90,8 @@ export default function BlogPage() {
             </li>
           </ul>
           <p>
-            <strong>The flow:</strong> User → CloudFront (CDN) → S3 (Frontend)
-            → API Gateway → Lambda (Backend) → Database/External Services
+            <strong>The flow:</strong> User → CloudFront (CDN) → S3 (Frontend) →
+            API Gateway → Lambda (Backend) → Database/External Services
           </p>
 
           <h2 className='text-xl dark:text-neutral-200 font-serif'>
@@ -688,8 +688,8 @@ echo "Deployment complete!"
               cheaper at edge locations closer to users
             </li>
             <li>
-              <strong>Lambda:</strong> First 1 million requests free, then
-              $0.20 per million. $0.0000166667 per GB-second for compute
+              <strong>Lambda:</strong> First 1 million requests free, then $0.20
+              per million. $0.0000166667 per GB-second for compute
             </li>
             <li>
               <strong>API Gateway:</strong> HTTP API: $1.00 per million
@@ -702,8 +702,12 @@ echo "Deployment complete!"
           <ul>
             <li>Use CloudFront caching aggressively to reduce S3 requests</li>
             <li>Choose HTTP API over REST API when possible (3.5x cheaper)</li>
-            <li>Optimize Lambda memory allocation for best price/performance</li>
-            <li>Enable S3 Intelligent-Tiering for infrequently accessed files</li>
+            <li>
+              Optimize Lambda memory allocation for best price/performance
+            </li>
+            <li>
+              Enable S3 Intelligent-Tiering for infrequently accessed files
+            </li>
             <li>Set up CloudWatch billing alerts to monitor spending</li>
           </ul>
 
@@ -715,8 +719,8 @@ echo "Deployment complete!"
             1. SPA Routes Return 403/404
           </h3>
           <p>
-            <strong>Problem:</strong> Refreshing on any route except root returns
-            an error.
+            <strong>Problem:</strong> Refreshing on any route except root
+            returns an error.
           </p>
           <p>
             <strong>Solution:</strong> Configure CloudFront error pages to
@@ -727,7 +731,8 @@ echo "Deployment complete!"
             2. CORS Errors
           </h3>
           <p>
-            <strong>Problem:</strong> Frontend can't call API due to CORS policy.
+            <strong>Problem:</strong> Frontend can't call API due to CORS
+            policy.
           </p>
           <p>
             <strong>Solution:</strong> Ensure Lambda returns proper CORS headers
@@ -753,14 +758,19 @@ echo "Deployment complete!"
           </p>
           <p>
             <strong>Solution:</strong> Create CloudFront invalidation after
-            deployment: <code>aws cloudfront create-invalidation --distribution-id ID --paths "/*"</code>
+            deployment:{' '}
+            <code>
+              aws cloudfront create-invalidation --distribution-id ID --paths
+              "/*"
+            </code>
           </p>
 
           <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
             5. Lambda Timeout Errors
           </h3>
           <p>
-            <strong>Problem:</strong> Function times out after 3 seconds (default).
+            <strong>Problem:</strong> Function times out after 3 seconds
+            (default).
           </p>
           <p>
             <strong>Solution:</strong> Increase timeout in Lambda configuration
@@ -785,10 +795,10 @@ echo "Deployment complete!"
           </ul>
           <p>
             While there's an initial learning curve, the benefits of this
-            architecture make it an excellent choice for modern web applications.
-            Start with a simple setup and gradually add features like custom
-            domains, database integrations, authentication, and monitoring as
-            your application grows.
+            architecture make it an excellent choice for modern web
+            applications. Start with a simple setup and gradually add features
+            like custom domains, database integrations, authentication, and
+            monitoring as your application grows.
           </p>
           <p>
             Remember to implement proper security practices, monitor costs, and

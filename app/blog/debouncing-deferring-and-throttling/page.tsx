@@ -63,9 +63,9 @@ export default function BlogPage() {
             before taking action.
           </p>
           <p>
-            <strong>Real-world analogy:</strong> Imagine an elevator. Instead
-            of closing the doors immediately when someone presses the button,
-            it waits a few seconds to see if anyone else is coming. Each time
+            <strong>Real-world analogy:</strong> Imagine an elevator. Instead of
+            closing the doors immediately when someone presses the button, it
+            waits a few seconds to see if anyone else is coming. Each time
             someone new approaches, the timer resets.
           </p>
           <p>
@@ -81,12 +81,12 @@ export default function BlogPage() {
               user pauses typing
             </li>
             <li>
-              <strong>Auto-save:</strong> Save draft content only after the
-              user stops typing for a moment
+              <strong>Auto-save:</strong> Save draft content only after the user
+              stops typing for a moment
             </li>
             <li>
-              <strong>Window resize:</strong> Recalculate layouts only after
-              the user finishes resizing the window
+              <strong>Window resize:</strong> Recalculate layouts only after the
+              user finishes resizing the window
             </li>
           </ul>
 
@@ -137,10 +137,9 @@ export default function BlogPage() {
           </p>
           <p>
             <strong>Real-world analogy:</strong> Imagine you're ordering at a
-            restaurant during rush hour. The waiter takes your drink order
-            first (high priority) and tells you the food will come shortly
-            (deferred). This keeps you satisfied while the kitchen works on your
-            meal.
+            restaurant during rush hour. The waiter takes your drink order first
+            (high priority) and tells you the food will come shortly (deferred).
+            This keeps you satisfied while the kitchen works on your meal.
           </p>
           <p>
             <strong>Common use cases:</strong>
@@ -227,7 +226,9 @@ export default function BlogPage() {
             <strong>Use Debouncing when:</strong>
           </p>
           <ul>
-            <li>You only care about the final state after a series of events</li>
+            <li>
+              You only care about the final state after a series of events
+            </li>
             <li>
               You want to avoid intermediate executions (like API calls for each
               keystroke)
