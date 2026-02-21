@@ -1,7 +1,13 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import BlogHeader from '../_components/BlogHeader';
-import CodeBlock from '../../../components/codeBlock';
+import CodeBlock from '../_components/CodeBlock';
+import Banner from '../_components/Banner';
+import References from '../_components/References';
+import Overview from '../_components/Overview';
+import bannerImage from './banner.svg';
+import { refs } from './references';
+import { overviewContent } from './overviewContent';
 
 export const metadata: Metadata = {
   title: 'React Hooks: From useState to useOptimistic',
@@ -23,51 +29,32 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   return (
-    <section>
+    <section className='w-full'>
+      <Banner src={bannerImage} alt='React Hooks Banner' />
       <BlogHeader
         title='React Hooks: From useState to useOptimistic'
         date='11-11-2025'
       />
-      <div className='prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-300 mt-12 text-justify'>
-        <div className='text-justify'>
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>Content</h2>
-          <ul>
-            <li>Introduction to hooks</li>
-            <li>The ones, most commonly used</li>
-            <li>Less popular, yet powerful</li>
-            <li>
-              Diving in
-              <ul>
-                <li>useState - Managing component state</li>
-                <li>useCallback - Memoizing function references</li>
-                <li>useMemo - Caching expensive calculations</li>
-                <li>useContext - Global state sharing</li>
-                <li>useEffect - Side effects and synchronization</li>
-                <li>useDeferredValue - Non-blocking UI updates</li>
-                <li>useLayoutEffect - Synchronous DOM updates</li>
-                <li>useInsertionEffect - CSS injection before paint</li>
-                <li>useRef - Persisting values and DOM access</li>
-                <li>useImperativeHandle - Custom ref APIs</li>
-                <li>useId - Stable unique IDs</li>
-                <li>useTransition - Mark non-urgent updates</li>
-                <li>useOptimistic - Instant UI updates with rollback</li>
-              </ul>
-            </li>
-            <li>Precautions: When NOT to use hooks</li>
-          </ul>
-
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
-            Introduction to hooks
+      <div className='prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-300 mt-12 text-justify w-full '>
+        <div className='text-justify w-full'>
+          <Overview topics={overviewContent} />
+          <h2
+            id='introduction'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
+            Introduction
           </h2>
           <p>
             Hooks are an indispensable part of React, as they provide a bridge
             for developers to manipulate a webpage DOM through things like
             state, window size and a lot of native Javascript apis.
           </p>
-
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h3
+            id='commonly-used'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             The ones, most commonly used
-          </h2>
+          </h3>
           <p>
             In React projects, following hooks are most likely to be used (in
             the order they are mentioned):
@@ -98,20 +85,23 @@ export default function BlogPage() {
               re-renders
             </li>
             <li>
-              <strong>useCallback</strong> - Lets you re-use old function
-              definitions as long as none of their dependencies change
+              <strong>useCallback</strong> - Lets you re-use old definitions of
+              the function they wrap as long as none of their dependencies
+              change
             </li>
           </ul>
           <p>
             The last two are incorrectly used a lot of times, which can be
             attributed to misconceptions relating to when and how they should be
             used. If I were to put it in one line, just be cautious while using
-            them because premature optimization is the root of all evil.
+            them because <i>premature optimization is the root of all evil</i>.
           </p>
-
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h3
+            id='less-popular'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Less popular, yet powerful
-          </h2>
+          </h3>
           <p>
             In addition to the above hooks, this article focuses on some others
             (that I myself came across recently). My special focus in this
@@ -129,26 +119,53 @@ export default function BlogPage() {
             <li>useInsertionEffect</li>
             <li>useImperativeHandle</li>
           </ul>
-
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h3
+            id='running-example'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
+            A running example
+          </h3>
+          <p>
+            Throughout this article, I'll be using examples from -{' '}
+            <a
+              href='https://team-pulse-three-alpha.vercel.app/'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='text-blue-600 dark:text-blue-400 hover:underline'
+            >
+              <strong>TeamPulse Dashboard</strong>
+            </a>
+            , doing so will serve as practical examples for all the principles
+            that will be discussed hereafter. <br />
+            You could familiarise yourself with the code present here -{' '}
+            <a
+              href='https://github.com/oceakun/the-hooks-lesser-known/tree/main/the-hoooks-lesser-known'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='text-blue-600 dark:text-blue-400 hover:underline'
+            >
+              <strong>repo</strong>
+            </a>
+            .
+          </p>
+          <h2
+            id='diving-in'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
             Diving in
           </h2>
-
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='useState'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             useState
           </h3>
           <p>
-            useState is the foundation of React state management. It allows
-            components to remember values between renders and triggers
-            re-renders when those values change.
+            useState is the most commonly used hook in React projects. What it
+            allows components to do, is very simple - store values of multiple
+            datatypes, string, number, array or even interfaces, remember them
+            between renders and trigger re-renders when those values change.
           </p>
-          <p>
-            <strong>Real-world use cases from TeamPulse Dashboard:</strong>
-          </p>
-
-          <h4 className='text-base dark:text-neutral-200 font-serif mt-4'>
-            1. Form Input Management
-          </h4>
           <p>
             In AddTaskForm.tsx, useState tracks multiple form fields and
             submission state:
@@ -157,33 +174,18 @@ export default function BlogPage() {
 const [priority, setPriority] = useState<Task['priority']>('medium');
 const [isSubmitting, setIsSubmitting] = useState(false);`}</CodeBlock>
           <p>
-            <strong>Problem solved:</strong> Track form field values and
-            submission state synchronously. Each state change triggers a
-            re-render to update the UI.
-          </p>
-
-          <h4 className='text-base dark:text-neutral-200 font-serif mt-4'>
-            2. Data Storage for Charts
-          </h4>
-          <p>
             In DashboardPage.tsx, useState holds fetched API data and loading
-            states:
+            states. Here, data changes trigger UI re-renders automatically to
+            display updated charts:
           </p>
           <CodeBlock>{`const [lineData, setLineData] = useState<ChartData[]>([]);
 const [barData, setBarData] = useState<ChartData[]>([]);
 const [pieData, setPieData] = useState<ChartData[]>([]);
 const [isLoading, setIsLoading] = useState(true);`}</CodeBlock>
           <p>
-            <strong>Why useState:</strong> Data changes need to trigger UI
-            re-renders automatically to display updated charts.
-          </p>
-
-          <h4 className='text-base dark:text-neutral-200 font-serif mt-4'>
-            3. Lazy Initialization with Functions
-          </h4>
-          <p>
             In ThemeContext.tsx, useState uses an initializer function for
-            expensive initialization:
+            initialization, the function runs only once on mount, avoiding
+            expensive checks on every render.
           </p>
           <CodeBlock>{`const [theme, setTheme] = useState<Theme>(() => {
   const stored = localStorage.getItem('theme') as Theme;
@@ -193,36 +195,55 @@ const [isLoading, setIsLoading] = useState(true);`}</CodeBlock>
     : 'light';
 });`}</CodeBlock>
           <p>
-            <strong>Problem solved:</strong> Initialize theme from localStorage
-            or system preference. The function runs only once on mount, avoiding
-            expensive checks on every render.
+            <strong>Important considerations:</strong>
           </p>
-
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <ul>
+            <li>
+              <p>
+                Use an initializer function (lazy initialization) when the
+                initial value requires expensive computation, it only runs once
+                on mount.
+              </p>
+            </li>
+            <li>
+              <p>
+                State updates are asynchronous and batched. Use the functional
+                form (setState(prev =&gt; prev + 1)) when the new state depends
+                on the previous state.
+              </p>
+            </li>
+            <li>
+              <p>
+                For complex state with multiple related values, consider
+                useReducer instead of multiple useState calls.
+              </p>
+            </li>
+          </ul>
+          <h3
+            id='useCallback'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             useCallback
           </h3>
           <p>
             useCallback memoizes function references to prevent unnecessary
-            re-creations. While powerful, it should only be used when there's a
-            measurable performance benefit, as premature optimization can make
-            code harder to maintain.
+            re-creations. <br />
+            How it works is this - wrap the function that gets passed to a child
+            of the current component as a prop in a useCallback and populate its
+            dependency array with all the reactive values. But there is a
+            gotcha, the child component itself needs to be wrapped in a
+            React.Memo in order to use the memoised prop as expected.
           </p>
           <p>
-            <strong>Genuine use cases from TeamPulse:</strong>
-          </p>
-
-          <h4 className='text-base dark:text-neutral-200 font-serif mt-4'>
-            1. Event Handlers for Child Components
-          </h4>
-          <p>
-            In WidgetContainer.tsx, stable callbacks prevent child button
-            re-renders:
+            In WidgetContainer.tsx, refreshAllWidgets is wrapped in a
+            useCallback, which means that the Button components receiving these
+            callbacks don't re-render unnecessarily when parent updates.
           </p>
           <CodeBlock>{`const refreshAllWidgets = useCallback(() => {
   widgetRefs.current.forEach((widget, id) => {
     widget.refresh();
   });
-}, []); // Never changes, safe to pass to child buttons
+}, []);
 
 const resetAllPositions = useCallback(() => {
   widgetRefs.current.forEach((widget, id) => {
@@ -230,16 +251,9 @@ const resetAllPositions = useCallback(() => {
   });
 }, []);`}</CodeBlock>
           <p>
-            <strong>Problem solved:</strong> Button components receiving these
-            callbacks don't re-render unnecessarily when parent updates.
-          </p>
-
-          <h4 className='text-base dark:text-neutral-200 font-serif mt-4'>
-            2. Drag Operation Handlers
-          </h4>
-          <p>
             In useDragAndDrop.ts, stable handlers are crucial for event
-            listeners:
+            listeners because without it, the listeners would be removed and
+            re-added on every render, causing the drag operations to feel janky.
           </p>
           <CodeBlock>{`const handleMouseDown = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
   e.preventDefault();
@@ -261,49 +275,43 @@ const handleMouseMove = useCallback((e: MouseEvent) => {
   setPosition({ x: newX, y: newY });
 }, [dragState.isDragging, dragState.startX, dragState.startY]);`}</CodeBlock>
           <p>
-            <strong>Why useCallback:</strong> Prevents removing and re-adding
-            event listeners on every render, which would cause drag operations
-            to feel janky.
-          </p>
-
-          <p>
-            <strong>When to use:</strong>
+            <strong>Important considerations:</strong>
           </p>
           <ul>
-            <li>Passing functions as props to memoized child components</li>
-            <li>Using functions as dependencies in useEffect or other hooks</li>
-            <li>Event handlers that set up/tear down event listeners</li>
-          </ul>
-
-          <p>
-            <strong>When NOT to use:</strong>
-          </p>
-          <ul>
-            <li>Simple event handlers that don't cause performance issues</li>
-            <li>Functions that aren't passed to child components</li>
             <li>
-              Premature optimization without measuring actual performance impact
+              <p>Use it in the following situations:</p>
+              <ul>
+                <li>Passing functions as props to memoized child components</li>
+                <li>
+                  Using functions as dependencies in useEffect or other hooks
+                </li>
+                <li>Event handlers that set up/tear down event listeners</li>
+              </ul>
+            </li>
+            <li>
+              <p>
+                The child component must be wrapped in React.memo for
+                useCallback to provide any benefit, otherwise, the child
+                re-renders regardless of stable function references.
+              </p>
             </li>
           </ul>
-
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='useMemo'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             useMemo
           </h3>
           <p>
             useMemo caches the result of expensive calculations between
-            re-renders. Only recalculate when dependencies change, improving
-            performance for heavy operations.
+            re-renders and recalculates them only when dependencies change.
           </p>
           <p>
-            <strong>Real-world use cases from TeamPulse:</strong>
-          </p>
-
-          <h4 className='text-base dark:text-neutral-200 font-serif mt-4'>
-            1. Dashboard Statistics Aggregation
-          </h4>
-          <p>
-            In DashboardPage.tsx, statistics are recalculated only when data
-            changes:
+            We calculate various statistics(in DashboardPage.tsx) and store them
+            in the stats variable. In itself, calculating from hundreds of
+            points is expensive, which is where useMemo comes in, it only allows
+            re-calculation to happen if one of the source data(lineData,
+            barData, pieData) changes.
           </p>
           <CodeBlock>{`const stats = useMemo(() => {
   const totalDataPoints = lineData.length + barData.length + pieData.length;
@@ -318,40 +326,28 @@ const handleMouseMove = useCallback((e: MouseEvent) => {
   };
 }, [lineData, barData, pieData]);`}</CodeBlock>
           <p>
-            <strong>Problem solved:</strong> Aggregating data from hundreds of
-            points is expensive. useMemo prevents recalculation on every render,
-            only updating when source data changes.
+            In LineChart.tsx, "moving average" calculation is memoized. This is
+            done to avoid the visible lag in chart data being loaded on chart
+            re-rendering which happens a lot during drag activity.
           </p>
-
-          <h4 className='text-base dark:text-neutral-200 font-serif mt-4'>
-            2. Chart Data Transformation
-          </h4>
-          <p>In LineChart.tsx, moving average calculation is memoized:</p>
           <CodeBlock>{`const processedData = useMemo(() => {
-  console.log('Processing line chart data...'); // Only logs when data changes
+  console.log('Processing line chart data...');
 
   return data.map(item => ({
     ...item,
-    // Calculate 3-point moving average
     average: data
       .slice(Math.max(0, data.indexOf(item) - 2), data.indexOf(item) + 1)
       .reduce((sum, d) => sum + d.value, 0) / 3,
   }));
 }, [data]);`}</CodeBlock>
           <p>
-            <strong>Why useMemo:</strong> Charts re-render frequently during
-            drag operations. Processing data on every render would cause visible
-            lag.
+            In TasksPage.tsx, filtering and sorting form a two-stage pipeline
+            but with this many tasks, re-filtering and sorting on every
+            keystroke would freeze the UI. The solution? wrap filteredTasks and
+            sortedTasks in useMemo, so now, stage only recalculates when its
+            specific dependencies change.
           </p>
-
-          <h4 className='text-base dark:text-neutral-200 font-serif mt-4'>
-            3. Multi-Stage Data Pipeline
-          </h4>
-          <p>
-            In TasksPage.tsx, filtering and sorting form a two-stage pipeline:
-          </p>
-          <CodeBlock>{`// Stage 1: Filter
-const filteredTasks = useMemo(() => {
+          <CodeBlock>{`const filteredTasks = useMemo(() => {
   let filtered = tasks;
 
   if (deferredSearchQuery) {
@@ -369,7 +365,6 @@ const filteredTasks = useMemo(() => {
   return filtered;
 }, [tasks, deferredSearchQuery, filterBy]);
 
-// Stage 2: Sort
 const sortedTasks = useMemo(() => {
   const sorted = [...filteredTasks];
 
@@ -390,29 +385,35 @@ const sortedTasks = useMemo(() => {
   return sorted;
 }, [filteredTasks, sortBy]);`}</CodeBlock>
           <p>
-            <strong>Problem solved:</strong> With 1000+ tasks, re-filtering and
-            sorting on every keystroke would freeze the UI. Each stage only
-            recalculates when its specific dependencies change.
+            <strong>Important considerations:</strong>
           </p>
-
-          <p>
-            <strong>Important: When NOT to use useMemo</strong>
-          </p>
-          <CodeBlock>{`//  Bad - premature optimization
-const fullName = useMemo(
-  () => firstName + ' ' + lastName,
-  [firstName, lastName]
-);
-
-//  Good - just do it directly
-const fullName = firstName + ' ' + lastName;`}</CodeBlock>
-          <p>
-            useMemo adds overhead (memory and comparison logic). Only use it
-            when the calculation is genuinely expensive or when preventing
-            re-renders of child components through referential equality.
-          </p>
-
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <ul>
+            <li>
+              <p>Use it in the following situations:</p>
+              <ul>
+                <li>
+                  Expensive calculations (filtering/sorting a large number of
+                  items, complex mathematical operations)
+                </li>
+                <li>
+                  Maintaining referential equality for objects/arrays passed to
+                  memoized children
+                </li>
+                <li>Derived state that depends on multiple props or state</li>
+              </ul>
+            </li>
+            <li>
+              <p>
+                useMemo adds overhead (memory and comparison logic), so only use
+                it when the calculation is genuinely expensive or when
+                preventing re-renders through referential equality.
+              </p>
+            </li>
+          </ul>
+          <h3
+            id='useContext'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             useContext
           </h3>
           <p>
@@ -421,14 +422,11 @@ const fullName = firstName + ' ' + lastName;`}</CodeBlock>
             whenever the context value changes.
           </p>
           <p>
-            <strong>Real-world use cases from TeamPulse:</strong>
-          </p>
-
-          <h4 className='text-base dark:text-neutral-200 font-serif mt-4'>
-            1. Theme Management
-          </h4>
-          <p>
-            In ThemeContext.tsx, the theme is accessible throughout the app:
+            Over 20 components need theme access in TeamPulse. Passing props
+            through every level would be difficult and it'll cause a lot of
+            code-addition. To avoid it, we just setup a global theme context in
+            ThemeContext.ts file which can be accessed by any component via
+            useTheme(our custom theme hook).
           </p>
           <CodeBlock>{`const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
@@ -440,17 +438,7 @@ export const useTheme = () => {
   return context;
 };
 
-// Usage in Navigation.tsx
 const { theme, toggleTheme } = useTheme();`}</CodeBlock>
-          <p>
-            <strong>Problem solved:</strong> Over 20 components need theme
-            access. Passing props through every level would be impractical and
-            error-prone.
-          </p>
-
-          <h4 className='text-base dark:text-neutral-200 font-serif mt-4'>
-            2. Application Settings
-          </h4>
           <p>In SettingsContext.tsx, global configuration is shared:</p>
           <CodeBlock>{`export const useSettings = () => {
   const context = useContext(SettingsContext);
@@ -460,22 +448,14 @@ const { theme, toggleTheme } = useTheme();`}</CodeBlock>
   return context;
 };
 
-// Usage in DashboardPage.tsx
-const { settings } = useSettings();
-// Access refreshInterval for auto-refresh logic`}</CodeBlock>
-          <p>
-            <strong>Why useContext:</strong> Application-wide settings like
-            refresh intervals need to be consistently accessible across the
-            component tree.
-          </p>
-
+const { settings } = useSettings();`}</CodeBlock>
           <p>
             <strong>Important considerations:</strong>
           </p>
           <ul>
             <li>
               useContext() in a component isn't affected by providers returned
-              from the same component—it looks upward in the tree.
+              from the same component, it looks upward in the tree.
             </li>
             <li>
               Even if a component is wrapped in React.memo, it re-renders when
@@ -483,27 +463,33 @@ const { settings } = useSettings();
               consumers.
             </li>
             <li>
-              Avoid putting high-frequency updates in context (like mouse
-              position), as all consumers re-render on every change.
+              Putting high-frequency updates in context should be avoided (like
+              mouse position), as all consumers re-render on every change.
             </li>
           </ul>
-
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='useEffect'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             useEffect
           </h3>
           <p>
-            useEffect synchronizes components with external systems—API calls,
-            subscriptions, timers, and DOM operations. It runs after render and
-            can optionally clean up before the next effect or unmount.
+            useEffect is used to, run side effects (or synchronize components)
+            with external systems like
+            <ul>
+              <li>API calls</li>
+              <li>Subscriptions</li>
+              <li>Timers</li>
+              <li>DOM operations</li>
+            </ul>
+            It runs after render and can optionally clean up before the next
+            effect or unmount. Additionally, it runs whenever any of the values
+            in its dependency array change.
           </p>
           <p>
-            <strong>Real-world use cases from TeamPulse:</strong>
+            In DashboardPage.tsx, chart data is loaded on component mount(empty
+            dependency array ensures this runs only once)
           </p>
-
-          <h4 className='text-base dark:text-neutral-200 font-serif mt-4'>
-            1. Initial Data Fetching
-          </h4>
-          <p>In DashboardPage.tsx, chart data is loaded on mount:</p>
           <CodeBlock>{`useEffect(() => {
   const fetchData = async () => {
     setIsLoading(true);
@@ -523,39 +509,26 @@ const { settings } = useSettings();
     }
   };
   fetchData();
-}, []); // Empty deps = run once on mount`}</CodeBlock>
+}, []);`}</CodeBlock>
           <p>
-            <strong>Problem solved:</strong> Load initial data after component
-            mounts. Empty dependency array ensures this runs only once.
-          </p>
-
-          <h4 className='text-base dark:text-neutral-200 font-serif mt-4'>
-            2. Subscriptions with Cleanup
-          </h4>
-          <p>
-            In DashboardPage.tsx, real-time updates are subscribed to with
-            proper cleanup:
+            Real-time updates are subscribed to with proper cleanup because
+            without it, re-renders would create multiple subscriptions, causing
+            memory leaks and duplicate updates.
           </p>
           <CodeBlock>{`useEffect(() => {
   const unsubscribe = mockApi.subscribeToLiveData((newData) => {
     setLineData(prev => [...prev.slice(-11), newData]);
   });
 
-  // Cleanup prevents memory leaks
   return () => {
     unsubscribe();
   };
-}, []); // No deps = subscribe once, cleanup on unmount`}</CodeBlock>
+}, []);`}</CodeBlock>
           <p>
-            <strong>Why cleanup:</strong> Without the cleanup function,
-            re-renders would create multiple subscriptions, causing memory leaks
-            and duplicate updates.
+            Also, configurable auto-refresh is implemented so that when settings
+            change, the old interval is cleared and a new one is created with
+            the updated value.
           </p>
-
-          <h4 className='text-base dark:text-neutral-200 font-serif mt-4'>
-            3. Interval-Based Auto-Refresh
-          </h4>
-          <p>In DashboardPage.tsx, configurable auto-refresh is implemented:</p>
           <CodeBlock>{`useEffect(() => {
   if (!settings.refreshInterval) return;
 
@@ -570,43 +543,36 @@ const { settings } = useSettings();
 
   const interval = setInterval(refreshData, settings.refreshInterval);
   return () => clearInterval(interval);
-}, [settings.refreshInterval]); // Re-run when interval changes`}</CodeBlock>
+}, [settings.refreshInterval]);`}</CodeBlock>
           <p>
-            <strong>Problem solved:</strong> When settings change, the old
-            interval is cleared and a new one is created with the updated value.
-          </p>
-
-          <h4 className='text-base dark:text-neutral-200 font-serif mt-4'>
-            4. Syncing Props to State
-          </h4>
-          <p>In TaskList.tsx, internal state syncs with filtered props:</p>
-          <CodeBlock>{`useEffect(() => {
-  setTasks(initialTasks);
-}, [initialTasks]); // Update when filtered/sorted tasks change`}</CodeBlock>
-          <p>
-            <strong>Why useEffect:</strong> React to external prop changes and
-            update component state accordingly.
-          </p>
-
-          <p>
-            <strong>Dependency array behavior:</strong>
+            <strong>Important considerations:</strong>
           </p>
           <ul>
-            <li>Empty array [] - runs once on mount</li>
-            <li>No array - runs on mount and after every re-render</li>
-            <li>With dependencies - runs when any dependency changes</li>
+            <li>
+              <p>
+                Passing/not passing any values in the dependency array behavior
+                results into the following behaviours
+              </p>
+              <ul>
+                <li>Empty array [] - runs once on mount</li>
+                <li>No array - runs on mount and after every re-render</li>
+                <li>With dependencies - runs when any dependency changes</li>
+              </ul>
+            </li>
+            <li>
+              Following steps are followed to ensure proper cleanup before the
+              next effect execution (when dependencies change):
+              <ul>
+                <li>cleanup runs with old values </li>
+                <li>component re-renders</li>
+                <li>effect runs with new values</li>
+              </ul>
+            </li>
           </ul>
-
-          <p>
-            <strong>Cleanup execution order:</strong>
-          </p>
-          <p>
-            When dependencies change: cleanup runs with old values → component
-            re-renders → effect runs with new values. This ensures proper
-            cleanup before the next effect execution.
-          </p>
-
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='useDeferredValue'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             useDeferredValue
           </h3>
           <p>
@@ -616,24 +582,23 @@ const { settings } = useSettings();
             more important updates.
           </p>
           <p>
-            <strong>Real-world use case from TeamPulse:</strong>
-          </p>
-
-          <h4 className='text-base dark:text-neutral-200 font-serif mt-4'>
-            Search Input Responsiveness
-          </h4>
-          <p>
             In TasksPage.tsx, search input stays responsive even with expensive
-            filtering:
+            filtering because with so many tasks, filtering on every keystroke
+            would make typing feel laggy. It keeps the input responsive by
+            allowing React to update it immediately while deferring the
+            expensive filtering operation.
+            <br />
+            This means, input updates instantly, results update slightly
+            delayed. Users can continue typing without interruption while the
+            expensive filtering happens in the background.
           </p>
           <CodeBlock>{`const [searchQuery, setSearchQuery] = useState('');
 const deferredSearchQuery = useDeferredValue(searchQuery);
 
-// Filter with deferred value
 const filteredTasks = useMemo(() => {
   let filtered = tasks;
 
-  if (deferredSearchQuery) { // Uses deferred, not immediate value
+  if (deferredSearchQuery) {
     filtered = filtered.filter(task =>
       task.title.toLowerCase().includes(deferredSearchQuery.toLowerCase())
     );
@@ -642,42 +607,44 @@ const filteredTasks = useMemo(() => {
   return filtered;
 }, [tasks, deferredSearchQuery]);
 
-// Show pending indicator
 const isFiltering = searchQuery !== deferredSearchQuery;`}</CodeBlock>
           <p>
-            <strong>Problem solved:</strong> With 1000+ tasks, filtering on
-            every keystroke would make typing feel laggy. useDeferredValue keeps
-            the input responsive by allowing React to update it immediately
-            while deferring the expensive filtering operation.
-          </p>
-
-          <h4 className='text-base dark:text-neutral-200 font-serif mt-4'>
-            Visual Feedback
-          </h4>
-          <p>Show users when deferred updates are pending:</p>
-          <CodeBlock>{`{isFiltering && (
-  <div className="text-sm text-blue-600 flex items-center gap-2">
-    <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">...</svg>
-    Filtering tasks...
-  </div>
-)}`}</CodeBlock>
-          <p>
-            <strong>User experience:</strong> Input updates instantly, results
-            update slightly delayed. Users can continue typing without
-            interruption while the expensive filtering happens in the
-            background.
-          </p>
-
-          <p>
-            <strong>When to use:</strong>
+            <strong>Important considerations:</strong>
           </p>
           <ul>
-            <li>Search/filter operations on large datasets</li>
-            <li>Input fields that trigger expensive renders</li>
-            <li>Keeping critical UI responsive during heavy updates</li>
+            <li>
+              <p>When to use:</p>
+              <ul>
+                <li>Search inputs with expensive filtering or rendering</li>
+                <li>Any value that triggers heavy computation on change</li>
+                <li>Keeping text inputs responsive while updating lists</li>
+              </ul>
+            </li>
+            <li>
+              <p>useDeferredValue vs useTransition:</p>
+              <ul>
+                <li>
+                  useDeferredValue - Use when you don't control the state update
+                  (e.g., value comes from props)
+                </li>
+                <li>
+                  useTransition - Use when you control the setState call and
+                  want to mark it as low priority
+                </li>
+              </ul>
+            </li>
+            <li>
+              <p>
+                Compare the immediate value with the deferred value to detect
+                pending state (searchQuery !== deferredSearchQuery) and show
+                loading indicators.
+              </p>
+            </li>
           </ul>
-
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='useLayoutEffect'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             useLayoutEffect
           </h3>
           <p>
@@ -686,47 +653,31 @@ const isFiltering = searchQuery !== deferredSearchQuery;`}</CodeBlock>
             when you need to measure or mutate the DOM before users see it.
           </p>
           <p>
-            <strong>Real-world use cases from TeamPulse:</strong>
-          </p>
-
-          <h4 className='text-base dark:text-neutral-200 font-serif mt-4'>
-            1. Theme Class Application
-          </h4>
-          <p>
             In ThemeContext.tsx, theme changes happen before paint to prevent
-            flicker:
+            "flash of wrong theme", all thanks to useLayoutEffect. Had we used
+            useEffect instead, users would see a brief flash of the wrong theme
+            before the correct one got applied.
           </p>
           <CodeBlock>{`useLayoutEffect(() => {
   const root = document.documentElement;
 
-  // Remove existing theme classes
   root.classList.remove('light', 'dark');
 
-  // Add new theme class BEFORE browser paints
   root.classList.add(theme);
 
-  // Persist to localStorage
   localStorage.setItem('theme', theme);
 }, [theme]);`}</CodeBlock>
           <p>
-            <strong>Problem solved:</strong> Prevents "flash of wrong theme" on
-            load. If we used useEffect instead, users would see a brief flash of
-            the wrong theme before the correct one applies.
-          </p>
-
-          <h4 className='text-base dark:text-neutral-200 font-serif mt-4'>
-            2. Drag Position Synchronization
-          </h4>
-          <p>
-            In useDragAndDrop.ts, cursor and listeners update immediately during
-            drag:
+            Another example would be of useDragAndDrop.ts, where cursor and
+            listeners update immediately during drag, making dragging feel
+            native and responsive. In comparison, drag operations would have
+            felt sluggish with useEffect's async timing.
           </p>
           <CodeBlock>{`useLayoutEffect(() => {
   if (dragState.isDragging) {
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseup', handleMouseUp);
 
-    // Change cursor synchronously
     document.body.style.cursor = 'grabbing';
     document.body.style.userSelect = 'none';
 
@@ -739,37 +690,40 @@ const isFiltering = searchQuery !== deferredSearchQuery;`}</CodeBlock>
   }
 }, [dragState.isDragging, handleMouseMove, handleMouseUp]);`}</CodeBlock>
           <p>
-            <strong>Why useLayoutEffect:</strong> Drag operations feel sluggish
-            with useEffect's async timing. Synchronous updates make dragging
-            feel native and responsive.
-          </p>
-
-          <p>
-            <strong>Timing comparison:</strong>
+            <strong>Important considerations:</strong>
           </p>
           <ul>
-            <li>useEffect: React renders → Browser paints → useEffect runs</li>
             <li>
-              useLayoutEffect: React renders → useLayoutEffect runs → Browser
-              paints
+              <p>Timing comparison:</p>
+              <ul>
+                <li>
+                  useEffect: React renders → Browser paints → useEffect runs
+                </li>
+                <li>
+                  useLayoutEffect: React renders → useLayoutEffect runs →
+                  Browser paints
+                </li>
+              </ul>
+            </li>
+            <li>
+              <p>When to use:</p>
+              <ul>
+                <li>Preventing visual flicker (theme changes, animations)</li>
+                <li>Measuring DOM elements before paint</li>
+                <li>Synchronous DOM mutations</li>
+              </ul>
+            </li>
+            <li>
+              <p>
+                useLayoutEffect blocks visual updates. Use sparingly—prefer
+                useEffect unless you need synchronous DOM access.
+              </p>
             </li>
           </ul>
-
-          <p>
-            <strong>When to use:</strong>
-          </p>
-          <ul>
-            <li>Preventing visual flicker (theme changes, animations)</li>
-            <li>Measuring DOM elements before paint</li>
-            <li>Synchronous DOM mutations</li>
-          </ul>
-
-          <p>
-            <strong>Warning:</strong> useLayoutEffect blocks visual updates. Use
-            sparingly—prefer useEffect unless you need synchronous DOM access.
-          </p>
-
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='useInsertionEffect'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             useInsertionEffect
           </h3>
           <p>
@@ -779,15 +733,9 @@ const isFiltering = searchQuery !== deferredSearchQuery;`}</CodeBlock>
             any layout calculations.
           </p>
           <p>
-            <strong>Real-world use case from TeamPulse:</strong>
-          </p>
-
-          <h4 className='text-base dark:text-neutral-200 font-serif mt-4'>
-            Dynamic Theme Variables Injection
-          </h4>
-          <p>
-            In ThemeContext.tsx, CSS variables are injected before any other
-            effects:
+            In ThemeContext.tsx, CSS variables must be available before any
+            component reads computed styles. useInsertionEffect ensures the
+            earliest possible injection.
           </p>
           <CodeBlock>{`useInsertionEffect(() => {
   const style = document.createElement('style');
@@ -825,34 +773,26 @@ const isFiltering = searchQuery !== deferredSearchQuery;`}</CodeBlock>
   return () => style.remove();
 }, [theme]);`}</CodeBlock>
           <p>
-            <strong>Problem solved:</strong> CSS variables must be available
-            before any component reads computed styles. useInsertionEffect
-            ensures the earliest possible injection.
-          </p>
-
-          <p>
-            <strong>Execution order:</strong>
-          </p>
-          <CodeBlock>{`useInsertionEffect → useLayoutEffect → Browser Paint → useEffect`}</CodeBlock>
-
-          <p>
-            <strong>When to use:</strong>
+            <strong>Important considerations:</strong>
           </p>
           <ul>
-            <li>CSS-in-JS library development</li>
-            <li>Dynamic style injection that affects layout</li>
-            <li>Inserting global styles before component renders</li>
+            <li>
+              <p>Execution order:</p>
+              <CodeBlock>{`useInsertionEffect → useLayoutEffect → Browser Paint → useEffect`}</CodeBlock>
+            </li>
+            <li>
+              <p>When to use:</p>
+              <ul>
+                <li>CSS-in-JS library development</li>
+                <li>Dynamic style injection that affects layout</li>
+                <li>Inserting global styles before component renders</li>
+              </ul>
+            </li>
           </ul>
-
-          <p>
-            <strong>Warning:</strong> This is a specialized hook for library
-            authors. Most applications should use useEffect or useLayoutEffect
-            instead. Only use useInsertionEffect when you're building a
-            CSS-in-JS library or need to inject styles before any layout
-            calculations.
-          </p>
-
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='useRef'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             useRef
           </h3>
           <p>
@@ -861,92 +801,67 @@ const isFiltering = searchQuery !== deferredSearchQuery;`}</CodeBlock>
             accessing DOM elements and storing mutable values.
           </p>
           <p>
-            <strong>Real-world use cases from TeamPulse:</strong>
-          </p>
-
-          <h4 className='text-base dark:text-neutral-200 font-serif mt-4'>
-            1. DOM Element Reference
-          </h4>
-          <p>
             In useDragAndDrop.ts, useRef accesses the DOM node for drag
-            calculations:
+            calculation via .current, which doesn't trigger re-renders, making
+            it perfect for values that don't affect the visual output.
           </p>
           <CodeBlock>{`const elementRef = useRef<HTMLDivElement>(null);
 const initialPosRef = useRef<Position>(initialPosition);
 
-// Later used to access the DOM element
 const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
   if (elementRef.current) {
     const rect = elementRef.current.getBoundingClientRect();
-    // Use rect for calculations
   }
 };`}</CodeBlock>
           <p>
-            <strong>Why useRef:</strong> Accessing .current doesn't trigger
-            re-renders, making it perfect for values that don't affect the
-            visual output.
-          </p>
-
-          <h4 className='text-base dark:text-neutral-200 font-serif mt-4'>
-            2. Storing Widget References
-          </h4>
-          <p>
             In WidgetContainer.tsx, useRef stores a Map of child component
-            handles:
+            handles, whereas, storing the Map in state would cause unnecessary
+            re-renders on every update
           </p>
           <CodeBlock>{`const widgetRefs = useRef<Map<string, WidgetHandle>>(new Map());
 
-// Later used to call imperative methods
 widgetRefs.current.forEach((widget, id) => {
-  widget.refresh(); // Call method on child component
+  widget.refresh();
 });`}</CodeBlock>
           <p>
-            <strong>Problem solved:</strong> Parent needs to control child
-            widgets imperatively. Storing the Map in state would cause
-            unnecessary re-renders on every update.
-          </p>
-
-          <p>
-            <strong>useRef vs useState:</strong>
-          </p>
-          <CodeBlock>{`//  Bad - causes re-render on every timer tick
-const [intervalId, setIntervalId] = useState<number | null>(null);
-
-//  Good - no re-render needed
-const intervalIdRef = useRef<number | null>(null);`}</CodeBlock>
-
-          <p>
-            <strong>When to use:</strong>
+            <strong>Important considerations:</strong>
           </p>
           <ul>
-            <li>Accessing DOM elements (refs)</li>
             <li>
-              Storing mutable values that don't affect render (timers, previous
-              values)
+              <p>useRef vs useState:</p>
+              <CodeBlock>{`const [intervalId, setIntervalId] = useState<number | null>(null);
+
+const intervalIdRef = useRef<number | null>(null);`}</CodeBlock>
             </li>
-            <li>Keeping references to objects across renders</li>
+            <li>
+              <p>When to use:</p>
+              <ul>
+                <li>Accessing DOM elements (refs)</li>
+                <li>
+                  Storing mutable values that don't affect render (timers,
+                  previous values)
+                </li>
+                <li>Keeping references to objects across renders</li>
+              </ul>
+            </li>
+            <li>
+              <p>
+                If changing the value should trigger a re-render, use useState.
+                If not, use useRef.
+              </p>
+            </li>
           </ul>
-
-          <p>
-            <strong>Key principle:</strong> If changing the value should trigger
-            a re-render, use useState. If not, use useRef.
-          </p>
-
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='useImperativeHandle'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             useImperativeHandle
           </h3>
           <p>
             useImperativeHandle customizes the ref value exposed to parent
             components when using forwardRef. Instead of exposing the entire DOM
-            element, you can expose only specific methods.
+            element, we can expose only specific methods.
           </p>
-          <p>
-            <strong>Real-world use case from TeamPulse:</strong>
-          </p>
-
-          <h4 className='text-base dark:text-neutral-200 font-serif mt-4'>
-            Widget Control Interface
-          </h4>
           <p>
             In DraggableWidget.tsx, a custom API is exposed to parent
             components:
@@ -962,16 +877,15 @@ export const DraggableWidget = forwardRef<WidgetHandle, DraggableWidgetProps>(
     const [refreshKey, setRefreshKey] = useState(0);
     const { position, reset } = useDragAndDrop(initialPosition);
 
-    // Expose custom API to parent
     useImperativeHandle(
       ref,
       () => ({
         refresh: () => {
           console.log(\`Refreshing widget: \${title}\`);
-          setRefreshKey(prev => prev + 1); // Force re-render
+          setRefreshKey(prev => prev + 1);
         },
         resetPosition: () => {
-          reset(); // Call custom hook's reset
+          reset();
         },
         getPosition: () => position,
       }),
@@ -981,45 +895,51 @@ export const DraggableWidget = forwardRef<WidgetHandle, DraggableWidgetProps>(
     return <div>...</div>;
   }
 );`}</CodeBlock>
-
-          <p>Parent component usage (WidgetContainer.tsx):</p>
+          <p>
+            Parent needs to control multiple child widgets imperatively without
+            exposing internal implementation details. The alternative (lifting
+            state up) would be complex and cause unnecessary re-renders.
+          </p>
           <CodeBlock>{`const widgetRefs = useRef<Map<string, WidgetHandle>>(new Map());
 
 const refreshAllWidgets = useCallback(() => {
   widgetRefs.current.forEach((widget, id) => {
-    widget.refresh(); // Call child's custom method
+    widget.refresh();
   });
 }, []);
 
-// Attach refs to children
 <DraggableWidget
   ref={(el) => {
     if (el) widgetRefs.current.set(widget.id, el);
   }}
 />`}</CodeBlock>
           <p>
-            <strong>Problem solved:</strong> Parent needs to control multiple
-            child widgets imperatively without exposing internal implementation
-            details. The alternative (lifting state up) would be complex and
-            cause unnecessary re-renders.
-          </p>
-
-          <p>
-            <strong>When to use:</strong>
+            <strong>Important considerations:</strong>
           </p>
           <ul>
-            <li>Creating reusable component libraries</li>
-            <li>Exposing imperative APIs (focus, play, pause)</li>
-            <li>Hiding implementation details while allowing parent control</li>
+            <li>
+              <p>When to use:</p>
+              <ul>
+                <li>Creating reusable component libraries</li>
+                <li>Exposing imperative APIs (focus, play, pause)</li>
+                <li>
+                  Hiding implementation details while allowing parent control
+                </li>
+              </ul>
+            </li>
+            <li>
+              <p>
+                {' '}
+                We should use it only when imperative control is genuinely
+                needed, otherwise, declarative patterns (props and state should
+                be preferred.
+              </p>
+            </li>
           </ul>
-
-          <p>
-            <strong>When NOT to use:</strong> Prefer declarative patterns (props
-            and state) when possible. Use useImperativeHandle only when
-            imperative control is genuinely needed.
-          </p>
-
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='useId'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             useId
           </h3>
           <p>
@@ -1028,24 +948,19 @@ const refreshAllWidgets = useCallback(() => {
             associating form labels, inputs, and ARIA attributes.
           </p>
           <p>
-            <strong>Real-world use case from TeamPulse:</strong>
-          </p>
-
-          <h4 className='text-base dark:text-neutral-200 font-serif mt-4'>
-            Accessible Form Fields
-          </h4>
-          <p>
-            In AddTaskForm.tsx, useId creates stable IDs for form accessibility:
+            In AddTaskForm.tsx, useId creates stable IDs for form accessibility.
+            This way, form fields are properly associated with labels for screen
+            readers. Moreover, IDs are unique across the app with no collisions,
+            and they remain stable across server/client renders.
           </p>
           <CodeBlock>{`const titleId = useId();
 const priorityId = useId();
 const formId = useId();
 
 const errorId = \`\${formId}-error\`;
-const helpId = \`\${formId}-help\`;`}</CodeBlock>
+const helpId = \`\${formId}-help\`;
 
-          <p>Usage in JSX:</p>
-          <CodeBlock>{`<form id={formId} aria-describedby={error ? errorId : helpId}>
+<form id={formId} aria-describedby={error ? errorId : helpId}>
   <label htmlFor={titleId}>Task Title</label>
   <input
     id={titleId}
@@ -1067,39 +982,32 @@ const helpId = \`\${formId}-help\`;`}</CodeBlock>
   </p>
 </form>`}</CodeBlock>
           <p>
-            <strong>Problem solved:</strong> Form fields are properly associated
-            with labels for screen readers. IDs are unique across the app with
-            no collisions, and they remain stable across server/client renders.
-          </p>
-
-          <p>
-            <strong>Why useId is better than alternatives:</strong>
-          </p>
-          <CodeBlock>{`//  Bad - changes on every render!
-const id = Math.random().toString();
-
-//  Bad - collisions with multiple forms
-const id = 'title-input';
-
-//  Good - stable and unique
-const id = useId();`}</CodeBlock>
-
-          <p>
-            <strong>When to use:</strong>
+            <strong>Important considerations:</strong>
           </p>
           <ul>
-            <li>Form label/input associations</li>
-            <li>ARIA attributes (aria-describedby, aria-labelledby)</li>
-            <li>Any case requiring unique IDs across component instances</li>
+            <li>
+              <p>
+                <strong>When to use:</strong>
+              </p>
+              <ul>
+                <li>Form label/input associations</li>
+                <li>ARIA attributes (aria-describedby, aria-labelledby)</li>
+                <li>
+                  Any case requiring unique IDs across component instances
+                </li>
+              </ul>
+            </li>
+            <li>
+              <p>
+                useId generates matching IDs on server and client, preventing
+                hydration mismatches that would occur with random IDs.
+              </p>
+            </li>
           </ul>
-
-          <p>
-            <strong>SSR compatibility:</strong> useId generates matching IDs on
-            server and client, preventing hydration mismatches that would occur
-            with random IDs.
-          </p>
-
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='useTransition'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             useTransition
           </h3>
           <p>
@@ -1109,26 +1017,22 @@ const id = useId();`}</CodeBlock>
             prioritize urgent updates like user input.
           </p>
           <p>
-            <strong>Real-world use cases from TeamPulse:</strong>
+            In TaskList.tsx, task updates don't block the UI. As a result, UI
+            stays responsive during async task updates. This is primarily
+            because, React marks the setState as "low priority" and can
+            interrupt it if the user interacts with the page.
           </p>
-
-          <h4 className='text-base dark:text-neutral-200 font-serif mt-4'>
-            1. Task Toggle Operations
-          </h4>
-          <p>In TaskList.tsx, task updates don't block the UI:</p>
           <CodeBlock>{`const [isPending, startTransition] = useTransition();
 
 const handleToggle = async (id: string) => {
   const task = tasks.find(t => t.id === id);
   if (!task) return;
 
-  // Optimistic update happens immediately
   addOptimisticUpdate({ type: 'toggle', id });
 
   try {
     const updated = await mockApi.updateTask(id, { completed: !task.completed });
 
-    // Wrap state update in transition
     startTransition(() => {
       setTasks(prev => prev.map(t => (t.id === id ? updated : t)));
     });
@@ -1137,26 +1041,17 @@ const handleToggle = async (id: string) => {
   }
 };`}</CodeBlock>
           <p>
-            <strong>Problem solved:</strong> UI stays responsive during async
-            task updates. React marks the setState as "low priority" and can
-            interrupt it if the user interacts with the page.
-          </p>
-
-          <h4 className='text-base dark:text-neutral-200 font-serif mt-4'>
-            2. Task Creation with Form Reset
-          </h4>
-          <p>
-            In AddTaskForm.tsx, form resets don't block subsequent interactions:
+            In AddTaskForm.tsx, form resets don't block subsequent interactions.
+            If the user immediately starts typing in the form again, React can
+            prioritize that input over the form reset, preventing input lag.
           </p>
           <CodeBlock>{`const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
   setIsSubmitting(true);
 
   try {
-    // Do async work first
     const newTask = await mockApi.addTask(title.trim(), priority);
 
-    // Then wrap only state updates in transition
     startTransition(() => {
       onTaskAdded(newTask);
       setTitle('');
@@ -1169,35 +1064,27 @@ const handleToggle = async (id: string) => {
   }
 };`}</CodeBlock>
           <p>
-            <strong>Why useTransition:</strong> If the user immediately starts
-            typing in the form again, React can prioritize that input over the
-            form reset, preventing input lag.
-          </p>
-
-          <p>
-            <strong>Key differences from useDeferredValue:</strong>
+            <strong>Important considerations:</strong>
           </p>
           <ul>
             <li>
-              useTransition - You control which state updates are transitions
-              (wrap setState calls)
-            </li>
-            <li>
-              useDeferredValue - React defers the value automatically (no
-              control over setState)
+              <p>useTransition vs useDeferredValue:</p>
+              <ul>
+                <li>
+                  useTransition - We control which state updates are transitions
+                  (wrap setState calls)
+                </li>
+                <li>
+                  useDeferredValue - React defers the value automatically (no
+                  control over setState)
+                </li>
+              </ul>
             </li>
           </ul>
-
-          <p>
-            <strong>isPending indicator:</strong>
-          </p>
-          <CodeBlock>{`{isPending && <Spinner />}`}</CodeBlock>
-          <p>
-            Use the isPending flag to show loading indicators during
-            transitions.
-          </p>
-
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='useOptimistic'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             useOptimistic
           </h3>
           <p>
@@ -1206,13 +1093,6 @@ const handleToggle = async (id: string) => {
             providing native app-like responsiveness without manual undo logic.
           </p>
           <p>
-            <strong>Real-world use case from TeamPulse:</strong>
-          </p>
-
-          <h4 className='text-base dark:text-neutral-200 font-serif mt-4'>
-            Task List Operations
-          </h4>
-          <p>
             In TaskList.tsx, tasks update instantly with automatic rollback:
           </p>
           <CodeBlock>{`const [optimisticTasks, addOptimisticUpdate] = useOptimistic<Task[], OptimisticAction>(
@@ -1220,13 +1100,11 @@ const handleToggle = async (id: string) => {
   (state, action) => {
     switch (action.type) {
       case 'toggle':
-        // Show toggled immediately
         return state.map(task =>
           task.id === action.id ? { ...task, completed: !task.completed } : task
         );
 
       case 'delete':
-        // Remove from list immediately
         return state.filter(task => task.id !== action.id);
 
       default:
@@ -1235,256 +1113,102 @@ const handleToggle = async (id: string) => {
   }
 );
 
-// Usage
 const handleToggle = async (id: string) => {
-  // UI updates INSTANTLY
   addOptimisticUpdate({ type: 'toggle', id });
 
   try {
     await mockApi.updateTask(id, { completed: !task.completed });
-    // Success: state syncs
   } catch (error) {
-    // Error: AUTOMATICALLY rolls back to previous state
     alert('Failed to update task');
   }
 };`}</CodeBlock>
           <p>
-            <strong>Problem solved:</strong> Users see instant feedback before
-            the server responds (typically 300-500ms). If the operation fails,
-            the UI automatically reverts without manual undo logic.
+            Users see instant feedback before the server responds (typically
+            300-500ms). If the operation fails, the UI automatically reverts
+            without manual undo logic.
           </p>
-
-          <h4 className='text-base dark:text-neutral-200 font-serif mt-4'>
-            Visual Pending State
-          </h4>
-          <p>Show which updates are pending confirmation:</p>
-          <CodeBlock>{`{optimisticTasks.map(task => {
-  const actualTask = tasks.find(t => t.id === task.id);
-  const isPendingTask = !actualTask || actualTask.completed !== task.completed;
-
-  return (
-    <TaskItem
-      key={task.id}
-      task={task}
-      isPending={isPendingTask} // Show visual feedback
-    />
-  );
-})}`}</CodeBlock>
           <p>
-            <strong>User experience comparison:</strong>
+            <strong>Important considerations:</strong>
           </p>
           <ul>
             <li>
-              Without useOptimistic: 300-500ms delay before checkbox updates
+              <p>When to use:</p>
+              <ul>
+                <li>Form submissions that update the UI</li>
+                <li>Toggle operations (likes, checkboxes, favorites)</li>
+                <li>Delete operations with optimistic removal</li>
+                <li>Any operation where instant feedback improves UX</li>
+              </ul>
             </li>
+
             <li>
-              With useOptimistic: Checkbox updates immediately, feels like a
-              native app
+              <p>
+                It's better than manual optimistic updates because automatic
+                rollback on failure is safer and requires less code than
+                manually tracking and undoing optimistic changes.
+              </p>
             </li>
           </ul>
-
-          <p>
-            <strong>When to use:</strong>
-          </p>
-          <ul>
-            <li>Form submissions that update the UI</li>
-            <li>Toggle operations (likes, checkboxes, favorites)</li>
-            <li>Delete operations with optimistic removal</li>
-            <li>Any operation where instant feedback improves UX</li>
-          </ul>
-
-          <p>
-            <strong>Why it's better than manual optimistic updates:</strong>{' '}
-            Automatic rollback on failure is safer and requires less code than
-            manually tracking and undoing optimistic changes.
-          </p>
-
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
-            Precautions: When NOT to Use Hooks
+          <h2
+            id='things-to-note'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
+            A few things to note
           </h2>
           <p>
             While hooks are powerful, they're often misused. Here are common
             mistakes and when to avoid using certain hooks, illustrated with
             examples from real-world scenarios.
           </p>
-
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
-            1. Overusing useMemo and useCallback
-          </h3>
-          <p>
-            The most common mistake is premature optimization. These hooks add
-            overhead—don't use them unless there's a measurable benefit.
-          </p>
-          <CodeBlock>{`//  Bad - premature optimization
-const name = useMemo(() => firstName + ' ' + lastName, [firstName, lastName]);
-const handleClick = useCallback(() => setCount(count + 1), [count]);
-
-//  Good - just do it directly
-const name = firstName + ' ' + lastName;
-const handleClick = () => setCount(count + 1);`}</CodeBlock>
-          <p>
-            <strong>When to actually use:</strong>
-          </p>
           <ul>
             <li>
-              useMemo: Expensive calculations (filtering 1000+ items, complex
-              mathematical operations)
+              Overusing useMemo and useCallback: The most common mistake is
+              premature optimization. These hooks add overhead, so don't use
+              them unless there's a measurable benefit.
             </li>
             <li>
-              useCallback: Passing to memoized child components or as effect
-              dependencies
+              When to actually use:
+              <ul>
+                <li>
+                  useMemo: Expensive calculations (filtering a lot of items,
+                  complex mathematical operations)
+                </li>
+                <li>
+                  useCallback: Passing to memoized child components or as effect
+                  dependencies
+                </li>
+              </ul>
+            </li>
+            <li>
+              Using Context for High-Frequency Updates: Context causes all
+              consumers to re-render when any value changes. Avoid it for
+              rapidly changing values.
+            </li>
+
+            <li>
+              Storing Non-Reactive Values in State: If a value doesn't affect
+              rendering, don't store it in state, use useRef instead.
+            </li>
+
+            <li>
+              Side Effects in Render: Never perform side effects directly in the
+              component body, always use useEffect.
+            </li>
+
+            <li>
+              Excessive useEffect Dependencies: Adding too many dependencies can
+              cause infinite loops or excessive re-runs.
+            </li>
+
+            <li>
+              Forgetting useEffect Cleanup: Always clean up subscriptions,
+              timers, and event listeners to prevent memory leaks.
             </li>
           </ul>
-
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
-            2. Using Context for High-Frequency Updates
-          </h3>
-          <p>
-            Context causes all consumers to re-render when any value changes.
-            Avoid it for rapidly changing values.
-          </p>
-          <CodeBlock>{`//  Bad - every consumer re-renders on every mouse move!
-const MouseContext = createContext({ x: 0, y: 0 });
-
-function MouseProvider({ children }) {
-  const [pos, setPos] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMove = (e) => setPos({ x: e.clientX, y: e.clientY });
-    window.addEventListener('mousemove', handleMove);
-    return () => window.removeEventListener('mousemove', handleMove);
-  }, []);
-
-  return <MouseContext.Provider value={pos}>{children}</MouseContext.Provider>;
-}
-
-//  Good - use local state or a proper state management library
-function Component() {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  // Handle locally or use zustand/redux for fine-grained updates
-}`}</CodeBlock>
-
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
-            3. Storing Non-Reactive Values in State
-          </h3>
-          <p>
-            If a value doesn't affect rendering, don't store it in state—use
-            useRef instead.
-          </p>
-          <CodeBlock>{`//  Bad - causes unnecessary re-renders
-const [timerId, setTimerId] = useState<number | null>(null);
-
-useEffect(() => {
-  const id = setInterval(() => console.log('tick'), 1000);
-  setTimerId(id); // Triggers re-render for no reason
-  return () => clearInterval(timerId);
-}, []);
-
-//  Good - ref doesn't trigger re-renders
-const timerIdRef = useRef<number | null>(null);
-
-useEffect(() => {
-  timerIdRef.current = setInterval(() => console.log('tick'), 1000);
-  return () => clearInterval(timerIdRef.current);
-}, []);`}</CodeBlock>
-
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
-            4. Side Effects in Render
-          </h3>
-          <p>
-            Never perform side effects directly in the component body—always use
-            useEffect.
-          </p>
-          <CodeBlock>{`function Component() {
-  //  Bad - modifying DOM during render
-  document.title = 'My App';
-
-  //  Bad - calling API during render
-  fetch('/api/data').then(setData);
-
-  return <div>...</div>;
-}
-
-function Component() {
-  //  Good - side effects in useEffect
-  useEffect(() => {
-    document.title = 'My App';
-  }, []);
-
-  useEffect(() => {
-    fetch('/api/data').then(setData);
-  }, []);
-
-  return <div>...</div>;
-}`}</CodeBlock>
-
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
-            5. Excessive useEffect Dependencies
-          </h3>
-          <p>
-            Adding too many dependencies can cause infinite loops or excessive
-            re-runs.
-          </p>
-          <CodeBlock>{`//  Bad - infinite loop
-const [count, setCount] = useState(0);
-
-useEffect(() => {
-  setCount(count + 1); // count changes → effect runs → count changes → ...
-}, [count]);
-
-//  Good - use functional update
-useEffect(() => {
-  setCount(c => c + 1); // No dependency needed
-}, []);`}</CodeBlock>
-
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
-            6. Forgetting useEffect Cleanup
-          </h3>
-          <p>
-            Always clean up subscriptions, timers, and event listeners to
-            prevent memory leaks.
-          </p>
-          <CodeBlock>{`//  Bad - memory leak
-useEffect(() => {
-  const interval = setInterval(() => console.log('tick'), 1000);
-  // Missing cleanup!
-}, []);
-
-//  Good - proper cleanup
-useEffect(() => {
-  const interval = setInterval(() => console.log('tick'), 1000);
-  return () => clearInterval(interval);
-}, []);`}</CodeBlock>
-
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
-            Summary: The Golden Rule
-          </h3>
-          <p>
-            <strong>
-              Use hooks to solve specific problems, not because they exist.
-            </strong>{' '}
-            Each hook in TeamPulse Dashboard addresses a genuine need:
-          </p>
-          <ul>
-            <li>useState when values affect rendering</li>
-            <li>useEffect for side effects and synchronization</li>
-            <li>useRef for non-reactive values and DOM access</li>
-            <li>useMemo/useCallback only when performance matters</li>
-            <li>
-              useContext for truly global state (not high-frequency updates)
-            </li>
-            <li>
-              Advanced hooks (useOptimistic, useTransition) for specific UX
-              improvements
-            </li>
-          </ul>
-          <p>
-            The key is knowing when NOT to use them. Premature optimization and
-            unnecessary complexity make code harder to maintain without
-            providing meaningful benefits. Start simple, measure performance,
-            and optimize only when needed.
-          </p>
         </div>
+      </div>
+      <div id='references'>
+        <References refs={refs} />
       </div>
     </section>
   );

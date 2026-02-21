@@ -1,7 +1,11 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import BlogHeader from '../_components/BlogHeader';
-import CodeBlock from '../../../components/codeBlock';
+import CodeBlock from '../_components/CodeBlock';
+import Overview from '../_components/Overview';
+import References from '../_components/References';
+import { overviewContent } from './overviewContent';
+import { refs } from './references';
 
 export const metadata: Metadata = {
   title: 'Debouncing, Deferring and Throttling',
@@ -23,26 +27,19 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   return (
-    <section>
+    <section className='w-full'>
       <BlogHeader
         title='Debouncing, Deferring and Throttling'
         date='04-12-2025'
       />
-      <div className='prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-300 mt-12 text-justify'>
-        <div className='text-justify'>
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>Content</h2>
-          <ul>
-            <li>Introduction</li>
-            <li>What is Debouncing?</li>
-            <li>What is Throttling?</li>
-            <li>What is Deferring?</li>
-            <li>Key Differences</li>
-            <li>When to Use Each Technique</li>
-            <li>Implementation Examples</li>
-            <li>Conclusion</li>
-          </ul>
+      <div className='prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-300 mt-12 text-justify w-full'>
+        <div className='text-justify w-full'>
+          <Overview topics={overviewContent} />
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2
+            id='introduction'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
             Introduction
           </h2>
           <p>
@@ -54,7 +51,10 @@ export default function BlogPage() {
             debouncing, throttling, and deferring.
           </p>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2
+            id='debouncing'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
             What is Debouncing?
           </h2>
           <p>
@@ -91,7 +91,10 @@ export default function BlogPage() {
             </li>
           </ul>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2
+            id='throttling'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
             What is Throttling?
           </h2>
           <p>
@@ -126,7 +129,10 @@ export default function BlogPage() {
             </li>
           </ul>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2
+            id='deferring'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
             What is Deferring?
           </h2>
           <p>
@@ -164,7 +170,10 @@ export default function BlogPage() {
             </li>
           </ul>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2
+            id='key-differences'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
             Key Differences
           </h2>
           <div className='overflow-x-auto'>
@@ -220,7 +229,10 @@ export default function BlogPage() {
             </table>
           </div>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2
+            id='when-to-use'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
             When to Use Each Technique
           </h2>
           <p>
@@ -267,11 +279,17 @@ export default function BlogPage() {
             </li>
           </ul>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2
+            id='implementation'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
             Implementation Examples
           </h2>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='debouncing-implementation'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Debouncing Implementation
           </h3>
           <CodeBlock>{`// Vanilla JavaScript debounce
@@ -332,7 +350,10 @@ function SearchComponent() {
   );
 }`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='throttling-implementation'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Throttling Implementation
           </h3>
           <CodeBlock>{`// Vanilla JavaScript throttle
@@ -388,7 +409,10 @@ function ScrollTracker() {
   return <div>Scroll position: {scrollPosition}px</div>;
 }`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='deferring-implementation'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Deferring Implementation (React)
           </h3>
           <CodeBlock>{`import { useDeferredValue, useState, memo } from 'react';
@@ -471,7 +495,10 @@ function SearchWithTransition() {
   );
 }`}</CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='conclusion'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             Conclusion
           </h2>
           <p>
@@ -501,6 +528,9 @@ function SearchWithTransition() {
             needed.
           </p>
         </div>
+      </div>
+      <div id='references'>
+        <References refs={refs} />
       </div>
     </section>
   );

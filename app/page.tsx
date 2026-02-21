@@ -16,7 +16,7 @@ const TypewriterClient = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className='dark:text-yellow-200 text-rose-500'>{name}</div>
+      <div className='dark:text-amber-300 text-rose-500'>{name}</div>
     ),
   }
 );

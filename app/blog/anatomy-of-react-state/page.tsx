@@ -1,7 +1,11 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import BlogHeader from '../_components/BlogHeader';
-import CodeBlock from '../../../components/codeBlock';
+import CodeBlock from '../_components/CodeBlock';
+import Overview from '../_components/Overview';
+import References from '../_components/References';
+import { overviewContent } from './overviewContent';
+import { refs } from './references';
 
 export const metadata: Metadata = {
   title: 'Anatomy of React State',
@@ -23,26 +27,16 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   return (
-    <section>
+    <section className='w-full'>
       <BlogHeader title='Anatomy of React State' date='10-01-2026' />
-      <div className='prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-300 mt-12 text-justify'>
-        <div className='text-justify'>
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>Content</h2>
-          <ul>
-            <li>Introduction: What is State?</li>
-            <li>The React Fiber Architecture</li>
-            <li>How useState Works Under the Hood</li>
-            <li>State Updates and Batching</li>
-            <li>Reconciliation and Re-renders</li>
-            <li>State vs Props: When to Use What</li>
-            <li>The Component Lifecycle and State</li>
-            <li>Common Pitfalls and Anti-patterns</li>
-            <li>State Colocation and Lifting State Up</li>
-            <li>Performance Optimization Techniques</li>
-            <li>The Mental Model</li>
-          </ul>
+      <div className='prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-300 mt-12 text-justify w-full'>
+        <div className='text-justify w-full'>
+          <Overview topics={overviewContent} />
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='introduction'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             Introduction: What is State?
           </h2>
           <p>
@@ -57,7 +51,10 @@ export default function BlogPage() {
             separate good React code from great React code.
           </p>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='fiber-architecture'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             The React Fiber Architecture
           </h2>
           <p>
@@ -79,7 +76,10 @@ export default function BlogPage() {
             </li>
           </ul>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='usestate-internals'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             How useState Works Under the Hood
           </h2>
           <p>
@@ -100,7 +100,10 @@ export default function BlogPage() {
             React relies on call order to match hooks with their stored state.
           </p>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='state-updates-batching'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             State Updates and Batching
           </h2>
           <p>
@@ -125,7 +128,10 @@ export default function BlogPage() {
             (promises, setTimeout, native events)
           </p>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='sync-vs-async'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Synchronous vs Asynchronous Updates
           </h3>
           <p>State updates are scheduled, not immediate:</p>
@@ -142,7 +148,10 @@ function handleClick() {
   });
 }`}</CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='reconciliation'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             Reconciliation and Re-renders
           </h2>
           <p>
@@ -167,7 +176,10 @@ function handleClick() {
             </li>
           </ol>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='triggers-rerenders'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             What Triggers Re-renders?
           </h3>
           <ul>
@@ -177,7 +189,10 @@ function handleClick() {
             <li>Parent component re-renders (unless memoized)</li>
           </ul>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='state-vs-props'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             State vs Props: When to Use What
           </h2>
           <p>
@@ -198,11 +213,17 @@ function Display({ count }) {
   return <div>Count: {count}</div>;
 }`}</CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='pitfalls'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             Common Pitfalls and Anti-patterns
           </h2>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='stale-closures'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             1. Stale Closures
           </h3>
           <CodeBlock>{`const [count, setCount] = useState(0);
@@ -218,7 +239,10 @@ useEffect(() => {
 // Fix: Use callback form
 setCount(c => c + 1);  // ✅ Always uses latest value`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='derived-state'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             2. Derived State
           </h3>
           <CodeBlock>{`// ❌ Bad - storing derived state
@@ -233,7 +257,10 @@ useEffect(() => {
 const [items, setItems] = useState([]);
 const count = items.length;  // Just derive it!`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='initializing-from-props'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             3. Initializing State from Props
           </h3>
           <CodeBlock>{`// ❌ Anti-pattern - props changes won't update state
@@ -255,11 +282,17 @@ useEffect(() => {
   setValue(initialValue);
 }, [initialValue]);`}</CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='colocation'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             State Colocation and Lifting State Up
           </h2>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='colocation-close'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Colocation: Keep State Close to Where It's Used
           </h3>
           <CodeBlock>{`// ❌ Bad - state in parent, only used by child
@@ -279,7 +312,10 @@ function Modal() {
   // Modal manages its own state
 }`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='lifting-state'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Lifting State Up: Share State Between Siblings
           </h3>
           <CodeBlock>{`// When siblings need to share state, lift it to parent
@@ -294,11 +330,17 @@ function Parent() {
   );
 }`}</CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='performance'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             Performance Optimization Techniques
           </h2>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='lazy-initial-state'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             1. Lazy Initial State
           </h3>
           <CodeBlock>{`// ❌ Expensive calculation runs on every render
@@ -307,7 +349,10 @@ const [data, setData] = useState(expensiveComputation());
 // ✅ Lazy initializer runs only once
 const [data, setData] = useState(() => expensiveComputation());`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='bail-out'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             2. Bail Out of Updates
           </h3>
           <CodeBlock>{`// React skips re-render if new state === old state (Object.is comparison)
@@ -319,7 +364,10 @@ const [user, setUser] = useState({ name: 'John', age: 30 });
 setUser(prev => prev);  // No re-render - same object reference
 setUser({ ...user });   // Re-renders - new object reference`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='state-splitting'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             3. State Splitting
           </h3>
           <CodeBlock>{`// ❌ One state object - updating firstName re-renders everything
@@ -330,7 +378,10 @@ const [firstName, setFirstName] = useState('');
 const [lastName, setLastName] = useState('');
 const [email, setEmail] = useState('');`}</CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='mental-model'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             The Mental Model
           </h2>
           <p>To master React state, internalize these principles:</p>
@@ -361,7 +412,10 @@ const [email, setEmail] = useState('');`}</CodeBlock>
             </li>
           </ol>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='conclusion'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             Conclusion
           </h2>
           <p>
@@ -376,6 +430,9 @@ const [email, setEmail] = useState('');`}</CodeBlock>
             mysterious.
           </p>
         </div>
+      </div>
+      <div id='references'>
+        <References refs={refs} />
       </div>
     </section>
   );

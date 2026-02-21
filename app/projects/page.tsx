@@ -145,7 +145,7 @@ export default function ProjectPage() {
           .map((project) => (
             <div key={project.name}>
               <div className='flex items-center gap-4 justify-between border-b-[1px] border-neutral-300 dark:border-neutral-700 mb-6'>
-                <p className='dark:text-yellow-200 text-rose-500'>
+                <p className='dark:text-amber-300 text-rose-500'>
                   {project.name}
                 </p>
                 <div className='flex items-center gap-4 justify-between'>

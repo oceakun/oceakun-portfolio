@@ -15,7 +15,7 @@ export default function ExperincePage() {
       <div className='prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-200 mt-10'>
         <div>
           <span className='grid grid-cols-[auto_1fr_auto] items-center mt-4 max-w-[650px]'>
-            <mark className='bg-transparent dark:text-yellow-200 text-rose-500 '>
+            <mark className='bg-transparent dark:text-amber-300 text-rose-500 '>
               IIT Delhi
             </mark>
             <span className='h-[0.1em] bg-neutral-400 dark:bg-neutral-700 mx-2' />
@@ -51,7 +51,7 @@ export default function ExperincePage() {
 
         <div className='mt-12'>
           <span className='grid grid-cols-[auto_1fr_auto] items-center mt-4 max-w-[650px]'>
-            <mark className='bg-transparent dark:text-yellow-200 text-rose-500'>
+            <mark className='bg-transparent dark:text-amber-300 text-rose-500'>
               Devkit
             </mark>
             <span className='h-[0.1em] bg-neutral-400  dark:bg-neutral-700 mx-2' />
@@ -84,7 +84,7 @@ export default function ExperincePage() {
 
         <div className='mt-12'>
           <span className='grid grid-cols-[auto_1fr_auto] items-center mt-4 max-w-[650px]'>
-            <mark className='bg-transparent dark:text-yellow-200 text-rose-500'>
+            <mark className='bg-transparent dark:text-amber-300 text-rose-500'>
               Radiowalla
             </mark>
             <span className='h-[0.1em] bg-neutral-400 dark:bg-neutral-700 mx-2' />

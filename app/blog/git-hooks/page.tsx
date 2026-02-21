@@ -1,7 +1,11 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import BlogHeader from '../_components/BlogHeader';
-import CodeBlock from '../../../components/codeBlock';
+import CodeBlock from '../_components/CodeBlock';
+import Overview from '../_components/Overview';
+import References from '../_components/References';
+import { overviewContent } from './overviewContent';
+import { refs } from './references';
 
 export const metadata: Metadata = {
   title: 'Git Hooks: Automate Your Workflow',
@@ -23,25 +27,16 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   return (
-    <section>
+    <section className='w-full'>
       <BlogHeader title='Git Hooks: Automate Your Workflow' date='11-01-2026' />
-      <div className='prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-300 mt-12 text-justify'>
-        <div className='text-justify'>
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>Content</h2>
-          <ul>
-            <li>What Are Git Hooks?</li>
-            <li>Types of Git Hooks</li>
-            <li>Setting Up Your First Hook</li>
-            <li>Client-Side Hooks Deep Dive</li>
-            <li>Server-Side Hooks</li>
-            <li>Practical Examples</li>
-            <li>Managing Hooks with Husky</li>
-            <li>Best Practices</li>
-            <li>Bypassing Hooks (When and Why)</li>
-            <li>Troubleshooting Common Issues</li>
-          </ul>
+      <div className='prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-300 mt-12 text-justify w-full'>
+        <div className='text-justify w-full'>
+          <Overview topics={overviewContent} />
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='what-are-git-hooks'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             What Are Git Hooks?
           </h2>
           <p>
@@ -62,12 +57,18 @@ export default function BlogPage() {
             activate them.
           </p>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='types'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             Types of Git Hooks
           </h2>
           <p>Git provides two categories of hooks:</p>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='client-side'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Client-Side Hooks
           </h3>
           <p>
@@ -107,7 +108,10 @@ export default function BlogPage() {
             </li>
           </ul>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='server-side'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Server-Side Hooks
           </h3>
           <p>Run on the Git server (GitHub, GitLab, etc.):</p>
@@ -125,7 +129,10 @@ export default function BlogPage() {
             </li>
           </ul>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='first-hook'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             Setting Up Your First Hook
           </h2>
           <p>
@@ -133,7 +140,10 @@ export default function BlogPage() {
             allowing commits.
           </p>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='create-hook'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Step 1: Create the Hook File
           </h3>
           <CodeBlock>{`#!/bin/bash
@@ -157,12 +167,18 @@ fi
 echo "✅ ESLint passed!"
 exit 0`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='make-executable'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Step 2: Make It Executable
           </h3>
           <CodeBlock>{`chmod +x .git/hooks/pre-commit`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='test-hook'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Step 3: Test It
           </h3>
           <CodeBlock>{`# Make a change and try to commit
@@ -171,11 +187,17 @@ git commit -m "test commit"
 
 # Hook runs automatically`}</CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='client-deep-dive'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             Client-Side Hooks Deep Dive
           </h2>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='pre-commit'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             1. pre-commit: Code Quality Gate
           </h3>
           <p>
@@ -221,7 +243,10 @@ fi
 echo "✅ All checks passed!"
 exit 0`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='commit-msg'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             2. commit-msg: Enforce Commit Message Standards
           </h3>
           <p>
@@ -253,7 +278,10 @@ fi
 echo "✅ Commit message valid"
 exit 0`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='pre-push'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             3. pre-push: Final Safety Check
           </h3>
           <p>Run comprehensive tests before pushing to remote.</p>
@@ -305,7 +333,10 @@ fi
 echo "✅ All checks passed! Pushing..."
 exit 0`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='post-merge'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             4. post-merge: Automatic Dependency Updates
           </h3>
           <CodeBlock>{`#!/bin/bash
@@ -327,11 +358,17 @@ fi
 echo "✅ Post-merge tasks complete"
 exit 0`}</CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='server-hooks'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             Server-Side Hooks
           </h2>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='post-receive'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             post-receive: Automated Deployment
           </h3>
           <p>Deploy your application automatically when code is pushed.</p>
@@ -367,7 +404,10 @@ done
 
 exit 0`}</CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='husky'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             Managing Hooks with Husky
           </h2>
           <p>
@@ -375,7 +415,10 @@ exit 0`}</CodeBlock>
             hard to share hooks across teams. Solution: Husky.
           </p>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='husky-setup'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Setup Husky
           </h3>
           <CodeBlock>{`# Install Husky
@@ -390,7 +433,10 @@ npx husky add .husky/pre-commit "npm test"
 # Create commit-msg hook
 npx husky add .husky/commit-msg "npx commitlint --edit $1"`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='lint-staged'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Husky + lint-staged: Only Lint Changed Files
           </h3>
           <p>Run linters only on staged files for faster commits.</p>
@@ -417,7 +463,10 @@ npm install --save-dev husky lint-staged
 #!/bin/bash
 npx lint-staged`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='commitlint'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Husky + commitlint: Enforce Commit Messages
           </h3>
           <CodeBlock>{`# Install commitlint
@@ -440,11 +489,17 @@ module.exports = {
 #!/bin/bash
 npx commitlint --edit $1`}</CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='best-practices'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             Best Practices
           </h2>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='keep-fast'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             1. Keep Hooks Fast
           </h3>
           <p>
@@ -460,7 +515,10 @@ npm test -- --findRelatedTests $STAGED_FILES --passWithNoTests
 # ✅ Better - run full suite in CI, quick checks locally
 npm run test:quick  # Unit tests only, no integration tests`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='portable'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             2. Make Hooks Portable
           </h3>
           <p>Use package.json scripts instead of hard-coding tools.</p>
@@ -478,7 +536,10 @@ npm run lint
   }
 }`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='error-messages'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             3. Provide Clear Error Messages
           </h3>
           <CodeBlock>{`# ❌ Bad
@@ -491,7 +552,10 @@ echo "  → Run 'npm run lint:fix' to auto-fix"
 echo "  → Or bypass with 'git commit --no-verify' (not recommended)"
 exit 1`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='version-control'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             4. Version Control Your Hooks
           </h3>
           <p>
@@ -503,12 +567,18 @@ git config core.hooksPath .githooks/
 
 # Now .githooks/ is tracked by Git and shared with team`}</CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='bypassing'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             Bypassing Hooks (When and Why)
           </h2>
           <p>Sometimes you need to bypass hooks. Use with caution.</p>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='skip-hooks'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Skip Hooks
           </h3>
           <CodeBlock>{`# Skip pre-commit and commit-msg hooks
@@ -517,7 +587,10 @@ git commit --no-verify -m "emergency hotfix"
 # Skip pre-push hook
 git push --no-verify`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='when-to-bypass'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             When to Bypass
           </h3>
           <ul>
@@ -539,11 +612,17 @@ git push --no-verify`}</CodeBlock>
             branches in production.
           </p>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='troubleshooting'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             Troubleshooting Common Issues
           </h2>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='not-running'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Hook Not Running
           </h3>
           <CodeBlock>{`# Check if hook is executable
@@ -555,7 +634,10 @@ chmod +x .git/hooks/pre-commit
 # Check for typos in hook name
 # Must be exactly: pre-commit (no extension)`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='command-not-found'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Hook Fails with "Command Not Found"
           </h3>
           <CodeBlock>{`# Problem: Hook can't find npm/node
@@ -569,7 +651,10 @@ export PATH="/usr/local/bin:$PATH"
 # Or use absolute paths
 /usr/local/bin/node /usr/local/bin/npm test`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='team-sharing'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Hook Works Locally but Not for Team
           </h3>
           <p>Use Husky or set custom hooks directory:</p>
@@ -580,7 +665,10 @@ export PATH="/usr/local/bin:$PATH"
   }
 }`}</CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='real-world'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             Real-World Example: Complete Setup
           </h2>
           <p>
@@ -634,7 +722,10 @@ npm run test:quick
 echo "🔷 Type checking..."
 npm run type-check`}</CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='conclusion'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             Conclusion
           </h2>
           <p>
@@ -659,6 +750,9 @@ npm run type-check`}</CodeBlock>
             initial setup pays dividends throughout the project lifecycle.
           </p>
         </div>
+      </div>
+      <div id='references'>
+        <References refs={refs} />
       </div>
     </section>
   );

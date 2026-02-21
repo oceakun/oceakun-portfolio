@@ -3,6 +3,9 @@ import Image from 'next/image';
 import type { Metadata } from 'next';
 import BlogHeader from '../_components/BlogHeader';
 import References from '../_components/References';
+import Overview from '../_components/Overview';
+import { overviewContent } from './overviewContent';
+import { refs } from './references';
 import themeSwitcher from '../../../public/theme-switcher.png';
 import darkMode from '../../../public/dark-mode.png';
 import lightMode from '../../../public/light-mode.png';
@@ -34,26 +37,16 @@ export const metadata: Metadata = {
   },
 };
 
-const references = [
-  {
-    name: 'TailwindCSS Dark Mode in Next.js with Tailwind Typography Prose Classes',
-    url: 'https://egghead.io/blog/tailwindcss-dark-mode-nextjs-typography-prose',
-  },
-  {
-    name: 'Dark mode in React: An in-depth guide',
-    url: 'https://blog.logrocket.com/dark-mode-react-in-depth-guide/',
-  },
-];
-
 export default function BlogPage() {
   return (
-    <section>
+    <section className='w-full'>
       <BlogHeader
         title="Persistent and flickerless 'Dark theme'"
         date='22-12-2023'
       />
-      <div className='prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-300 mt-12 text-justify'>
-        <div className='text-justify'>
+      <div className='prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-300 mt-12 text-justify w-full '>
+        <div className='text-justify w-full'>
+          <Overview topics={overviewContent} />
           <br />
           {/* <br /> */}
           <div className='flex flex-col justify-center items-center gap-4 mb-6 '>
@@ -80,7 +73,10 @@ export default function BlogPage() {
             .
             <br />
             <br />
-            <h1 className='text-xl dark:text-neutral-200 font-serif'>
+            <h1
+              id='persistance'
+              className='text-xl dark:text-neutral-200 font-serif'
+            >
               Persistance
             </h1>
             While using a site with the dark/light theme feature, you might have
@@ -88,7 +84,10 @@ export default function BlogPage() {
             page navigation.
             <br />
             <br />
-            <h1 className='text-xl dark:text-neutral-200 font-serif'>
+            <h1
+              id='flickerless'
+              className='text-xl dark:text-neutral-200 font-serif'
+            >
               Flicker-less behaviour
             </h1>
             Also, during reloads and page navigation, there's no
@@ -102,7 +101,7 @@ export default function BlogPage() {
             responsible parts.
             <br />
             <br />
-            <h1 className='text-xl font-serif'>
+            <h1 id='nextjs-implementation' className='text-xl font-serif'>
               Dark-theme with{' '}
               <mark className='bg-transparent italic dark:text-neutral-200'>
                 NextJS , TailwindCSS & 'next-themes'
@@ -190,9 +189,11 @@ export default function BlogPage() {
             </h1> */}
             {/* <br /> */}
             {/* <br /> */}
-            <References refs={references} />
           </span>
         </div>
+      </div>
+      <div id='references'>
+        <References refs={refs} />
       </div>
     </section>
   );

@@ -26,19 +26,19 @@ export default function BlogList() {
       readyForRelease: false,
     },
     {
-      title: 'Build and scale a chat API',
-      slug: '/build-and-scale-a-chat-api',
+      title: 'Chat service',
+      slug: '/chat-service',
       date: '08-01-2026',
       stack: 'Backend, API, WebSockets',
-      tags: ['Backend', 'API', 'WebSockets', 'Scaling', 'Architecture'],
-      readyForRelease: false,
+      tags: ['Backend', 'Chat', 'WebSockets', 'System Design'],
+      readyForRelease: true,
     },
     {
       title: 'Django for FastAPI Developers',
       slug: '/django-for-fastapi-developers',
       date: '20-12-2025',
       stack: 'Django, FastAPI, Python',
-      tags: ['Python', 'Django', 'FastAPI', 'Backend', 'Web Development'],
+      tags: ['Python', 'Django', 'FastAPI', 'Backend'],
       readyForRelease: false,
     },
     {
@@ -79,7 +79,7 @@ export default function BlogList() {
       date: '25-09-2023',
       stack: 'Next, TailwindCSS, React, Styled Components',
       tags: ['Frontend', 'CSS', 'Dark Mode'],
-      readyForRelease: true,
+      readyForRelease: false,
     },
     // {
     //   title: 'Grafana as a local service and beyond',
@@ -121,7 +121,7 @@ export default function BlogList() {
                   <span className='font-normal italic text-justify'>
                     {blog.title}
                   </span>
-                  {/* <span className="font-[200] text-[14px] dark:text-yellow-200 text-rose-500">
+                  {/* <span className="font-[200] text-[14px] dark:text-amber-300 text-rose-500">
                     {blog.date}
                   </span> */}
                 </Link>

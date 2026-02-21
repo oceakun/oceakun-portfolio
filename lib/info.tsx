@@ -12,7 +12,7 @@ export const about = () => {
         href='https://essentia.dev/'
         target='_blank'
         rel='noopener noreferrer'
-        className='underline decoration-rose-500 dark:decoration-yellow-200 hover:decoration-2 transition-all'
+        className='underline decoration-rose-500 dark:decoration-amber-300 hover:decoration-2 transition-all'
       >
         essentia(.dev)
       </a>
@@ -75,15 +75,11 @@ export const bio = () => {
         &nbsp;&nbsp;&nbsp;
         <i>
           3. Social networking platform with real-time messaging and
-          availability matching(React Native and Firebase)
+          availability matching(React Native and Django)
         </i>
       </span>
       <br />
       <br />
-      <span>
-        In addition to my client work, I also <b>mentor interns</b> on their
-        respective projects.
-      </span>
     </>
   );
 };

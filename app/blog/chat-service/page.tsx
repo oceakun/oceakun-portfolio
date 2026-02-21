@@ -1,10 +1,14 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import BlogHeader from '../_components/BlogHeader';
-import CodeBlock from '../../../components/codeBlock';
+import CodeBlock from '../_components/CodeBlock';
+import Overview from '../_components/Overview';
+import References from '../_components/References';
+import { overviewContent } from './overviewContent';
+import { refs } from './references';
 
 export const metadata: Metadata = {
-  title: 'Build and scale a chat API',
+  title: 'Chat service',
   description:
     'Learn how to architect, build, and scale a production-ready chat API. From WebSocket connections to message delivery, presence systems, and horizontal scaling strategies.',
   openGraph: {
@@ -23,27 +27,16 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   return (
-    <section>
+    <section className='w-full'>
       <BlogHeader title='Build and scale a chat API' date='08-01-2026' />
-      <div className='prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-300 mt-12 text-justify'>
-        <div className='text-justify'>
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>Content</h2>
-          <ul>
-            <li>Introduction: Chat API Fundamentals</li>
-            <li>Architecture Overview</li>
-            <li>WebSocket vs Long Polling vs Server-Sent Events</li>
-            <li>Building the Core: Connection Management</li>
-            <li>Message Delivery Guarantees</li>
-            <li>Presence and Online Status</li>
-            <li>Read Receipts and Typing Indicators</li>
-            <li>Database Schema and Message Storage</li>
-            <li>Scaling Horizontally with Redis Pub/Sub</li>
-            <li>Rate Limiting and Security</li>
-            <li>Monitoring and Observability</li>
-            <li>Production Deployment Considerations</li>
-          </ul>
+      <div className='prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-300 mt-12 text-justify w-full'>
+        <div className='text-justify w-full'>
+          <Overview topics={overviewContent} />
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='introduction'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             Introduction: Chat API Fundamentals
           </h2>
           <p>
@@ -59,7 +52,10 @@ export default function BlogPage() {
             guarantees, and horizontal scaling.
           </p>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='architecture'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             Architecture Overview
           </h2>
           <p>
@@ -89,14 +85,20 @@ export default function BlogPage() {
             </li>
           </ul>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='websocket-vs'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             WebSocket vs Long Polling vs Server-Sent Events
           </h2>
           <p>
             Let's compare the three main approaches for real-time communication:
           </p>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='websockets'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             WebSockets
           </h3>
           <p>
@@ -121,7 +123,10 @@ ws.send(JSON.stringify({
   channelId: '123'
 }));`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='long-polling'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Long Polling
           </h3>
           <p>
@@ -131,7 +136,10 @@ ws.send(JSON.stringify({
             <strong>Cons:</strong> Higher latency, more HTTP overhead
           </p>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='sse'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Server-Sent Events (SSE)
           </h3>
           <p>
@@ -147,7 +155,10 @@ ws.send(JSON.stringify({
             complexity.
           </p>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='connection-management'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             Building the Core: Connection Management
           </h2>
           <p>
@@ -155,7 +166,10 @@ ws.send(JSON.stringify({
             reliably.
           </p>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='connection-lifecycle'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Connection Lifecycle
           </h3>
           <CodeBlock>{`// Node.js WebSocket server with ws library
@@ -205,7 +219,10 @@ wss.on('connection', async (ws, req) => {
   });
 });`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='heartbeat'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Heartbeat and Reconnection
           </h3>
           <p>Detect stale connections and handle reconnections gracefully:</p>
@@ -235,7 +252,10 @@ wss.on('close', () => {
   clearInterval(interval);
 });`}</CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='delivery-guarantees'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             Message Delivery Guarantees
           </h2>
           <p>
@@ -256,7 +276,10 @@ wss.on('close', () => {
             </li>
           </ol>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='at-least-once'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Implementing At-Least-Once Delivery
           </h3>
           <CodeBlock>{`async function sendMessage(senderId, channelId, content) {
@@ -307,7 +330,10 @@ wss.on('close', () => {
   return messageId;
 }`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='offline-users'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Handling Offline Users
           </h3>
           <CodeBlock>{`// When user reconnects, send pending messages
@@ -336,7 +362,10 @@ async function sendPendingMessages(userId, ws) {
   await db.users.updateLastSeen(userId, Date.now());
 }`}</CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='database-schema'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             Database Schema and Message Storage
           </h2>
           <p>Efficient schema design is critical for chat performance:</p>
@@ -380,7 +409,10 @@ CREATE TABLE messages (
 CREATE INDEX idx_messages_channel_time ON messages(channel_id, created_at DESC);
 CREATE INDEX idx_channel_members_user ON channel_members(user_id);`}</CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='redis-scaling'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             Scaling Horizontally with Redis Pub/Sub
           </h2>
           <p>
@@ -421,7 +453,10 @@ async function broadcastMessage(channelId, messageData) {
   }));
 }`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='presence-redis'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Presence System with Redis
           </h3>
           <CodeBlock>{`// Track online users across servers
@@ -461,11 +496,17 @@ setInterval(async () => {
   }
 }, 10000);`}</CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='rate-limiting'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             Rate Limiting and Security
           </h2>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='per-user-rate'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Per-User Rate Limiting
           </h3>
           <CodeBlock>{`import { RateLimiterRedis } from 'rate-limiter-flexible';
@@ -495,7 +536,10 @@ async function handleMessage(userId, data) {
   }
 }`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='input-validation'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Input Validation and Sanitization
           </h3>
           <CodeBlock>{`import { z } from 'zod';
@@ -520,7 +564,10 @@ function validateAndSanitize(data) {
   return parsed;
 }`}</CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='monitoring'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             Monitoring and Observability
           </h2>
           <p>Track key metrics for a healthy chat system:</p>
@@ -569,11 +616,17 @@ ws.on('close', () => {
   activeConnections.dec();
 });`}</CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='production'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             Production Deployment Considerations
           </h2>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='load-balancing'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Load Balancing
           </h3>
           <p>Use a load balancer with sticky sessions or consistent hashing:</p>
@@ -596,7 +649,10 @@ server {
   }
 }`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='graceful-shutdown'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Graceful Shutdown
           </h3>
           <CodeBlock>{`process.on('SIGTERM', async () => {
@@ -624,7 +680,10 @@ server {
   process.exit(0);
 });`}</CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='conclusion'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             Conclusion
           </h2>
           <p>
@@ -649,6 +708,9 @@ server {
             performance.
           </p>
         </div>
+      </div>
+      <div id='references'>
+        <References refs={refs} />
       </div>
     </section>
   );

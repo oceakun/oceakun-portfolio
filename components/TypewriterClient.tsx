@@ -19,7 +19,7 @@ export default function TypewriterClient({
       onInit={(typewriter) => {
         typewriter
           .typeString(
-            `<span class="dark:text-yellow-200 text-rose-500">${name}</span>`
+            `<span class="dark:text-amber-300 text-rose-500">${name}</span>`
           )
           .pauseFor(2500)
           .deleteAll()
@@ -27,7 +27,7 @@ export default function TypewriterClient({
             console.log('All strings were deleted');
           })
           .typeString(
-            `<span class="dark:text-yellow-200 text-rose-500">${alias}</span>`
+            `<span class="dark:text-amber-300 text-rose-500">${alias}</span>`
           )
           .pauseFor(2500)
           .deleteAll()

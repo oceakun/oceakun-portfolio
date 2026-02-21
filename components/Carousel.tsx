@@ -93,7 +93,7 @@ export default function Carousel({ images, altPrefix }: CarouselProps) {
               onClick={() => goToSlide(index)}
               className={`w-2 h-2 rounded-full transition-all ${
                 index === currentIndex
-                  ? 'bg-rose-500 dark:bg-yellow-200 w-6'
+                  ? 'bg-rose-500 dark:bg-amber-300 w-6'
                   : 'bg-neutral-400 dark:bg-neutral-600 hover:bg-neutral-500'
               }`}
               aria-label={`Go to image ${index + 1}`}

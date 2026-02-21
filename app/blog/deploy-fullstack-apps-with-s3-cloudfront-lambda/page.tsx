@@ -1,7 +1,11 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import BlogHeader from '../_components/BlogHeader';
-import CodeBlock from '../../../components/codeBlock';
+import CodeBlock from '../_components/CodeBlock';
+import Overview from '../_components/Overview';
+import References from '../_components/References';
+import { overviewContent } from './overviewContent';
+import { refs } from './references';
 
 export const metadata: Metadata = {
   title: 'Deploy Your Full-Stack Application with S3, CloudFront and Lambda',
@@ -23,30 +27,19 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   return (
-    <section>
+    <section className='w-full'>
       <BlogHeader
         title='Deploy Your Full-Stack Application with S3, CloudFront and Lambda'
         date='04-12-2025'
       />
-      <div className='prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-300 mt-12 text-justify'>
-        <div className='text-justify'>
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>Content</h2>
-          <ul>
-            <li>Introduction</li>
-            <li>Architecture Overview</li>
-            <li>Prerequisites</li>
-            <li>Part 1: Setting Up S3 for Static Frontend Hosting</li>
-            <li>Part 2: Configuring CloudFront for CDN</li>
-            <li>Part 3: Deploying Lambda Functions for Backend</li>
-            <li>Part 4: Connecting Frontend to Lambda API</li>
-            <li>Setting Up Custom Domain with Route 53</li>
-            <li>Best Practices and Optimization</li>
-            <li>Cost Considerations</li>
-            <li>Troubleshooting Common Issues</li>
-            <li>Conclusion</li>
-          </ul>
+      <div className='prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-300 mt-12 text-justify w-full'>
+        <div className='text-justify w-full'>
+          <Overview topics={overviewContent} />
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2
+            id='introduction'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
             Introduction
           </h2>
           <p>
@@ -62,7 +55,10 @@ export default function BlogPage() {
             can handle backend logic without managing servers.
           </p>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2
+            id='architecture'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
             Architecture Overview
           </h2>
           <p>Here's how the services work together:</p>
@@ -95,7 +91,10 @@ export default function BlogPage() {
             API Gateway → Lambda (Backend) → Database/External Services
           </p>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2
+            id='prerequisites'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
             Prerequisites
           </h2>
           <ul>
@@ -107,11 +106,17 @@ export default function BlogPage() {
             <li>Optional: A custom domain name</li>
           </ul>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2
+            id='s3-setup'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
             Part 1: Setting Up S3 for Static Frontend Hosting
           </h2>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='s3-create'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Step 1: Create an S3 Bucket
           </h3>
           <CodeBlock>{`# Create S3 bucket
@@ -125,7 +130,10 @@ aws s3 mb s3://your-app-frontend --region us-east-1
 # 5. Uncheck "Block all public access" (we'll use CloudFront)
 # 6. Click "Create bucket"`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='s3-configure'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Step 2: Configure Bucket for Static Website Hosting
           </h3>
           <CodeBlock>{`# Enable static website hosting
@@ -143,7 +151,10 @@ aws s3 website s3://your-app-frontend \\
 # 7. Set error document: index.html (for SPA routing)
 # 8. Save changes`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='s3-policy'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Step 3: Set Bucket Policy
           </h3>
           <p>
@@ -167,7 +178,10 @@ aws s3api put-bucket-policy \\
   --bucket your-app-frontend \\
   --policy file://bucket-policy.json`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='s3-upload'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Step 4: Build and Upload Your Frontend
           </h3>
           <CodeBlock>{`# Build your frontend (example for React)
@@ -191,11 +205,17 @@ aws s3 sync ./build s3://your-app-frontend \\
 aws s3 cp ./build/index.html s3://your-app-frontend/index.html \\
   --cache-control "max-age=0,no-cache,no-store,must-revalidate"`}</CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2
+            id='cloudfront'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
             Part 2: Configuring CloudFront for CDN
           </h2>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='cf-create'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Step 1: Create CloudFront Distribution
           </h3>
           <CodeBlock>{`# Using AWS Console (recommended for first time):
@@ -221,7 +241,10 @@ aws s3 cp ./build/index.html s3://your-app-frontend/index.html \\
 # Wait for deployment (15-20 minutes)
 # Note the CloudFront domain name (e.g., d123abc.cloudfront.net)`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='cf-errors'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Step 2: Configure Error Pages for SPA Routing
           </h3>
           <CodeBlock>{`# In CloudFront Console:
@@ -236,7 +259,10 @@ aws s3 cp ./build/index.html s3://your-app-frontend/index.html \\
 # 5. Repeat for 404 error code
 # This ensures client-side routing works correctly`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='cf-ssl'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Step 3: Request SSL Certificate (Optional but Recommended)
           </h3>
           <CodeBlock>{`# Using AWS Certificate Manager (ACM)
@@ -253,11 +279,14 @@ aws s3 cp ./build/index.html s3://your-app-frontend/index.html \\
 # 7. Wait for validation (5-30 minutes)
 # 8. Attach certificate to CloudFront distribution`}</CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2 id='lambda' className='text-xl dark:text-neutral-200 font-serif'>
             Part 3: Deploying Lambda Functions for Backend
           </h2>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='lambda-create'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Step 1: Create a Lambda Function
           </h3>
           <CodeBlock>{`// Example Lambda function (index.js)
@@ -345,7 +374,10 @@ async function handleDelete(id) {
   return { message: \`DELETE request successful for ID: \${id}\` };
 }`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='lambda-deploy'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Step 2: Deploy Lambda Function
           </h3>
           <CodeBlock>{`# Create deployment package
@@ -376,7 +408,10 @@ aws lambda update-function-code \\
 # 7. Upload your code via zip or inline editor
 # 8. Configure environment variables, timeout, memory`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='lambda-gateway'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Step 3: Set Up API Gateway
           </h3>
           <CodeBlock>{`# Using AWS Console for API Gateway:
@@ -411,11 +446,17 @@ aws lambda add-permission \\
   --action lambda:InvokeFunction \\
   --principal apigateway.amazonaws.com`}</CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2
+            id='connecting'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
             Part 4: Connecting Frontend to Lambda API
           </h2>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='env-vars'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             Environment Variables for Frontend
           </h3>
           <CodeBlock>{`// .env.production
@@ -427,7 +468,10 @@ NEXT_PUBLIC_API_URL=https://xyz123.execute-api.us-east-1.amazonaws.com
 // For Vite
 VITE_API_URL=https://xyz123.execute-api.us-east-1.amazonaws.com`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='api-service'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             API Service Implementation
           </h3>
           <CodeBlock>{`// api.js
@@ -503,7 +547,7 @@ export const createUser = (userData) => apiClient.post('/users', userData);
 export const updateUser = (id, userData) => apiClient.put(\`/users/\${id}\`, userData);
 export const deleteUser = (id) => apiClient.delete(\`/users/\${id}\`);`}</CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2 id='route53' className='text-xl dark:text-neutral-200 font-serif'>
             Setting Up Custom Domain with Route 53
           </h2>
           <CodeBlock>{`# If your domain is in Route 53:
@@ -530,11 +574,17 @@ export const deleteUser = (id) => apiClient.delete(\`/users/\${id}\`);`}</CodeBl
 # 7. Add API mapping to your API
 # 8. Create Route 53 A record pointing to API Gateway domain`}</CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2
+            id='best-practices'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
             Best Practices and Optimization
           </h2>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='caching'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             1. CloudFront Caching Strategy
           </h3>
           <CodeBlock>{`# Cache-Control headers for different file types:
@@ -553,7 +603,10 @@ Cache-Control: public, max-age=300, s-maxage=600
 # /api/* - Don't cache or short TTL
 # /* - Cache HTML with custom TTL`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='lambda-optimization'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             2. Lambda Optimization
           </h3>
           <ul>
@@ -579,7 +632,10 @@ Cache-Control: public, max-age=300, s-maxage=600
             </li>
           </ul>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='security'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             3. Security Best Practices
           </h3>
           <CodeBlock>{`# 1. Use CloudFront Origin Access Control (OAC)
@@ -602,7 +658,10 @@ Cache-Control: public, max-age=300, s-maxage=600
 # 5. Enable CloudFront access logs
 #    - Monitor and analyze traffic patterns`}</CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='deployment-automation'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             4. Deployment Automation
           </h3>
           <CodeBlock>{`#!/bin/bash
@@ -643,7 +702,7 @@ echo "Deployment complete!"
 # "deploy:frontend": "npm run build && aws s3 sync ./build s3://your-app-frontend"
 # "deploy:backend": "cd lambda && zip -r function.zip . && aws lambda update-function-code --function-name my-api-function --zip-file fileb://function.zip"`}</CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2 id='cost' className='text-xl dark:text-neutral-200 font-serif'>
             Cost Considerations
           </h2>
           <p>Understanding the cost structure helps optimize your spending:</p>
@@ -680,11 +739,17 @@ echo "Deployment complete!"
             <li>Set up CloudWatch billing alerts to monitor spending</li>
           </ul>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2
+            id='troubleshooting'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
             Troubleshooting Common Issues
           </h2>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='troubleshoot-spa'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             1. SPA Routes Return 403/404
           </h3>
           <p>
@@ -696,7 +761,10 @@ echo "Deployment complete!"
             redirect 403/404 to index.html with 200 status code.
           </p>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='troubleshoot-cors'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             2. CORS Errors
           </h3>
           <p>
@@ -708,7 +776,10 @@ echo "Deployment complete!"
             and API Gateway has CORS enabled. Handle OPTIONS requests.
           </p>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='troubleshoot-cold'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             3. Lambda Cold Starts
           </h3>
           <p>
@@ -719,7 +790,10 @@ echo "Deployment complete!"
             functions warm with CloudWatch Events, or optimize package size.
           </p>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='troubleshoot-cache'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             4. CloudFront Shows Old Content
           </h3>
           <p>
@@ -734,7 +808,10 @@ echo "Deployment complete!"
             </code>
           </p>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif mt-6'>
+          <h3
+            id='troubleshoot-timeout'
+            className='text-lg dark:text-neutral-200 font-serif mt-6'
+          >
             5. Lambda Timeout Errors
           </h3>
           <p>
@@ -746,7 +823,10 @@ echo "Deployment complete!"
             (max 15 minutes), optimize code, or use async processing.
           </p>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif mt-8'>
+          <h2
+            id='conclusion'
+            className='text-xl dark:text-neutral-200 font-serif mt-8'
+          >
             Conclusion
           </h2>
           <p>
@@ -774,6 +854,9 @@ echo "Deployment complete!"
             optimize based on your specific use case. Happy deploying!
           </p>
         </div>
+      </div>
+      <div id='references'>
+        <References refs={refs} />
       </div>
     </section>
   );

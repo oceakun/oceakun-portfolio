@@ -1,7 +1,11 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import BlogHeader from '../_components/BlogHeader';
-import CodeBlock from '../../../components/codeBlock';
+import CodeBlock from '../_components/CodeBlock';
+import Overview from '../_components/Overview';
+import References from '../_components/References';
+import { overviewContent } from './overviewContent';
+import { refs } from './references';
 
 export const metadata: Metadata = {
   title: 'Django for FastAPI Developers',
@@ -23,31 +27,16 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   return (
-    <section>
+    <section className='w-full'>
       <BlogHeader title='Django for FastAPI Developers' date='20-12-2025' />
-      <div className='prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-300 mt-12 text-justify'>
-        <div className='text-justify'>
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>Content</h2>
-          <ul>
-            <li>Introduction</li>
-            <li>Philosophy and Design Patterns</li>
-            <li>Project Structure</li>
-            <li>Routing and Views</li>
-            <li>ORM vs SQLAlchemy</li>
-            <li>Request and Response Handling</li>
-            <li>Dependency Injection vs Django's Approach</li>
-            <li>Authentication and Permissions</li>
-            <li>Forms and Validation</li>
-            <li>Admin Panel</li>
-            <li>Templates vs API-Only</li>
-            <li>Middleware</li>
-            <li>Testing</li>
-            <li>Performance Considerations</li>
-            <li>When to Choose Django</li>
-            <li>Conclusion</li>
-          </ul>
+      <div className='prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-300 mt-12 text-justify w-full'>
+        <div className='text-justify w-full'>
+          <Overview topics={overviewContent} />
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2
+            id='introduction'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
             Introduction
           </h2>
           <p>
@@ -64,7 +53,10 @@ export default function BlogPage() {
             when you might want to choose one over the other.
           </p>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2
+            id='philosophy'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
             Philosophy and Design Patterns
           </h2>
           <p>
@@ -82,7 +74,10 @@ export default function BlogPage() {
             you'll primarily work with Models and Views.
           </p>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2
+            id='project-structure'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
             Project Structure
           </h2>
           <p>
@@ -119,7 +114,7 @@ myproject/
             encourages reusability and separation of concerns.
           </p>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2 id='routing' className='text-xl dark:text-neutral-200 font-serif'>
             Routing and Views
           </h2>
           <p>
@@ -182,7 +177,7 @@ urlpatterns = [
     path('items/', views.create_item),
 ]`}</CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2 id='orm' className='text-xl dark:text-neutral-200 font-serif'>
             ORM vs SQLAlchemy
           </h2>
           <p>
@@ -245,7 +240,10 @@ users = User.objects.filter(
             </li>
           </ul>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2
+            id='request-response'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
             Request and Response Handling
           </h2>
           <p>
@@ -283,7 +281,10 @@ def create_user(request):
         return Response(serializer.data)
     return Response(serializer.errors, status=400)`}</CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2
+            id='dependency-injection'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
             Dependency Injection vs Django's Approach
           </h2>
           <p>
@@ -336,7 +337,10 @@ def read_users_me(request):
         'name': request.user.name
     })`}</CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2
+            id='authentication'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
             Authentication and Permissions
           </h2>
           <p>
@@ -384,7 +388,7 @@ class MyView(APIView):
             <code>django-allauth</code>.
           </p>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2 id='forms' className='text-xl dark:text-neutral-200 font-serif'>
             Forms and Validation
           </h2>
           <p>
@@ -415,7 +419,7 @@ if form.is_valid():
             applications.
           </p>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2 id='admin' className='text-xl dark:text-neutral-200 font-serif'>
             Admin Panel
           </h2>
           <p>
@@ -448,7 +452,10 @@ class ProductAdmin(admin.ModelAdmin):
             and rapid development.
           </p>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2
+            id='templates'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
             Templates vs API-Only
           </h2>
           <p>
@@ -475,7 +482,10 @@ def product_list(request):
             Framework and skip templates entirely.
           </p>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2
+            id='middleware'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
             Middleware
           </h2>
           <p>Both frameworks support middleware, but with different APIs:</p>
@@ -507,7 +517,9 @@ MIDDLEWARE = [
     # ... other middleware
 ]`}</CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>Testing</h2>
+          <h2 id='testing' className='text-xl dark:text-neutral-200 font-serif'>
+            Testing
+          </h2>
           <p>FastAPI uses standard pytest with TestClient:</p>
           <CodeBlock>{`# FastAPI testing
 from fastapi.testclient import TestClient
@@ -542,7 +554,10 @@ class UserAPITest(APITestCase):
             each test run.
           </p>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2
+            id='performance'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
             Performance Considerations
           </h2>
           <p>
@@ -586,7 +601,10 @@ async def my_async_view(request):
 users = User.objects.select_related('profile').prefetch_related('orders')
 # This reduces N+1 query problems`}</CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2
+            id='when-to-choose'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
             When to Choose Django
           </h2>
           <p>Choose Django when you need:</p>
@@ -647,7 +665,10 @@ users = User.objects.select_related('profile').prefetch_related('orders')
             </li>
           </ul>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2
+            id='conclusion'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
             Conclusion
           </h2>
           <p>
@@ -685,6 +706,9 @@ users = User.objects.select_related('profile').prefetch_related('orders')
             Django AND FastAPI, each excelling in different scenarios.
           </p>
         </div>
+      </div>
+      <div id='references'>
+        <References refs={refs} />
       </div>
     </section>
   );

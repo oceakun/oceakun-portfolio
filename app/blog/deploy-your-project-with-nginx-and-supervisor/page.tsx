@@ -1,7 +1,11 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import BlogHeader from '../_components/BlogHeader';
-import CodeBlock from '../../../components/codeBlock';
+import CodeBlock from '../_components/CodeBlock';
+import Overview from '../_components/Overview';
+import References from '../_components/References';
+import { overviewContent } from './overviewContent';
+import { refs } from './references';
 
 export const metadata: Metadata = {
   title: 'Deploying React SSR App and Node.js API with nginx and Supervisor',
@@ -23,21 +27,30 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   return (
-    <section>
+    <section className='w-full'>
       <BlogHeader
         title='Deploying React SSR App and Node.js API with nginx and Supervisor'
         date='11-18-2025'
       />
-      <div className='prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-300 mt-12 text-justify'>
-        <div className='text-justify'>
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>Overview</h2>
+      <div className='prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-300 mt-12 text-justify w-full'>
+        <div className='text-justify w-full'>
+          <Overview topics={overviewContent} />
+          <h2
+            id='overview'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
+            Overview
+          </h2>
           <p>
             This guide covers deploying a React application with server-side
             rendering (SSR) and a Node.js API backend using nginx as a reverse
             proxy and supervisor for process management.
           </p>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2
+            id='prerequisites'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
             Prerequisites
           </h2>
           <ul>
@@ -49,7 +62,10 @@ export default function BlogPage() {
             </li>
           </ul>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2
+            id='server-setup'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
             Initial Server Setup
           </h2>
           <CodeBlock>
@@ -67,11 +83,17 @@ sudo apt install nodejs
 sudo apt install certbot python3-certbot-nginx`}
           </CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2
+            id='deploy-api'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
             Deploy Node.js API Backend
           </h2>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif'>
+          <h3
+            id='api-setup'
+            className='text-lg dark:text-neutral-200 font-serif'
+          >
             1. Setup API Application
           </h3>
           <CodeBlock>
@@ -88,7 +110,10 @@ sudo nano .env
 # Add: NODE_ENV=production, PORT=3000, etc.`}
           </CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif'>
+          <h3
+            id='api-supervisor'
+            className='text-lg dark:text-neutral-200 font-serif'
+          >
             2. Configure Supervisor for API
           </h3>
           <CodeBlock>sudo nano /etc/supervisor/conf.d/api.conf</CodeBlock>
@@ -105,7 +130,10 @@ stderr_logfile=/var/log/api-error.log
 environment=NODE_ENV="production"`}
           </CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif'>
+          <h3
+            id='api-nginx'
+            className='text-lg dark:text-neutral-200 font-serif'
+          >
             3. Configure nginx for API
           </h3>
           <CodeBlock>sudo nano /etc/nginx/sites-available/api</CodeBlock>
@@ -128,7 +156,10 @@ environment=NODE_ENV="production"`}
 }`}
           </CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif'>
+          <h3
+            id='api-start'
+            className='text-lg dark:text-neutral-200 font-serif'
+          >
             4. Start API Services
           </h3>
           <CodeBlock>
@@ -145,11 +176,17 @@ sudo systemctl start nginx
 sudo systemctl enable nginx`}
           </CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2
+            id='deploy-ssr'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
             Deploy React SSR Application
           </h2>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif'>
+          <h3
+            id='ssr-setup'
+            className='text-lg dark:text-neutral-200 font-serif'
+          >
             1. Setup React Application
           </h3>
           <CodeBlock>
@@ -165,7 +202,10 @@ sudo npm ci
 sudo npm run build`}
           </CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif'>
+          <h3
+            id='ssr-supervisor'
+            className='text-lg dark:text-neutral-200 font-serif'
+          >
             2. Configure Supervisor for SSR
           </h3>
           <CodeBlock>sudo nano /etc/supervisor/conf.d/frontend.conf</CodeBlock>
@@ -182,7 +222,10 @@ stderr_logfile=/var/log/frontend-error.log
 environment=NODE_ENV="production"`}
           </CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif'>
+          <h3
+            id='ssr-nginx'
+            className='text-lg dark:text-neutral-200 font-serif'
+          >
             3. Configure nginx for React SSR
           </h3>
           <CodeBlock>sudo nano /etc/nginx/sites-available/frontend</CodeBlock>
@@ -205,7 +248,10 @@ environment=NODE_ENV="production"`}
 }`}
           </CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif'>
+          <h3
+            id='ssr-start'
+            className='text-lg dark:text-neutral-200 font-serif'
+          >
             4. Start Frontend Services
           </h3>
           <CodeBlock>
@@ -222,7 +268,7 @@ sudo nginx -t
 sudo systemctl reload nginx`}
           </CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2 id='ssl' className='text-xl dark:text-neutral-200 font-serif'>
             SSL Configuration
           </h2>
           <CodeBlock>
@@ -234,11 +280,17 @@ sudo certbot --nginx -d api.myapp.com
 sudo certbot renew --dry-run`}
           </CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2
+            id='deployment-workflow'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
             Deployment Workflow
           </h2>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif'>
+          <h3
+            id='updating-api'
+            className='text-lg dark:text-neutral-200 font-serif'
+          >
             Updating API
           </h3>
           <CodeBlock>
@@ -248,7 +300,10 @@ sudo npm ci --production
 sudo supervisorctl restart api`}
           </CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif'>
+          <h3
+            id='updating-ssr'
+            className='text-lg dark:text-neutral-200 font-serif'
+          >
             Updating React SSR App
           </h3>
           <CodeBlock>
@@ -259,11 +314,17 @@ sudo npm run build
 sudo supervisorctl restart frontend`}
           </CodeBlock>
 
-          <h2 className='text-xl dark:text-neutral-200 font-serif'>
+          <h2
+            id='monitoring'
+            className='text-xl dark:text-neutral-200 font-serif'
+          >
             Monitoring and Troubleshooting
           </h2>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif'>
+          <h3
+            id='service-status'
+            className='text-lg dark:text-neutral-200 font-serif'
+          >
             Check Service Status
           </h3>
           <CodeBlock>
@@ -279,7 +340,10 @@ sudo systemctl status nginx
 sudo tail -f /var/log/nginx/error.log`}
           </CodeBlock>
 
-          <h3 className='text-lg dark:text-neutral-200 font-serif'>
+          <h3
+            id='common-issues'
+            className='text-lg dark:text-neutral-200 font-serif'
+          >
             Common Issues
           </h3>
           <p>
@@ -305,6 +369,9 @@ sudo tail -f /var/log/nginx/error.log`}
             and reliable service delivery.
           </p>
         </div>
+      </div>
+      <div id='references'>
+        <References refs={refs} />
       </div>
     </section>
   );

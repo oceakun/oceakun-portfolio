@@ -18,10 +18,10 @@ export const metadata: Metadata = {
     default: 'Sagar Deep',
     template: '%s | Sagar Deep',
   },
-  description: 'Developer, novice blogger and student.',
+  description: 'Full-stack dev and novice blogger.',
   // openGraph: {
   //   title: 'Sagar Deep',
-  //   description: 'Developer, novice blogger and student.',
+  //   description: 'Full-stack dev and novice blogger.',
   //   url: 'https://sagardeep.io',
   //   siteName: 'Sagar Deep',
   //   images: [

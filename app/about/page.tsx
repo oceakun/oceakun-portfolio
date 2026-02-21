@@ -28,7 +28,7 @@ export default function AboutPage() {
         </p>
 
         <fieldset>
-          <legend className='dark:text-yellow-200 text-rose-500'>
+          <legend className='dark:text-amber-300 text-rose-500'>
             |\/?&^*%$@#{`>`}
           </legend>
           <p>
