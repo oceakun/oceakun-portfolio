@@ -28,7 +28,9 @@ export const bio = () => {
       <b>Computer Science Engineering in June 2024</b> and have been working as
       a Software Engineer ever since.
       <br />
-      <br />My work involves desigining the architecture of and delivering <b>mobile and web applications</b>.
+      <br />
+      My work involves designing the architecture of and delivering{' '}
+      <b>mobile and web applications</b>.
     </>
   );
 };
