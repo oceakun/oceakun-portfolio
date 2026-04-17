@@ -1,6 +1,6 @@
 ---
 title: "Anatomy of React"
-description: "Deep dive into React state management - from useState internals to state updates, batching, reconciliation, and the mental model you need to master React state."
+description: "A Deep Dive into React's architecture"
 date: "10-01-2026"
 banner:
   title: "Anatomy of React"
