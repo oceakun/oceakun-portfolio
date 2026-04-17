@@ -14,7 +14,7 @@ export const about = () => {
         rel='noopener noreferrer'
         className='underline decoration-rose-500 dark:decoration-amber-300 hover:decoration-2 transition-all'
       >
-        essentia(.dev)
+        essentia.dev
       </a>
       .
     </>
