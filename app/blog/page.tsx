@@ -18,12 +18,12 @@ export default function BlogList() {
       readyForRelease: false,
     },
     {
-      title: 'Anatomy of React State',
-      slug: '/anatomy-of-react-state',
+      title: 'Anatomy of React',
+      slug: '/anatomy-of-react',
       date: '10-01-2026',
-      stack: 'React, State Management, Frontend',
-      tags: ['React', 'State Management', 'Frontend', 'JavaScript'],
-      readyForRelease: false,
+      stack: 'React, Frontend',
+      tags: ['React Architecture', 'Frontend', 'JavaScript'],
+      readyForRelease: true,
     },
     {
       title: 'Chat service',
@@ -31,7 +31,7 @@ export default function BlogList() {
       date: '08-01-2026',
       stack: 'Backend, API, WebSockets',
       tags: ['Backend', 'Chat', 'WebSockets', 'System Design'],
-      readyForRelease: true,
+      readyForRelease: false,
     },
     {
       title: 'Django for FastAPI Developers',
@@ -63,7 +63,7 @@ export default function BlogList() {
       date: '11-11-2025',
       stack: 'nginx, supervisor, DevOps',
       tags: ['DevOps', 'nginx', 'supervisor', 'Deployment'],
-      readyForRelease: true,
+      readyForRelease: false,
     },
     {
       title: 'React Hooks: From useState to useOptimistic',
@@ -71,7 +71,7 @@ export default function BlogList() {
       date: '11-11-2025',
       stack: 'React, Hooks',
       tags: ['React', 'Hooks', 'Frontend'],
-      readyForRelease: true,
+      readyForRelease: false,
     },
     {
       title: "Persistent and flickerless 'Dark theme'",

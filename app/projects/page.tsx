@@ -14,24 +14,6 @@ export const metadata: Metadata = {
 
 const projects = [
   {
-    name: 'csv-visualizer',
-    links: {
-      github: 'https://github.com/oceakun/csv-visualizer',
-      deployed: 'https://github.com/oceakun',
-    },
-    stack:
-      'Astro, React-components, Js, Grafana, Go, Firebase Auth, Firestore, Docker',
-    tags: 'full stack, visualization, authentication, API, containerization',
-    previewImages: [],
-    shortDescription:
-      'visualize csv-exports through grafana panels, in the form of highly interactive tables and charts',
-    listedDescription: [
-      'The app provides a beautiful and intuitive interface, wherein, the user can upload a csv file and view visualizations in the form of tables and plots. The user can also create an account and save the generated visualizations to their profile, which can be viewed later on and shared with anyone else throuhg url sharing',
-      'The app boasts features such as responsive design, user authentication, and a loosely coupled architecture',
-    ],
-    active: false,
-  },
-  {
     name: 'stickz',
     links: {
       github: 'https://github.com/oceakun/stickz-frontend',
@@ -49,53 +31,6 @@ const projects = [
     active: false,
   },
   {
-    name: 'state-map',
-    links: {
-      github: 'https://github.com/oceakun/state-map-d3',
-      deployed: 'https://d3-exercise.vercel.app/',
-    },
-    stack: 'Js, d3, HTMl, CSS',
-    tags: 'visualization, responsive',
-    previewImages: [],
-    shortDescription:
-      "a map of the Indian state 'Haryana', for the categorical visualizations of consitutency elections.",
-    listedDescription: [
-      'The map serves as an interactive and responsive plot for various metrices acquired during constituency elections, held across the state.',
-    ],
-    active: false,
-  },
-  {
-    name: 'get-repos',
-    links: {
-      github: 'https://github.com/oceakun/fyle-internship-challenge-23',
-      deployed:
-        'https://654a42ff71ad24305eea15ec--golden-custard-8a760d.netlify.app/',
-    },
-    stack: 'Angular, TailwindCSS, Github API',
-    tags: 'skeleton-loader, responsive, server-side pagination',
-    previewImages: [],
-    shortDescription: "retrieves a user's public repositories from GitHub",
-    listedDescription: [
-      'Provides an easy-to-use interface where users can input a GitHub username, and the application fetches and displays all the public repositories associated with that username.',
-    ],
-    active: false,
-  },
-  {
-    name: 'admin-dashboard',
-    links: {
-      github: 'https://github.com/oceakun/admin-dashboard',
-      deployed: 'https://admin-dashboard-oceakun.vercel.app/',
-    },
-    stack: 'Next.js, TailwindCSS',
-    tags: 'admin-dashboard, responsive, pagination',
-    previewImages: [],
-    shortDescription: 'admin dashboard to view and edit data',
-    listedDescription: [
-      'Dashboard to view, search and edit data(in place deleting and editting).',
-    ],
-    active: false,
-  },
-  {
     name: 'dcm',
     links: {
       github: 'https://github.com/oceakun/dcm',
@@ -105,11 +40,11 @@ const projects = [
     tags: 'system monitoring, CLI tool, real-time metrics, terminal UI',
     previewImages: ['/dcm_dashboard.png', '/dcm_processes_table.png'],
     shortDescription:
-      'A terminal-based system monitoring tool that displays real-time system metrics in an interactive command-line interface',
+      'A terminal-based system monitoring tool that displays real-time system metrics in an interactive command-line interface, it provides',
     listedDescription: [
-      'Provides a live dashboard with real-time visualization of CPU usage, memory consumption, core temperature, and network interface information.',
-      'Features an interactive process table that allows dynamic process management, enabling users to interact with running processes directly from the terminal.',
-      'Built with termui and tview libraries for creating an intuitive and responsive terminal-based user interface.',
+      'a live dashboard with real-time visualization of CPU usage, memory consumption, core temperature, and network interface information.',
+      'an interactive process table that allows dynamic process management, enabling users to interact with running processes directly from the terminal.',
+      'built with termui and tview libraries for creating an intuitive and responsive terminal-based user interface.',
     ],
     active: true,
   },
@@ -123,7 +58,7 @@ const projects = [
     tags: 'EDA, Microservices, Full Stack, Map Service, Cab Service, Trip Planner',
     previewImages: [],
     shortDescription:
-      'An event-driven architecture based service that combines cab, map, and trip planning functionality into a unified platform',
+      'An event-driven architecture based product that combines cab, map, and trip planning functionality into a unified platform',
     listedDescription: [
       'Built with a microservices approach where individual services are organized in dedicated directories with their own documentation, enabling modular development and scalability.',
       'Utilizes event-driven design as the core architectural pattern, enabling asynchronous communication between components for better performance and decoupling.',
