@@ -25,7 +25,7 @@ export const revalidate = 60;
 
 export default async function HomePage() {
   return (
-    <section>
+    <section className='px-4 sm:px-6 md:px-8'>
       <div className='min-h-[2.5rem]'>
         <TypewriterClient name={name} alias={alias} />
       </div>
@@ -70,12 +70,12 @@ export default async function HomePage() {
       </div>
       {/* <hr className='my-8 max-w-[600px] border-neutral-300 dark:border-neutral-700' /> */}
       <br />
-      <p className='max-w-[600px] text-neutral-800 dark:text-neutral-200'>
+      <p className='max-w-[600px] text-neutral-800 dark:text-neutral-300'>
         {bio()}
       </p>
       {/* <hr className='my-8 max-w-[600px] border-neutral-300 dark:border-neutral-700' /> */}
       <br />
-      <p className='max-w-[600px] text-neutral-800 dark:text-neutral-200'>
+      <p className='max-w-[600px] text-neutral-800 dark:text-neutral-300'>
         {currentJob()}
       </p>
       {/* <hr className='my-8 max-w-[600px] border-neutral-300 dark:border-neutral-700' /> */}

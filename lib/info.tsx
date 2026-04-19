@@ -28,9 +28,8 @@ export const bio = () => {
       <b>Computer Science Engineering in June 2024</b> and have been working as
       a Software Engineer ever since.
       <br />
-      <br />
-      My work involves designing the architecture of and delivering{' '}
-      <b>mobile and web applications</b>.
+      {/* My work involves designing, developing and delivering{' '}
+      <b>mobile and web applications</b>. */}
     </>
   );
 };
@@ -48,8 +47,10 @@ export const currentJob = () => {
       production deployments using nginx and Supervisor for staging and
       production environments. <br />
       <br /> */}
-      <b>Tech Stack:</b> TypeScript, React, Python, Django, React Native,
-      Vitest, PyTest, Nginx, Docker, AWS
+      <b>Frontend:</b> TypeScript, React, React Native, Vitest, Playwright<br/>
+      <b>Backend:</b> Python, Django, FastAPI, PyTest<br/>
+      <b>Databases:</b> Postgres, MySQL<br/>
+      <b>Deployment:</b> Linux, Nginx, Docker, AWS
     </>
   );
 };

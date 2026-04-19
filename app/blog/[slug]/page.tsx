@@ -115,25 +115,40 @@ const components = {
   ),
 };
 
+type OverviewItem = string | { name: string; subtopics: string[] };
+
 interface BlogFrontmatter {
   title: string;
   description: string;
   date: string;
   banner?: { title: string; subtitle?: string };
-  overview?: string[];
+  overview?: OverviewItem[];
   references?: { name: string; url: string }[];
 }
 
+function toScrollId(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, '')
+    .replace(/\s+/g, '-');
+}
+
 function transformOverview(
-  overview: string[]
-): { name: string; scrollToId: string }[] {
-  return overview.map((item) => ({
-    name: item,
-    scrollToId: item
-      .toLowerCase()
-      .replace(/[^a-z0-9\s]/g, '')
-      .replace(/\s+/g, '-'),
-  }));
+  overview: OverviewItem[]
+): { name: string; scrollToId: string; subtopics?: { name: string; scrollToId: string }[] }[] {
+  return overview.map((item) => {
+    if (typeof item === 'string') {
+      return { name: item, scrollToId: toScrollId(item) };
+    }
+    return {
+      name: item.name,
+      scrollToId: toScrollId(item.name),
+      subtopics: item.subtopics.map((sub) => ({
+        name: sub,
+        scrollToId: toScrollId(sub),
+      })),
+    };
+  });
 }
 
 function getBlogPost(
@@ -190,15 +205,15 @@ export default async function BlogPage({
   const { frontmatter, content } = post;
 
   return (
-    <section className='w-full'>
+    <section className='w-full px-4 sm:px-6 md:px-8'>
       {frontmatter.banner && (
         <Banner
           title={frontmatter.banner.title}
           subtitle={frontmatter.banner.subtitle}
         />
       )}
-      <div className='prose prose-neutral dark:prose-invert max-w-none text-neutral-800 dark:text-neutral-300 mt-12 text-justify w-full'>
-        <BlogHeader title={frontmatter.title} date={frontmatter.date} />
+      <div className='prose prose-neutral dark:prose-invert max-w-none text-neutral-800 dark:text-neutral-400 mt-12 text-justify w-full'>
+        <BlogHeader title={frontmatter.title} date={frontmatter.date} wordCount={content.trim().split(/\s+/).length} />
         <div className='text-justify w-full'>
           {frontmatter.overview && (
             <Overview topics={transformOverview(frontmatter.overview)} />

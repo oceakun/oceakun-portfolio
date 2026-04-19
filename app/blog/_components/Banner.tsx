@@ -16,15 +16,15 @@ function Banner({ title, subtitle }: BannerProps) {
           'radial-gradient(ellipse at center, #3b1a1a 0%, #1a0a0a 60%, #0d0505 100%)',
       }}
     >
-      <div className='flex items-center w-full px-8 md:px-12 gap-8'>
+      <div className='flex flex-col sm:flex-row items-center justify-center sm:justify-start w-full px-8 md:px-12 gap-4 sm:gap-8'>
         <Image
           src={bannerImg}
           alt='Banner mascot'
           width={100}
           height={100}
-          className='shrink-0 hidden sm:block'
+          className='shrink-0'
         />
-        <div>
+        <div className='text-center sm:text-left'>
           <h1
             className='text-3xl md:text-5xl font-bold tracking-wide uppercase'
             style={{
@@ -40,7 +40,7 @@ function Banner({ title, subtitle }: BannerProps) {
               className='mt-4 text-lg md:text-2xl tracking-wider'
               style={{
                 color: '#dc916bff',
-                fontFamily: 'var(--font-creepster), cursive',
+                fontFamily: 'var(--font-roboto), sans-serif',
               }}
             >
               {subtitle}

@@ -10,6 +10,14 @@ export const metadata: Metadata = {
 export default function BlogList() {
   const blogList = [
     {
+      title: 'Names, MagicMock and Patch',
+      slug: '/names-magicmock-and-patch',
+      date: '17-04-2026',
+      stack: 'Python, Testing, unittest.mock',
+      tags: ['Python', 'Testing', 'Mocking', 'Unit Tests'],
+      readyForRelease: false,
+    },
+    {
       title: 'Git Hooks',
       slug: '/git-hooks',
       date: '11-01-2026',
@@ -103,7 +111,7 @@ export default function BlogList() {
   const publishedBlogs = blogList.filter((blog) => blog.readyForRelease);
 
   return (
-    <section>
+    <section className='px-4 sm:px-6 md:px-8'>
       <h1 className='font-bold text-3xl dark:text-neutral-200 font-serif '>
         Blog
       </h1>

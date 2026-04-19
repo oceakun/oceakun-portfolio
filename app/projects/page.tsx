@@ -70,7 +70,7 @@ const projects = [
 
 export default function ProjectPage() {
   return (
-    <section>
+    <section className='px-4 sm:px-6 md:px-8'>
       <h1 className='font-bold text-3xl dark:text-neutral-200 font-serif'>
         Projects
       </h1>

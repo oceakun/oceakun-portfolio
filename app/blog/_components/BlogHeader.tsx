@@ -4,22 +4,30 @@ import Link from 'next/link';
 interface HeaderProps {
   title: string;
   date: string;
+  wordCount?: number;
 }
 
-function Header({ title, date }: HeaderProps) {
+function Header({ title, date, wordCount }: HeaderProps) {
+  const readTime = wordCount ? Math.max(1, Math.ceil(wordCount / 200)) : null;
+
   return (
     <div className='w-full'>
       {/* <h1 className='font-bold text-2xl dark:text-neutral-200 font-serif text-left'>
         {title}
       </h1> */}
       <p className='w-full flex flex-row justify-between items-center mt-12'>
-        <span className='font-[300] text-[14px] dark:text-amber-300 text-rose-500'>
+        <span className='font-[300] text-[14px] dark:text-amber-300 text-rose-500 flex flex-col sm:flex-row sm:items-center'>
           {date ? (
             <>
-              <span className='font-[300] text-[12px] dark:text-amber-300 text-rose-500 italic'>
-                (Last Updated on)
-              </span>{' '}
-              {date}
+              <span>{date}</span>
+              {wordCount != null && (
+                <>
+                  <span className='my-1 h-px w-8 bg-current sm:my-0 sm:mx-2 sm:h-4 sm:w-px' />
+                  <span>{wordCount} words</span>
+                  <span className='my-1 h-px w-8 bg-current sm:my-0 sm:mx-2 sm:h-4 sm:w-px' />
+                  <span>{readTime} min read</span>
+                </>
+              )}
             </>
           ) : (
             '----------'

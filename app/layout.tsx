@@ -2,7 +2,7 @@ import './global.css';
 import clsx from 'clsx';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
-import { Creepster } from 'next/font/google';
+import { Creepster, Caveat, Roboto } from 'next/font/google';
 import Sidebar from '../components/sidebar';
 import ToggleSwitch from '../components/themeToggler';
 import { Analytics } from '@vercel/analytics/react';
@@ -11,6 +11,19 @@ const kaisei = localFont({
   src: '../public/fonts/kaisei-tokumin-latin-700-normal.woff2',
   weight: '700',
   variable: '--font-kaisei',
+  display: 'swap',
+});
+
+const roboto = Roboto({
+  weight: ['300', '400'],
+  subsets: ['latin'],
+  variable: '--font-roboto',
+  display: 'swap',
+});
+
+const caveat = Caveat({
+  subsets: ['latin'],
+  variable: '--font-caveat',
   display: 'swap',
 });
 
@@ -77,7 +90,9 @@ export default function RootLayout({
       className={clsx(
         'text-black bg-white dark:text-white dark:bg-[#111010]',
         kaisei.variable,
-        creepster.variable
+        creepster.variable,
+        caveat.variable,
+        roboto.variable
       )}
     >
       <body className='antialiased max-w-4xl mb-40 flex flex-col md:flex-row mx-4 mt-8 md:mt-20 mx-auto'>
