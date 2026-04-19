@@ -47,9 +47,12 @@ export const currentJob = () => {
       production deployments using nginx and Supervisor for staging and
       production environments. <br />
       <br /> */}
-      <b>Frontend:</b> TypeScript, React, React Native, Vitest, Playwright<br/>
-      <b>Backend:</b> Python, Django, FastAPI, PyTest<br/>
-      <b>Databases:</b> Postgres, MySQL<br/>
+      <b>Frontend:</b> TypeScript, React, React Native, Vitest, Playwright
+      <br />
+      <b>Backend:</b> Python, Django, FastAPI, PyTest
+      <br />
+      <b>Databases:</b> Postgres, MySQL
+      <br />
       <b>Deployment:</b> Linux, Nginx, Docker, AWS
     </>
   );

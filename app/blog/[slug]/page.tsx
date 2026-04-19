@@ -133,9 +133,11 @@ function toScrollId(text: string): string {
     .replace(/\s+/g, '-');
 }
 
-function transformOverview(
-  overview: OverviewItem[]
-): { name: string; scrollToId: string; subtopics?: { name: string; scrollToId: string }[] }[] {
+function transformOverview(overview: OverviewItem[]): {
+  name: string;
+  scrollToId: string;
+  subtopics?: { name: string; scrollToId: string }[];
+}[] {
   return overview.map((item) => {
     if (typeof item === 'string') {
       return { name: item, scrollToId: toScrollId(item) };
@@ -213,7 +215,11 @@ export default async function BlogPage({
         />
       )}
       <div className='prose prose-neutral dark:prose-invert max-w-none text-neutral-800 dark:text-neutral-400 mt-12 text-justify w-full'>
-        <BlogHeader title={frontmatter.title} date={frontmatter.date} wordCount={content.trim().split(/\s+/).length} />
+        <BlogHeader
+          title={frontmatter.title}
+          date={frontmatter.date}
+          wordCount={content.trim().split(/\s+/).length}
+        />
         <div className='text-justify w-full'>
           {frontmatter.overview && (
             <Overview topics={transformOverview(frontmatter.overview)} />
