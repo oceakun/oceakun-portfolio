@@ -26,8 +26,16 @@ export const revalidate = 60;
 export default async function HomePage() {
   return (
     <section className='px-4 sm:px-6 md:px-8'>
-      <div className='min-h-[2.5rem]'>
+      <div className='min-h-[2.5rem] flex items-center justify-between'>
         <TypewriterClient name={name} alias={alias} />
+        <a
+          href='/trkr/index.html'
+          target='_blank'
+          rel='noopener noreferrer'
+          className='font-serif text-sm italic text-neutral-600 dark:text-neutral-400 hover:text-rose-500 dark:hover:text-amber-300 transition-colors'
+        >
+          trkr →
+        </a>
       </div>
       <div className='mt-10 flex flex-row gap-4 items-center'>
         <a
