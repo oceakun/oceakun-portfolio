@@ -1,12 +1,12 @@
 ---
-title: "Ideas"
-description: "A collection of blog post ideas and drafts for future reference."
-date: "20-05-2026"
-slug: "ideas"
-stack: "Meta"
+title: 'Ideas'
+description: 'A collection of blog post ideas and drafts for future reference.'
+date: '20-05-2026'
+slug: 'ideas'
+stack: 'Meta'
 tags:
-  - "Ideas"
-  - "Drafts"
+  - 'Ideas'
+  - 'Drafts'
 readyForRelease: false
 ---
 
@@ -126,4 +126,4 @@ This page contains a list of blog post ideas and drafts that may be developed in
 
 ---
 
-*Last updated: May 20, 2026*
+_Last updated: May 20, 2026_

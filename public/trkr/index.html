@@ -1,87 +1,121 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>trkr — task tracker</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <div class="container">
+      <div class="navbar">
+        <header class="page-header">
+          <span class="eyebrow">Task Tracker</span>
+          <h1>trkr</h1>
+        </header>
 
-        <div class="navbar">
-            <header class="page-header">
-                <span class="eyebrow">Task Tracker</span>
-                <h1>trkr</h1>
-            </header>
+        <div class="board-actions">
+          <button class="create-btn" onclick="openModal()">
+            + Create new task
+          </button>
+        </div>
+      </div>
 
-            <div class="board-actions">
-                <button class="create-btn" onclick="openModal()">+ Create new task</button>
-            </div>
+      <div class="columns-container">
+        <div class="column" data-column="untouched">
+          <div class="column-header">
+            <h3><span class="dot"></span>Untouched</h3>
+            <span class="count">0</span>
+          </div>
+          <div
+            class="column-content"
+            ondrop="drop(event)"
+            ondragover="allowDrop(event)"
+          >
+            <!-- Tasks will go here -->
+          </div>
         </div>
 
-        <div class="columns-container">
-            <div class="column" data-column="untouched">
-                <div class="column-header">
-                    <h3><span class="dot"></span>Untouched</h3>
-                    <span class="count">0</span>
-                </div>
-                <div class="column-content" ondrop="drop(event)" ondragover="allowDrop(event)">
-                    <!-- Tasks will go here -->
-                </div>
-            </div>
-
-            <div class="column" data-column="working">
-                <div class="column-header">
-                    <h3><span class="dot"></span>Working on</h3>
-                    <span class="count">0</span>
-                </div>
-                <div class="column-content" ondrop="drop(event)" ondragover="allowDrop(event)">
-                    <!-- Tasks will go here -->
-                </div>
-            </div>
-
-            <div class="column" data-column="done">
-                <div class="column-header">
-                    <h3><span class="dot"></span>Done</h3>
-                    <span class="count">0</span>
-                </div>
-                <div class="column-content" ondrop="drop(event)" ondragover="allowDrop(event)">
-                    <!-- Tasks will go here -->
-                </div>
-            </div>
+        <div class="column" data-column="working">
+          <div class="column-header">
+            <h3><span class="dot"></span>Working on</h3>
+            <span class="count">0</span>
+          </div>
+          <div
+            class="column-content"
+            ondrop="drop(event)"
+            ondragover="allowDrop(event)"
+          >
+            <!-- Tasks will go here -->
+          </div>
         </div>
+
+        <div class="column" data-column="done">
+          <div class="column-header">
+            <h3><span class="dot"></span>Done</h3>
+            <span class="count">0</span>
+          </div>
+          <div
+            class="column-content"
+            ondrop="drop(event)"
+            ondragover="allowDrop(event)"
+          >
+            <!-- Tasks will go here -->
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Modal for creating new task -->
     <div id="taskModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="modalTitle">Create new task</h2>
-                <div class="modal-actions">
-                    <span class="edit-btn" id="editBtn" style="display: none;" onclick="enableEditMode()">Edit</span>
-                    <span class="close-btn" onclick="closeModal()">&times;</span>
-                </div>
-            </div>
-            <div class="modal-body">
-                <label class="field-label" for="taskTitle">Task title</label>
-                <input type="text" id="taskTitle" placeholder="e.g. Review frontend PR" />
-                <label class="field-label" for="taskDescription">Description</label>
-                <textarea id="taskDescription" placeholder="Notes, links, next steps… (optional)" rows="4"></textarea>
-                <label class="field-label" for="taskTags">Tags</label>
-                <input type="text" id="taskTags" placeholder="bug, urgent, frontend (comma separated)" />
-                <div class="tags-preview" id="tagsPreview"></div>
-            </div>
-            <div class="modal-footer">
-                <button onclick="createNewTask()">Create task</button>
-            </div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modalTitle">Create new task</h2>
+          <div class="modal-actions">
+            <span
+              class="edit-btn"
+              id="editBtn"
+              style="display: none"
+              onclick="enableEditMode()"
+              >Edit</span
+            >
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+          </div>
         </div>
+        <div class="modal-body">
+          <label class="field-label" for="taskTitle">Task title</label>
+          <input
+            type="text"
+            id="taskTitle"
+            placeholder="e.g. Review frontend PR"
+          />
+          <label class="field-label" for="taskDescription">Description</label>
+          <textarea
+            id="taskDescription"
+            placeholder="Notes, links, next steps… (optional)"
+            rows="4"
+          ></textarea>
+          <label class="field-label" for="taskTags">Tags</label>
+          <input
+            type="text"
+            id="taskTags"
+            placeholder="bug, urgent, frontend (comma separated)"
+          />
+          <div class="tags-preview" id="tagsPreview"></div>
+        </div>
+        <div class="modal-footer">
+          <button onclick="createNewTask()">Create task</button>
+        </div>
+      </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
