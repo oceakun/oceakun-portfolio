@@ -2,6 +2,13 @@
 title: "Anatomy of React"
 description: "Diving into React architecture"
 date: "10-01-2026"
+slug: "anatomy-of-react"
+stack: "React, Frontend"
+tags:
+  - "React Architecture"
+  - "Frontend"
+  - "JavaScript"
+readyForRelease: true
 banner:
   title: "Anatomy of React"
   subtitle: "Diving into React architecture"

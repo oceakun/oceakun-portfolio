@@ -1,114 +1,49 @@
 import type { Metadata } from 'next';
-import { StackIcon, HashIcon } from '../../components/icons';
+import { HashIcon } from '../../components/icons';
 import Link from 'next/link';
+import matter from 'gray-matter';
+import { readFileSync, readdirSync } from 'fs';
+import { join } from 'path';
 
 export const metadata: Metadata = {
   title: 'Blog',
   description: 'Read my thoughts on software development.',
 };
 
+interface BlogFrontmatter {
+  title: string;
+  slug: string;
+  date: string;
+  stack: string;
+  tags: string[];
+  readyForRelease: boolean;
+}
+
+function getAllBlogPosts(): BlogFrontmatter[] {
+  const blogDir = join(process.cwd(), 'content', 'blog');
+  const files = readdirSync(blogDir).filter((f) => f.endsWith('.md'));
+
+  const posts = files.map((file) => {
+    const filePath = join(blogDir, file);
+    const fileContent = readFileSync(filePath, 'utf-8');
+    const { data } = matter(fileContent);
+    return data as BlogFrontmatter;
+  });
+
+  return posts;
+}
+
 export default function BlogList() {
-  const blogList = [
-    {
-      title: 'Names, MagicMock and Patch',
-      slug: '/names-magicmock-and-patch',
-      date: '17-04-2026',
-      stack: 'Python, Testing, unittest.mock',
-      tags: ['Python', 'Testing', 'Mocking', 'Unit Tests'],
-      readyForRelease: false,
-    },
-    {
-      title: 'Git Hooks',
-      slug: '/git-hooks',
-      date: '11-01-2026',
-      stack: 'Git, DevOps, Automation',
-      tags: ['Git', 'DevOps', 'Automation', 'Productivity', 'Best Practices'],
-      readyForRelease: false,
-    },
-    {
-      title: 'Anatomy of React',
-      slug: '/anatomy-of-react',
-      date: '10-01-2026',
-      stack: 'React, Frontend',
-      tags: ['React Architecture', 'Frontend', 'JavaScript'],
-      readyForRelease: true,
-    },
-    {
-      title: 'Chat service',
-      slug: '/chat-service',
-      date: '08-01-2026',
-      stack: 'Backend, API, WebSockets',
-      tags: ['Backend', 'Chat', 'WebSockets', 'System Design'],
-      readyForRelease: false,
-    },
-    {
-      title: 'Django for FastAPI Developers',
-      slug: '/django-for-fastapi-developers',
-      date: '20-12-2025',
-      stack: 'Django, FastAPI, Python',
-      tags: ['Python', 'Django', 'FastAPI', 'Backend'],
-      readyForRelease: false,
-    },
-    {
-      title: 'Debouncing, Deferring and Throttling',
-      slug: '/debouncing-deferring-and-throttling',
-      date: '04-12-2025',
-      stack: 'JavaScript, React, Performance',
-      tags: ['JavaScript', 'React', 'Performance', 'Optimization', 'Frontend'],
-      readyForRelease: false,
-    },
-    {
-      title: 'SSR vs Server Components',
-      slug: '/ssr-vs-server-components',
-      date: '11-11-2025',
-      stack: 'React, Next.js, SSR',
-      tags: ['React', 'Next.js', 'SSR', 'Server Components', 'Frontend'],
-      readyForRelease: false,
-    },
-    {
-      title: 'Deploy your project with nginx and supervisor',
-      slug: '/deploy-your-project-with-nginx-and-supervisor',
-      date: '11-11-2025',
-      stack: 'nginx, supervisor, DevOps',
-      tags: ['DevOps', 'nginx', 'supervisor', 'Deployment'],
-      readyForRelease: false,
-    },
-    {
-      title: 'React Hooks: From useState to useOptimistic',
-      slug: '/react-hooks-from-usestate-to-useoptimistic',
-      date: '11-11-2025',
-      stack: 'React, Hooks',
-      tags: ['React', 'Hooks', 'Frontend'],
-      readyForRelease: false,
-    },
-    {
-      title: "Persistent and flickerless 'Dark theme'",
-      slug: '/persistent-and-flicker-less-dark-theme',
-      date: '25-09-2023',
-      stack: 'Next, TailwindCSS, React, Styled Components',
-      tags: ['Frontend', 'CSS', 'Dark Mode'],
-      readyForRelease: false,
-    },
-    // {
-    //   title: 'Grafana as a local service and beyond',
-    //   slug: '/grafana-as-a-local-service',
-    //   date: '22-09-2023',
-    //   stack: 'Grafana, Docker-compose',
-    //   tags: ['Data Visualization', 'DevOps'],
-    //   readyForRelease: false,
-    // },
-    {
-      title: "Deploy Fullstack applications with S3, cloudfront and Lambda'",
-      slug: '/deploy-fullstack-apps-with-s3-cloudfront-lambda',
-      date: '25-09-2023',
-      stack: 'Next, TailwindCSS, React, Styled Components',
-      tags: ['Devops', 'AWS', 'Cloudfront', 'S3', 'Lambda'],
-      readyForRelease: false,
-    },
-  ];
+  const blogList = getAllBlogPosts();
 
   // Filter to only show blogs that are ready for release
-  const publishedBlogs = blogList.filter((blog) => blog.readyForRelease);
+  // In production, also filter out the "ideas" page (only visible on localhost)
+  const isDevelopment = process.env.NODE_ENV === 'development';
+  const publishedBlogs = blogList.filter((blog) => {
+    if (!blog.readyForRelease) return false;
+    if (blog.slug === 'ideas' && !isDevelopment) return false;
+    return true;
+  });
 
   return (
     <section className='px-4 sm:px-6 md:px-8'>
@@ -129,9 +64,6 @@ export default function BlogList() {
                   <span className='font-normal italic text-justify'>
                     {blog.title}
                   </span>
-                  {/* <span className="font-[200] text-[14px] dark:text-amber-300 text-rose-500">
-                    {blog.date}
-                  </span> */}
                 </Link>
 
                 <div className='flex flex-row gap-2 flex-wrap mt-2'>

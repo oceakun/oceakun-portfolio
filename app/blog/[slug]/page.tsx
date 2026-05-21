@@ -121,6 +121,10 @@ interface BlogFrontmatter {
   title: string;
   description: string;
   date: string;
+  slug: string;
+  stack: string;
+  tags: string[];
+  readyForRelease: boolean;
   banner?: { title: string; subtitle?: string };
   overview?: OverviewItem[];
   references?: { name: string; url: string }[];
