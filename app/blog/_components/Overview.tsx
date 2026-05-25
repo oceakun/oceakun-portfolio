@@ -47,7 +47,9 @@ function Overview({ topics }: OverviewProps) {
               className='flex items-start gap-2 text-left hover:underline cursor-pointer text-md dark:text-neutral-200 text-neutral-800'
               type='button'
             >
-              <span className='text-rose-500 dark:text-amber-300 flex-shrink-0'>&gt;</span>
+              <span className='text-rose-500 dark:text-amber-300 flex-shrink-0'>
+                &gt;
+              </span>
               <span>{topic.name}</span>
             </button>
 
