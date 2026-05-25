@@ -37,8 +37,6 @@ references:
 
 ![Points of IO in a server](/blog/concurrency-in-python/server-io-points.png)
 
-Every operation discussed hereafter in python's context is done while focussing on its single-threaded nature.
-
 A server's operations can be broadly divided into two types.
 
 - One, receiving and sending data
