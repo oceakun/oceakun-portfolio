@@ -68,7 +68,7 @@ The common denominator in all of these forms of communication is, the server wil
 
 ## Types of Multitasking
 
-Multitasking is divided into 3 types Multiprocessing, Multithreading, Asyncio. Within this list, the first two fall under the categoy of prememptive multitasking and the last one under cooperative multitasking. Python provides libraries to accomplish all three, namely, _multiprocessing_, _threadpool_ and _asyncio_, respectively.
+Multitasking is divided into 3 types Multiprocessing, Multithreading, Asyncio. Within this list, the first two fall under the categoy of prememptive multitasking and the last one under cooperative multitasking. Python provides libraries to accomplish all three, namely, _ProcessPoolExecutor_, _ThreadPoolExecutor_ and _asyncio_, respectively.
 
 Why discuss this topic you ask? Because its easy to mix up their features and get confused about why we make a distinction between them at all. But more than that, I need to help you draw a mental model on the heirarchical differeces that exists between these three, so I can establish the importance of Asyncio to Python over the other two.
 
