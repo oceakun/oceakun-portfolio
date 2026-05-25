@@ -27,7 +27,6 @@ overview:
       - 'What is a Fiber?'
       - 'Creation of a Fiber node'
       - 'Fiber Tree'
-  - 'Performance Hooks'
 references:
   - name: 'React useState - Official Docs'
     url: 'https://react.dev/reference/react/useState'

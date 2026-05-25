@@ -4,7 +4,6 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import { Creepster, Caveat, Roboto } from 'next/font/google';
 import Sidebar from '../components/sidebar';
-import ToggleSwitch from '../components/themeToggler';
 import { Analytics } from '@vercel/analytics/react';
 
 const kaisei = localFont({
@@ -95,7 +94,7 @@ export default function RootLayout({
         roboto.variable
       )}
     >
-      <body className='antialiased max-w-4xl mb-40 flex flex-col md:flex-row mx-4 mt-8 md:mt-20 mx-auto'>
+      <body className='antialiased max-w-6xl mb-40 flex flex-col md:flex-row mx-4 mt-8 md:mt-20 mx-auto'>
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -112,11 +111,8 @@ export default function RootLayout({
             `,
           }}
         />
-        <div className='md:hidden block flex flex-row mx-auto'>
-          <ToggleSwitch />
-        </div>{' '}
         <Sidebar />
-        <main className='flex-auto min-w-0 mt-6 md:mt-0 flex flex-col px-2 mx-auto'>
+        <main className='flex-auto min-w-0 mt-6 md:mt-0 flex flex-col px-2 w-full'>
           {children}
           <Analytics />
         </main>

@@ -10,6 +10,7 @@ import BlogHeader from '../_components/BlogHeader';
 import CodeBlock from '../_components/CodeBlock';
 import Overview from '../_components/Overview';
 import References from '../_components/References';
+import SidebarTocPortal from '../_components/SidebarTocPortal';
 
 // Custom components for MDX rendering
 const components = {
@@ -226,7 +227,14 @@ export default async function BlogPage({
         />
         <div className='text-justify w-full'>
           {frontmatter.overview && (
-            <Overview topics={transformOverview(frontmatter.overview)} />
+            <>
+              <div className='md:hidden'>
+                <Overview topics={transformOverview(frontmatter.overview)} />
+              </div>
+              <SidebarTocPortal>
+                <Overview topics={transformOverview(frontmatter.overview)} />
+              </SidebarTocPortal>
+            </>
           )}
           <MDXRemote source={content} components={components} />
           {frontmatter.references && (

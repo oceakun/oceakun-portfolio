@@ -64,7 +64,7 @@ const projects = [
       'Utilizes event-driven design as the core architectural pattern, enabling asynchronous communication between components for better performance and decoupling.',
       'Features a comprehensive infrastructure layer for deployment and a dedicated frontend UI, combining Go backend services with TypeScript frontend for a full-stack solution.',
     ],
-    active: true,
+    active: false,
   },
 ];
 

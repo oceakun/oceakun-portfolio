@@ -66,7 +66,7 @@ export default async function HomePage() {
       <p className='mt-5 max-w-[460px] text-neutral-800 dark:text-neutral-200'>
         {about()}
       </p>
-      <div className='flex items-start md:items-center my-6 flex-col md:flex-row'>
+      {/* <div className='flex items-start md:items-center my-6 flex-col md:flex-row'>
         <Image
           alt={name}
           className='grayscale-50 dark:grayscale shadow-lg shadow-rose-500/50 dark:shadow-lg dark:shadow-cyan-500/50'
@@ -75,7 +75,7 @@ export default async function HomePage() {
           width={160}
           priority
         />
-      </div>
+      </div> */}
       {/* <hr className='my-8 max-w-[600px] border-neutral-300 dark:border-neutral-700' /> */}
       <br />
       <p className='max-w-[600px] text-neutral-800 dark:text-neutral-300'>

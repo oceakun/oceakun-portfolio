@@ -63,7 +63,6 @@ body {
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
   color: var(--color-gray-400);
   margin-bottom: 2px;
 }
@@ -590,4 +589,44 @@ body {
   .page-header h1 {
     font-size: 44px;
   }
+}
+
+/* Footer */
+.trkr-footer {
+  margin-top: 48px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  border-top: 1px solid var(--color-gray-10);
+  text-align: center;
+  background-image: url('/palm.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.trkr-footer p {
+  font-size: 14px;
+  color: var(--color-foreground);
+  font-family: var(--font-display);
+  font-style: italic;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 8px 16px;
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+}
+
+.trkr-footer a {
+  color: var(--color-foreground);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-gray-10);
+  transition: border-color 0.2s ease;
+}
+
+.trkr-footer a:hover {
+  border-color: var(--color-foreground);
 }

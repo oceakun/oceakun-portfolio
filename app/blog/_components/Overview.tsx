@@ -35,19 +35,20 @@ function Overview({ topics }: OverviewProps) {
 
   return (
     <div className='mb-8 w-full '>
-      <h2 className='text-xl dark:text-neutral-200 font-serif mb-4 w-full'>
+      {/* <h2 className='text-base dark:text-neutral-200 font-serif mb-4 w-full'>
         Content
-      </h2>
-      <div className='space-y-2 bg-gray-100 dark:bg-stone-800 py-2 w-full rounded-lg'>
+      </h2> */}
+      <div className='space-y-3 py-2 w-full font-sans'>
         {topics.map((topic) => (
           <div key={topic.scrollToId} className='ml-4'>
             {/* Main topic */}
             <button
               onClick={() => scrollToSection(topic.scrollToId)}
-              className='text-left hover:underline cursor-pointer font-medium dark:text-neutral-200 text-neutral-800'
+              className='flex items-start gap-2 text-left hover:underline cursor-pointer text-md dark:text-neutral-200 text-neutral-800'
               type='button'
             >
-              {topic.name}
+              <span className='text-rose-500 dark:text-amber-300 flex-shrink-0'>&gt;</span>
+              <span>{topic.name}</span>
             </button>
 
             {/* Subtopic list if exists */}
