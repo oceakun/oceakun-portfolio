@@ -72,15 +72,15 @@ Multitasking is divided into 3 types Multiprocessing, Multithreading, Asyncio. W
 
 Why discuss this topic you ask? Because its easy to mix up their features and get confused about why we make a distinction between them at all. But more than that, I need to help you draw a mental model on the heirarchical differeces that exists between these three, so I can establish the importance of Asyncio to Python over the other two.
 
-#### Multiprocessing
+### Multiprocessing
 
 Modern computers range anywhere from having 4 to 16 core CPUs. So when the OS Kernel spins up a different process on each core and gives it exclusive access to a part of memory, CPU and Kernel resources, thats when we say multiprocessing is in place. On one hand this is a way to achieve true parallelism (because different processes are executing simultaneously) and fault isolation(processes don't interfere with each other) but it is very resource exhaustive. In addition to the resource allocation at startup time processes must use Inter-Process Communication (IPC) mechanism to talk to other processes, thus adding another layer of complexity.
 
-#### Multithreading
+### Multithreading
 
 Imagine multiple clones of a process running on the same core, along with the main process. These clones are threads and this is called multithreading. All threads have access to the same heap memory but unlike multiprocessing, there is no mechanism to run them truley parallely, instead they must be run sequentially. But even this sequential execution occurs so fast that it can be mistaken for parallelism. This is accomplished by the OS Kernel through context switching which involves saving the context of current thread (program counter, CPU registers' content and the thread stack) in the Thread Control Block(in kernel space), letting another thread lock onto resouces and getting its work done, then reviving the suspended thread to complete its remaining task. The overhead of context switching alone is enough to present multithreading as an unsavooury option. Moreover, a crash in one thread can corrupt the entire process.
 
-#### Asyncio
+### Asyncio
 
 Now if we go a step further, and divide a thread into multiple tasks, that changes a lot of things. Suddenly, the Kernel doesn't need to prepare an isolated environment or worry about context switching. In fact the responsibility to manage tasks is shouldered by the python runtime. Asyncio enables the user to mark the code blocks that need to pause and wait for data to come from elsewhere which is very special because when execution reaches that block, it voluntarily relinquishes control to the orchestrator (The Event Loop) and waits. When its data arrives, the Event Loop wakes it up (metaphorically). So, it is deterministic(no preemption), causes way less overhead(the task only needs to remember what line of code it was executing along with the variable values before pausing), doesn't require complex code(unlike multithreading where Memory Access Synchronisation has to be performed via constructs like locks, semaphores etc). But asyncio is not bulletproof either, if an expensive code block is made synchronous, it will choke the whole app.
 
