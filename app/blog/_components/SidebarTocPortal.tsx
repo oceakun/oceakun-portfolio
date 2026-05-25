@@ -1,12 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 
 export default function SidebarTocPortal({
   children,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   const [target, setTarget] = useState<HTMLElement | null>(null);
 
@@ -15,5 +15,5 @@ export default function SidebarTocPortal({
   }, []);
 
   if (!target) return null;
-  return createPortal(children, target);
+  return createPortal(children as any, target) as any;
 }
