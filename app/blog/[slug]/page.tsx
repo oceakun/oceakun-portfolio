@@ -6,7 +6,6 @@ import matter from 'gray-matter';
 import { readFileSync, readdirSync } from 'fs';
 import { join } from 'path';
 import Banner from '../_components/Banner';
-import BlogHeader from '../_components/BlogHeader';
 import CodeBlock from '../_components/CodeBlock';
 import Overview from '../_components/Overview';
 import References from '../_components/References';
@@ -216,15 +215,11 @@ export default async function BlogPage({
       {frontmatter.banner && (
         <Banner
           title={frontmatter.banner.title}
-          subtitle={frontmatter.banner.subtitle}
-        />
-      )}
-      <div className='prose prose-neutral dark:prose-invert max-w-none text-neutral-800 dark:text-neutral-400 mt-12 text-justify w-full'>
-        <BlogHeader
-          title={frontmatter.title}
           date={frontmatter.date}
           wordCount={content.trim().split(/\s+/).length}
         />
+      )}
+      <div className='prose prose-neutral dark:prose-invert max-w-none text-neutral-800 dark:text-neutral-400 mt-12 text-justify w-full'>
         <div className='text-justify w-full'>
           {frontmatter.overview && (
             <>

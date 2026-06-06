@@ -37,14 +37,14 @@ references:
 
 A server's operations can be broadly divided into two types.
 
-- One, receiving and sending data
-- Two, running business logic on the data
+- **One**, receiving and sending data
+- **Two**, running business logic on the data
 
 The reason we talk about input and output in the same breath is because an output is almost always followed by a wait for input. In any server you create, IO happens at multiple points. Let's consider an API server which exposes a GET endpoint, for facilitating the retrieval of user information. From the server's perspective, I/O will happen at least at 3 points:
 
-1. Inbound Network IO: The api request sent by the user hits the network card and travels to the Python runtime via OS buffer.
-2. DB IO/ Disk IO: Once recieved, the endpoint handler either makes a query to the database or reads data from a disk.
-3. Outbound Network IO: Once data from the storage unit is retrieved, the python runtime curates a json object, wraps it up in the response payload and sends it to the Kernel which directs it to the network card. From there it is sent back to the user browser.
+1. **Inbound Network IO:** The api request sent by the user hits the network card and travels to the Python runtime via OS buffer.
+2. **DB IO/ Disk IO:** Once recieved, the endpoint handler either makes a query to the database or reads data from a disk.
+3. **Outbound Network IO:** Once data from the storage unit is retrieved, the python runtime curates a json object, wraps it up in the response payload and sends it to the Kernel which directs it to the network card. From there it is sent back to the user browser.
 
 ![Points of IO in a server](/blog/concurrency-in-python/server-io-points.png)
 
@@ -56,11 +56,11 @@ Now imagine an API server built for an e-commerce platform. It will have a hundr
 
 Need for IO arises out of the fact that modern web servers are stateless, meaning they rely on seperate/external systems to build their state and do work. A few examples of the same are:
 
-1. Network IO: A server getting an HTTP request from a user browser and sending back a repsonse in the same direction
-2. Streaming IO: A server establishing a websocket channel with a user or a broadcasting channel among multiple users and then the participants can exchange messages for as long as they want
-3. Disk IO: A server might need to read a file stored on its disk or maybe you have used bulk storages such as AWS S3 or Azure Blob Storage both of which are deployed on verdor servers
-4. Database IO: Depending on the client's request, server may need to write an sql query to a databse which just like the disk, could either be present on the server (a locally running postgres/mysql/sqlite/mongodb instance) or something provided by one of the cloud vendors.
-5. Inter-process Communication: Sometimes, the python runtime has to communicate with processes other than itself such as task queues(Celery), message brokers(Redis) etc. The OS Kernel runs them on their own threads. So any message sent between them has to travek through multiple layers before reaching its destination.
+1. **Network IO:** A server getting an HTTP request from a user browser and sending back a repsonse in the same direction
+2. **Streaming IO:** A server establishing a websocket channel with a user or a broadcasting channel among multiple users and then the participants can exchange messages for as long as they want
+3. **Disk IO:** A server might need to read a file stored on its disk or maybe you have used bulk storages such as AWS S3 or Azure Blob Storage both of which are deployed on verdor servers
+4. **Database IO:** Depending on the client's request, server may need to write an sql query to a databse which just like the disk, could either be present on the server (a locally running postgres/mysql/sqlite/mongodb instance) or something provided by one of the cloud vendors.
+5. **Inter-process Communication:** Sometimes, the python runtime has to communicate with processes other than itself such as task queues(Celery), message brokers(Redis) etc. The OS Kernel runs them on their own threads. So any message sent between them has to travek through multiple layers before reaching its destination.
 
 The common denominator in all of these forms of communication is, the server will inevitably have to wait for data to come from them. But the question that matters is, how long can the server afford to wait, turns out, not long enough. After all, user experience will suffer and failures will occur at multiple layers(Browser timeout, Load Balancer timeout, thread blocked etc), effectively stranding the whole app for every single user. Bad stuff. And in a single threaded world it woukd be the reality, were it not for The Event Loop.
 
@@ -108,8 +108,8 @@ In technical terms, standard functions are called subroutines. The diagram above
 With the advent of O_NONBLOCK flag and kqueue, the python team noticed that they could use generator functions' ability of pausing, to wait for IO. But who'll wake up the generator function upon the data's arrival? How about an orchestrator that acts as a middleman between kqueue and the function, so that, when data arrives at the network card, kqueue notifies the event loop which wakes up the function and tells it to continnue its execution from where it left off.
 The syntax adopted involved two changes:
 
-- 'yield from' statement was capable of calling coroutines(and subroutines). It acted as a pipe for direct communication between the event loop and the coroutine being called.
-- '@asyncio.coroutine' decorator was used to mark a function as an IO requiring task for the event loop.
+- **'yield from' statement** was capable of calling coroutines(and subroutines). It acted as a pipe for direct communication between the event loop and the coroutine being called.
+- **'@asyncio.coroutine' decorator** was used to mark a function as an IO requiring task for the event loop.
 
 ## Async/await
 
@@ -121,17 +121,17 @@ async-await terminology is essentially syntactic sugar for the coroutine syntax.
 
 The Event Loop is the main man in the modern concurrency architecture. It controls tasks which need to wait for IO. The main components which encapsulate its functionality are the Call Stack, Task Queue, Heap Memory and the IO multiplexing mechanisms. Here is a brief explanation of all of them:
 
-1. Task Queue: It is a data structure which operates on the principle of First In First Out(FIFO) and is used to store async tasks.
-2. Call Stack: As the name suggests it is a stack (operating on Last In First Out principle) data structure, used to keep track of which code block is being executed. Each frame of the Call Stack is devoted to executing one function call. When that call happens to be marked by an await keyword, the Event Loop clears out the whole stack and informs the IO Multiplexer to do its job and look out for the data this coroutine needs.
-3. Heap: This is the memory provided to the event loop everytime a python process is started. When the Event loop suspends an async task, it saves its state here.
-4. IO Multiplexing Mechanism: kqueue is used to keep tabs on the IO sockets. Once the data arrives, it informs the Event Loop via hardware interrupts which puts the task back into the Task Queue, where it waits its turn on the Call Stack.
+1. **Task Queue:** It is a data structure which operates on the principle of First In First Out(FIFO) and is used to store async tasks.
+2. **Call Stack:** As the name suggests it is a stack (operating on Last In First Out principle) data structure, used to keep track of which code block is being executed. Each frame of the Call Stack is devoted to executing one function call. When that call happens to be marked by an await keyword, the Event Loop clears out the whole stack and informs the IO Multiplexer to do its job and look out for the data this coroutine needs.
+3. **Heap:** This is the memory provided to the event loop everytime a python process is started. When the Event loop suspends an async task, it saves its state here.
+4. **IO Multiplexing Mechanism:** kqueue is used to keep tabs on the IO sockets. Once the data arrives, it informs the Event Loop via hardware interrupts which puts the task back into the Task Queue, where it waits its turn on the Call Stack.
 
 ## Never block the loop
 
 As I said before, async-await is not bullet proof. One of the loopholes is that, the presence of synchronous code can choke the event loop. After all, the event loop is single threaded. Violations of this constraint can be performed in a number of ways, such as:
 
-- Using time.sleep() function, for loops or (synchronous) sql queries
-- Sometimes you cannot avoid using old libraries that are not compatible with the asynchronous paradigm, such as, requests and psycopg2
-- Computation heavy tasks like image processing or math can also be quite heavy
+- **Using time.sleep() function**, for loops or (synchronous) sql queries
+- **Sometimes you cannot avoid** using old libraries that are not compatible with the asynchronous paradigm, such as, requests and psycopg2
+- **Computation heavy tasks** like image processing or math can also be quite heavy
 
 In case the synchronous task cannot be avoided, it is suggested to use either ThreadPoolExecutor(I/O Bound, creates a pool of threads) or ProcessPoolExecutor(CPU Bound, creates a pool of processes).

@@ -82,10 +82,10 @@ The idea behind VDOM is simple, react builds a copy of the DOM using current sta
 
 The Event Loop consists of the following components :
 
-1. The call stack
-2. Web /Node.js APIs
-3. Macrotask Queue/Callback Queue/ Task Queue
-4. Microtask Queue
+1. **The call stack**
+2. **Web /Node.js APIs**
+3. **Macrotask Queue/Callback Queue/ Task Queue**
+4. **Microtask Queue**
 
 The main component here is the call stack, which works on the recursive principle, whereby, it runs a function and runs the next function called within it(callback function), this process continues until the last function is executed and it returns, in which case we traverese down to empty the stack.
 
@@ -97,18 +97,18 @@ The microtasks take higher priority than the macrotasks and it is the reason tha
 
 Before React V16, this is how React determined which part of the UI is to be updated, followed by a change in state. It was powered by ‘The Diffing Algorithm’ and Virtual DOM in the following way:
 
-1. React keeps a copy of the DOM with the current state - a virtual DOM, always.
-2. Upon every state/prop change, React creates a new Virtual DOM tree and compares it with the previous one.
-3. The Diffing Algorithm is used to find the points of difference between the two Virtual DOMs.
-4. The differences are applied by the Reconciliation Algorithm to the actual DOM.
+1. **React keeps a copy of the DOM** with the current state - a virtual DOM, always.
+2. **Upon every state/prop change,** React creates a new Virtual DOM tree and compares it with the previous one.
+3. **The Diffing Algorithm** is used to find the points of difference between the two Virtual DOMs.
+4. **The differences** are applied by the Reconciliation Algorithm to the actual DOM.
 
 ## FIBER RECONCILER - THE UPGRADE
 
 Fiber is a complete rewrite of the Stack Reconciler, it was mainly designed to accomplish better responsiveness and concurrency. With Fiber, React can :
 
-1. Break up the process of re-rendering into smaller tasks, called fibers
-2. Assign different priorities to the tasks
-3. Stop, resume or restart a task by priority.
+1. **Break up** the process of re-rendering into smaller tasks, called fibers
+2. **Assign** different priorities to the tasks
+3. **Stop, resume or restart** a task by priority.
 
 The Call Stack powers javascript behind the scenes, even with fiber now which is an improved version of the call stack. Fiber is essentially a call stack with an extended set of operations to control it, earlier it could only be kicked off and it would stop once all of the rendering work was done, but now it can be turned on, paused, resumed, restarted and quit.
 
@@ -128,9 +128,9 @@ With Fibers we can prioritize, pause, resume, restart and quit tasks, which mean
 
 A fiber can be called :
 
-1. a customizable representation of a function-call
-2. stack-frame in the Javascript call stack
-3. a data structure that represents a unit of work
+1. **a customizable representation** of a function-call
+2. **stack-frame** in the Javascript call stack
+3. **a data structure** that represents a unit of work
 
 ### Creation of a Fiber node
 
@@ -142,26 +142,26 @@ A particular fiber has the following components:
 
 A majority of these look like properties that any given component in javascript would have(especially key, type, pendingProps, memoizedProps and output), that's because they are, all of them get copied from a function to a fiber, when the latter is created during a rendering cycle. As for the three types of fibers - child, sibling and return fibers, they just respresent fibers for the children components. Lastly, pendingWorkPriority, is the property that dictates the customizable behaviour of fibers, because it helps set priority for different tasks which eventually get analysed by the scheduler.
 
-- key: the 'key' attribute passed to the component, if not, created by React itself, it is used to uniquely remember the component to maintain rendering order
-- type: same as the type given to the component
-- pendingProps: the props passed to a component by its parent
-- memoizedProps: they are set equal to pendingProps on mount, in subsequent re-renders, the fiber node is reused if the new pendingProps = memoizedProps
-- return fibers: _"the fiber to which the program should return after processing the current one"_
-- child fibers: child component rendered by the current component
-- sibling fibers: multiple child components rendered by the current component
-- pendingWorkPriority: priority decided for a task (>=0), higher the value lower the priority, except, 0 priority means a no-task
-- output: _"The leaf nodes of a React application. They are specific to the rendering environment"_:
-  - web: html tags
-  - mobile OS: views
-- alternate: Flushed fiber and Work-in-progress fibre are alternate to each other.
+- **key:** the 'key' attribute passed to the component, if not, created by React itself, it is used to uniquely remember the component to maintain rendering order
+- **type:** same as the type given to the component
+- **pendingProps:** the props passed to a component by its parent
+- **memoizedProps:** they are set equal to pendingProps on mount, in subsequent re-renders, the fiber node is reused if the new pendingProps = memoizedProps
+- **return fibers:** _"the fiber to which the program should return after processing the current one"_
+- **child fibers:** child component rendered by the current component
+- **sibling fibers:** multiple child components rendered by the current component
+- **pendingWorkPriority:** priority decided for a task (>=0), higher the value lower the priority, except, 0 priority means a no-task
+- **output:** _"The leaf nodes of a React application. They are specific to the rendering environment"_:
+  - **web:** html tags
+  - **mobile OS:** views
+- **alternate:** Flushed fiber and Work-in-progress fibre are alternate to each other.
 
 ### Fiber Tree
 
 At this point it is important to draw a differentiation between the DOM Tree and the Fiber Tree. The first is a browser's internal representation of a react app and it consists of the host tags (like `<html>`, `<head>`, `<h1˘>` etc.). The second on the other hand is internal to the React engine, it is a specialised representation of React components that lets it visualize the relationship between different fibers in the form of a linked list where any two given nodes can have one of the following relationships:
 
-- return fiber
-- child fiber
-- sibling fiber
+- **return fiber**
+- **child fiber**
+- **sibling fiber**
 
 ![Fiber Tree](fiber-tree.png)
 

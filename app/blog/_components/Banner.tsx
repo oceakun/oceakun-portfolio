@@ -2,18 +2,38 @@ import React from 'react';
 
 interface BannerProps {
   title: string;
-  subtitle?: string;
+  date: string;
+  wordCount?: number;
 }
 
-function Banner({ title, subtitle }: BannerProps) {
+function Banner({ title, date, wordCount }: BannerProps) {
+  const readTime = wordCount ? Math.max(1, Math.ceil(wordCount / 200)) : null;
+
   return (
     <div className='relative w-full rounded-lg overflow-hidden flex items-center'>
-      <div className='flex flex-col sm:flex-row items-center justify-center sm:justify-start w-full gap-4 sm:gap-8'>
-        <div className='text-center sm:text-left'>
-          <h1 className='text-3xl md:text-5xl font-bold tracking-wide uppercase font-amber-950 dark:text-neutral-200 font-serif'>
-            {title}
-          </h1>
-        </div>
+      <div className='flex flex-col w-full gap-3'>
+        <h1 className='text-2xl md:text-4xl font-bold tracking-wide font-amber-950 dark:text-neutral-200 font-serif'>
+          {title}
+        </h1>
+        <p className='w-full flex flex-row items-center'>
+          <span className='font-[300] text-[14px] dark:text-amber-300 text-amber-950 flex flex-row items-center gap-2'>
+            {date ? (
+              <>
+                <span>{date}</span>
+                {wordCount != null && (
+                  <>
+                    <span className='h-px w-4 bg-current sm:h-4 sm:w-px' />
+                    <span>{wordCount} words</span>
+                    <span className='h-px w-4 bg-current sm:h-4 sm:w-px' />
+                    <span>{readTime} min read</span>
+                  </>
+                )}
+              </>
+            ) : (
+              '----------'
+            )}
+          </span>
+        </p>
       </div>
     </div>
   );
