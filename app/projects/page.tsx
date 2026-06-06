@@ -71,7 +71,7 @@ const projects = [
 export default function ProjectPage() {
   return (
     <section className='px-4 sm:px-6 md:px-8'>
-      <h1 className='font-bold text-3xl dark:text-neutral-200 font-serif'>
+      <h1 className='font-bold text-3xl text-amber-950 dark:text-neutral-200 font-serif'>
         Projects
       </h1>
       <div className='prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-200 '>
@@ -80,7 +80,7 @@ export default function ProjectPage() {
           .map((project) => (
             <div key={project.name}>
               <div className='flex items-center gap-4 justify-between border-b-[1px] border-neutral-300 dark:border-neutral-700 mb-6'>
-                <p className='dark:text-amber-300 text-rose-500'>
+                <p className='dark:text-amber-300 text-amber-950'>
                   {project.name}
                 </p>
                 <div className='flex items-center gap-4 justify-between'>

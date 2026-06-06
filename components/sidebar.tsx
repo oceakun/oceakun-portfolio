@@ -3,6 +3,9 @@
 import clsx from 'clsx';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
+import bannerLight from '@/app/banner_light.png';
+import bannerDark from '@/app/banner_dark.png';
 import { LayoutGroup, motion } from 'framer-motion';
 import ToggleSwitch from './themeToggler';
 
@@ -38,15 +41,10 @@ export default function Navbar() {
             className='flex flex-row justify-center w-full gap-4 md:gap-10 items-center md:ml-[18px] md:flex-col md:items-start relative px-4 md:px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative'
             id='nav'
           >
-            {/* <div className="md:ml-2 hover:cursor-pointer" onClick={()=>handleThemeToggle()}>
-              {
-              theme=='light'?<LightModeIcon />:<DarkModeIcon />
-              }
-            </div> */}
             <div>
               <ToggleSwitch />
             </div>
-            <div className='flex flex-row justify-center md:w-full gap-[6px] md:flex-col space-x-0 md:pr-10 mb-2 mt-2 md:mt-0'>
+            <div className='flex flex-row justify-center md:w-fit gap-[6px] md:flex-col space-x-0 mb-2 mt-2 md:mt-0'>
               {Object.entries(navItems).map(([path, { name }]) => {
                 const isActive = path === pathname;
                 return (
@@ -79,8 +77,43 @@ export default function Navbar() {
                 );
               })}
             </div>
+            <div className='flex-shrink-0' style={{ transform: 'scaleX(-1)' }}>
+              <Image
+                src={bannerLight}
+                alt='banner'
+                width={30}
+                height={30}
+                className='block md:hidden dark:hidden'
+              />
+              <Image
+                src={bannerDark}
+                alt='banner'
+                width={30}
+                height={30}
+                className='hidden dark:block dark:md:hidden'
+              />
+            </div>
           </nav>
         </LayoutGroup>
+        <div
+          className='hidden md:block ml-[28px] mb-4 w-fit'
+          style={{ transform: 'scaleX(-1)' }}
+        >
+          <Image
+            src={bannerLight}
+            alt='banner'
+            width={60}
+            height={60}
+            className='dark:hidden'
+          />
+          <Image
+            src={bannerDark}
+            alt='banner'
+            width={60}
+            height={60}
+            className='hidden dark:block'
+          />
+        </div>
         <div
           id='sidebar-toc-slot'
           className='hidden md:block md:mt-8 lg:flex-1 lg:min-h-0 lg:overflow-y-auto md:pr-2'

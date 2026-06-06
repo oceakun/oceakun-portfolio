@@ -16,7 +16,7 @@ const TypewriterClient = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className='dark:text-amber-300 text-rose-500'>{name}</div>
+      <div className='dark:text-amber-300 text-amber-950'>{name}</div>
     ),
   }
 );
@@ -32,7 +32,7 @@ export default async function HomePage() {
           href='/trkr/index.html'
           target='_blank'
           rel='noopener noreferrer'
-          className='font-serif text-sm italic text-neutral-600 dark:text-neutral-400 hover:text-rose-500 dark:hover:text-amber-300 transition-colors'
+          className='font-serif text-sm italic text-neutral-600 dark:text-neutral-400 hover:text-amber-700 dark:hover:text-amber-300 transition-colors'
         >
           trkr →
         </a> */}

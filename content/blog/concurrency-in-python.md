@@ -35,8 +35,6 @@ references:
 
 ## Introduction
 
-![Points of IO in a server](/blog/concurrency-in-python/server-io-points.png)
-
 A server's operations can be broadly divided into two types.
 
 - One, receiving and sending data
@@ -47,6 +45,8 @@ The reason we talk about input and output in the same breath is because an outpu
 1. Inbound Network IO: The api request sent by the user hits the network card and travels to the Python runtime via OS buffer.
 2. DB IO/ Disk IO: Once recieved, the endpoint handler either makes a query to the database or reads data from a disk.
 3. Outbound Network IO: Once data from the storage unit is retrieved, the python runtime curates a json object, wraps it up in the response payload and sends it to the Kernel which directs it to the network card. From there it is sent back to the user browser.
+
+![Points of IO in a server](/blog/concurrency-in-python/server-io-points.png)
 
 Now imagine an API server built for an e-commerce platform. It will have a hundred endpoints if not more and a lot of internal/ external services(present on another server) will be used. In that case, you as a developer will be needed to implement a system that efficiently manages all points of IO so the server doesn't have to wait long for the data it needs to serve its user, or in other words, _you have to ensure that IO doesn't become a performance bottleneck for the whole system_. After all, it's just a cog in the ginormous wheel which is your server.
 

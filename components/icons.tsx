@@ -140,7 +140,7 @@ export function DarkModeIcon() {
       y='0'
       version='1.1'
       viewBox='0 0 29 29'
-      style={{ fill: '#e6cc85' }}
+      style={{ fill: '#e9d8a8ff' }}
       width='34'
       height='34'
     >
@@ -156,7 +156,7 @@ export function LightModeIcon() {
       enableBackground='new 0 0 32 32'
       viewBox='0 0 32 32'
       id='moon'
-      style={{ fill: '#e68585' }}
+      style={{ fill: '#432004' }}
       width='30'
       height='30'
     >
@@ -182,40 +182,78 @@ export function LinkIcon() {
   );
 }
 
+const stackPaths = (
+  <>
+    <path d='M219.96875,169.08984,128,222.73828,36.03125,169.08984a8.00008,8.00008,0,0,0-8.0625,13.82032l96,56a8.00059,8.00059,0,0,0,8.0625,0l96-56a8.00008,8.00008,0,0,0-8.0625-13.82032Z'></path>
+    <path d='M219.96875,121.08984,128,174.73828,36.03125,121.08984a8.00008,8.00008,0,0,0-8.0625,13.82032l96,56a8.00059,8.00059,0,0,0,8.0625,0l96-56a8.00008,8.00008,0,0,0-8.0625-13.82032Z'></path>
+    <path d='M27.96875,86.91016l96,56a8.00059,8.00059,0,0,0,8.0625,0l96-56a8.00016,8.00016,0,0,0,0-13.82032l-96-56a8.00059,8.00059,0,0,0-8.0625,0l-96,56a8.00016,8.00016,0,0,0,0,13.82032Z'></path>
+  </>
+);
+
 export function StackIcon() {
   return (
-    <svg
-      xmlns='http://www.w3.org/2000/svg'
-      width='22'
-      height='22'
-      style={{ fill: '#e68585' }}
-      viewBox='0 0 256 256'
-      id='stack'
-    >
-      <path d='M219.96875,169.08984,128,222.73828,36.03125,169.08984a8.00008,8.00008,0,0,0-8.0625,13.82032l96,56a8.00059,8.00059,0,0,0,8.0625,0l96-56a8.00008,8.00008,0,0,0-8.0625-13.82032Z'></path>
-      <path d='M219.96875,121.08984,128,174.73828,36.03125,121.08984a8.00008,8.00008,0,0,0-8.0625,13.82032l96,56a8.00059,8.00059,0,0,0,8.0625,0l96-56a8.00008,8.00008,0,0,0-8.0625-13.82032Z'></path>
-      <path d='M27.96875,86.91016l96,56a8.00059,8.00059,0,0,0,8.0625,0l96-56a8.00016,8.00016,0,0,0,0-13.82032l-96-56a8.00059,8.00059,0,0,0-8.0625,0l-96,56a8.00016,8.00016,0,0,0,0,13.82032Z'></path>
-    </svg>
+    <>
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='22'
+        height='22'
+        style={{ fill: '#b45454' }}
+        viewBox='0 0 256 256'
+        id='stack'
+        className='dark:hidden'
+      >
+        {stackPaths}
+      </svg>
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='22'
+        height='22'
+        style={{ fill: '#e68585' }}
+        viewBox='0 0 256 256'
+        id='stack'
+        className='hidden dark:block'
+      >
+        {stackPaths}
+      </svg>
+    </>
   );
 }
 
+const hashPath = (
+  <g data-name='Layer 2'>
+    <path
+      d='M20 14h-4.3l.73-4H20a1 1 0 0 0 0-2h-3.21l.69-3.81A1 1 0 0 0 16.64 3a1 1 0 0 0-1.22.82L14.67 8h-3.88l.69-3.81A1 1 0 0 0 10.64 3a1 1 0 0 0-1.22.82L8.67 8H4a1 1 0 0 0 0 2h4.3l-.73 4H4a1 1 0 0 0 0 2h3.21l-.69 3.81A1 1 0 0 0 7.36 21a1 1 0 0 0 1.22-.82L9.33 16h3.88l-.69 3.81a1 1 0 0 0 .84 1.19 1 1 0 0 0 1.22-.82l.75-4.18H20a1 1 0 0 0 0-2zM9.7 14l.73-4h3.87l-.73 4z'
+      data-name='hash'
+    ></path>
+  </g>
+);
+
 export function HashIcon() {
   return (
-    <svg
-      xmlns='http://www.w3.org/2000/svg'
-      width='22'
-      height='22'
-      style={{ fill: '#2fe07c' }}
-      viewBox='0 0 24 24'
-      id='hash'
-    >
-      <g data-name='Layer 2'>
-        <path
-          d='M20 14h-4.3l.73-4H20a1 1 0 0 0 0-2h-3.21l.69-3.81A1 1 0 0 0 16.64 3a1 1 0 0 0-1.22.82L14.67 8h-3.88l.69-3.81A1 1 0 0 0 10.64 3a1 1 0 0 0-1.22.82L8.67 8H4a1 1 0 0 0 0 2h4.3l-.73 4H4a1 1 0 0 0 0 2h3.21l-.69 3.81A1 1 0 0 0 7.36 21a1 1 0 0 0 1.22-.82L9.33 16h3.88l-.69 3.81a1 1 0 0 0 .84 1.19 1 1 0 0 0 1.22-.82l.75-4.18H20a1 1 0 0 0 0-2zM9.7 14l.73-4h3.87l-.73 4z'
-          data-name='hash'
-        ></path>
-      </g>
-    </svg>
+    <>
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='22'
+        height='22'
+        style={{ fill: '#16a34a' }}
+        viewBox='0 0 24 24'
+        id='hash'
+        className='dark:hidden'
+      >
+        {hashPath}
+      </svg>
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='22'
+        height='22'
+        style={{ fill: '#2fe07c' }}
+        viewBox='0 0 24 24'
+        id='hash'
+        className='hidden dark:block'
+      >
+        {hashPath}
+      </svg>
+    </>
   );
 }
 

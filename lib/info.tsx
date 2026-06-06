@@ -12,7 +12,7 @@ export const about = () => {
         href='https://essentia.dev/'
         target='_blank'
         rel='noopener noreferrer'
-        className='underline decoration-rose-500 dark:decoration-amber-300 hover:decoration-2 transition-all'
+        className='underline decoration-amber-500 dark:decoration-amber-300 hover:decoration-2 transition-all'
       >
         essentia.dev
       </a>

@@ -2,7 +2,7 @@ import './global.css';
 import clsx from 'clsx';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
-import { Creepster, Caveat, Roboto } from 'next/font/google';
+import { Creepster, Caveat, Roboto, Kalam, Lora } from 'next/font/google';
 import Sidebar from '../components/sidebar';
 import { Analytics } from '@vercel/analytics/react';
 
@@ -23,6 +23,19 @@ const roboto = Roboto({
 const caveat = Caveat({
   subsets: ['latin'],
   variable: '--font-caveat',
+  display: 'swap',
+});
+
+const lora = Lora({
+  subsets: ['latin'],
+  variable: '--font-lora',
+  display: 'swap',
+});
+
+const kalam = Kalam({
+  weight: ['400', '700'],
+  subsets: ['latin'],
+  variable: '--font-kalam',
   display: 'swap',
 });
 
@@ -87,11 +100,13 @@ export default function RootLayout({
     <html
       lang='en'
       className={clsx(
-        'text-black bg-white dark:text-white dark:bg-[#111010]',
+        'text-black bg-[#fbfaf9] dark:text-white dark:bg-[#111010]',
         kaisei.variable,
         creepster.variable,
         caveat.variable,
-        roboto.variable
+        roboto.variable,
+        kalam.variable,
+        lora.variable
       )}
     >
       <body className='antialiased max-w-6xl mb-40 flex flex-col md:flex-row mx-4 mt-8 md:mt-20 mx-auto'>
