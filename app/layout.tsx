@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import { Creepster, Caveat, Roboto, Kalam, Lora } from 'next/font/google';
 import Sidebar from '../components/sidebar';
+import BlobBand from '../components/blobBand';
 import { Analytics } from '@vercel/analytics/react';
 
 const kaisei = localFont({
@@ -109,7 +110,7 @@ export default function RootLayout({
         lora.variable
       )}
     >
-      <body className='antialiased max-w-6xl mb-40 flex flex-col md:flex-row mx-4 mt-8 md:mt-20 mx-auto'>
+      <body className='antialiased min-h-screen flex flex-col'>
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -126,11 +127,14 @@ export default function RootLayout({
             `,
           }}
         />
-        <Sidebar />
-        <main className='flex-auto min-w-0 mt-6 md:mt-0 flex flex-col px-2 w-full'>
-          {children}
-          <Analytics />
-        </main>
+        <BlobBand edge='bottom' className='w-full h-[80px] md:h-[110px]' />
+        <div className='flex-1 w-full max-w-6xl mx-auto flex flex-col md:flex-row px-4 md:px-0 mt-2 md:mt-6 mb-40'>
+          <Sidebar />
+          <main className='flex-auto min-w-0 mt-6 md:mt-0 flex flex-col px-2 w-full'>
+            {children}
+            <Analytics />
+          </main>
+        </div>
       </body>
     </html>
   );
