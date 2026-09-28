@@ -19,7 +19,14 @@ const vsSource = `
 const MAX_PATCHES = 8;
 
 const fsSource = `
+  // Full precision where available: many phone GPUs implement mediump as
+  // 16-bit floats, which breaks the hash functions and turns the blobs into a
+  // repeating grid. Desktop GPUs use full precision either way.
+  #ifdef GL_FRAGMENT_PRECISION_HIGH
+  precision highp float;
+  #else
   precision mediump float;
+  #endif
   #define MAX_PATCHES ${MAX_PATCHES}
   uniform vec2 u_resolution;
   uniform float u_time;
