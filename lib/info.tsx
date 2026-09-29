@@ -24,12 +24,25 @@ export const about = () => {
 export const bio = () => {
   return (
     <>
-      I graduated with a B.Tech degree in{' '}
-      <b>Computer Science Engineering in June 2024</b> and have been working as
-      a Software Engineer ever since.
+      <b>Currently</b>
       <br />
-      {/* My work involves designing, developing and delivering{' '}
-      <b>mobile and web applications</b>. */}
+      1. Implementing the complete monetary layer of an event booking platform
+      (booking payments, platform memberships and payouts to stakeholders)
+      <br />
+      2. Building a voice-based browser automation agent
+      <br />
+      3. Kicking off pydelhi's new Software Internals Meetup series with{' '}
+      <a
+        href='https://www.commudle.com/communities/pydelhi/events/software-internals-meetup-1-redis-kubernetes'
+        target='_blank'
+        rel='noopener noreferrer'
+        className='underline decoration-blue-500 dark:decoration-blue-400 hover:decoration-2 transition-all'
+      >
+        The Redis Core, 3rd Oct' 2026
+      </a>{' '}
+      <br />
+      4. Learning Golang
+      <br />
     </>
   );
 };
