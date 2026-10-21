@@ -31,17 +31,7 @@ export const bio = () => {
       <br />
       2. Building a voice-based browser automation agent
       <br />
-      3. Kicking off pydelhi's new Software Internals Meetup series with{' '}
-      <a
-        href='https://www.commudle.com/communities/pydelhi/events/software-internals-meetup-1-redis-kubernetes'
-        target='_blank'
-        rel='noopener noreferrer'
-        className='underline decoration-blue-500 dark:decoration-blue-400 hover:decoration-2 transition-all'
-      >
-        The Redis Core, 3rd Oct' 2026
-      </a>{' '}
-      <br />
-      4. Learning Golang
+      3. Learning Golang
       <br />
     </>
   );
